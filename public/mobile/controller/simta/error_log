@@ -1,0 +1,210 @@
+[19-Aug-2022 05:59:08 UTC] PHP Notice:  Undefined index: nidn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 22
+[19-Aug-2022 06:00:08 UTC] PHP Notice:  Undefined index: nidn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 22
+[19-Aug-2022 06:00:29 UTC] PHP Notice:  Undefined index: nidn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 22
+[19-Aug-2022 06:01:38 UTC] PHP Notice:  Undefined index: nidn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 22
+[19-Aug-2022 06:01:46 UTC] PHP Notice:  Undefined index: nidn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 22
+[19-Aug-2022 06:10:19 UTC] PHP Notice:  Array to string conversion in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 40
+[19-Aug-2022 06:10:39 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 40
+[19-Aug-2022 06:10:40 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 40
+[19-Aug-2022 06:10:47 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:40
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 40
+[19-Aug-2022 06:34:43 UTC] PHP Notice:  Undefined index: nidn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 20
+[19-Aug-2022 06:35:00 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:35:00 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:35:00 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:35:00 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:35:00 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:35:02 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:35:02 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:35:02 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:35:02 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:35:02 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:35:13 UTC] PHP Notice:  Undefined index: nidn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 20
+[19-Aug-2022 06:39:20 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:39:20 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:39:20 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:39:20 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:39:20 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:39:53 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 3
+[19-Aug-2022 06:39:55 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 3
+[19-Aug-2022 06:40:30 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:30 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:30 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:30 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:30 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:31 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:31 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:31 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:31 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:32 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:32 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:32 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:32 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:52 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:52 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:52 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:52 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:53 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:53 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:53 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:40:53 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:40:53 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:41:16 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:41:16 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:41:16 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:41:16 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:41:16 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:41:17 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:41:17 UTC] PHP Warning:  include(../ConSimtas.php): failed to open stream: No such file or directory in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:41:17 UTC] PHP Warning:  include(): Failed opening '../ConSimtas.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 12
+[19-Aug-2022 06:41:17 UTC] PHP Notice:  Undefined variable: conn in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:41:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function stmt_init() on null in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 17
+[19-Aug-2022 06:43:32 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:44:58 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:32
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 32
+[19-Aug-2022 06:48:35 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:51:14 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:53:19 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:54:01 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:54:04 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:54:13 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:57:24 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 06:57:26 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 07:01:48 UTC] PHP Parse error:  syntax error, unexpected '=' in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:05:50 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 32
+[19-Aug-2022 07:06:09 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:32
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 32
+[19-Aug-2022 07:11:23 UTC] PHP Notice:  Trying to get property 'stb' of non-object in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 39
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:12:42 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 30
+[19-Aug-2022 07:13:48 UTC] PHP Notice:  Undefined variable: responses in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 40
+[19-Aug-2022 07:21:07 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:39
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 39
+[19-Aug-2022 07:21:08 UTC] PHP Fatal error:  Uncaught Error: Function name must be a string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:39
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 39
+[19-Aug-2022 07:22:51 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 07:22:52 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31
+[19-Aug-2022 07:23:08 UTC] PHP Fatal error:  Uncaught Error: Object of class Bimbingan could not be converted to string in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php:31
+Stack trace:
+#0 {main}
+  thrown in /home2/thesisapp/public_html/public/mobile/controller/simta/GetDataBimbingan.php on line 31

@@ -1,0 +1,9 @@
+[19-Aug-2022 05:41:56 UTC] PHP Notice:  Trying to access array offset on value of type null in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 11
+[19-Aug-2022 05:42:10 UTC] PHP Notice:  Trying to access array offset on value of type null in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 11
+[19-Aug-2022 05:42:23 UTC] PHP Deprecated:  password_hash(): Use of the 'salt' option to password_hash is deprecated in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 25
+[19-Aug-2022 05:52:56 UTC] PHP Deprecated:  password_hash(): Use of the 'salt' option to password_hash is deprecated in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 25
+[19-Aug-2022 05:55:53 UTC] PHP Notice:  Trying to access array offset on value of type null in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 11
+[19-Aug-2022 05:56:01 UTC] PHP Notice:  Trying to access array offset on value of type null in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 11
+[23-Aug-2022 03:11:12 UTC] PHP Deprecated:  password_hash(): Use of the 'salt' option to password_hash is deprecated in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 25
+[23-Aug-2022 03:11:37 UTC] PHP Deprecated:  password_hash(): Use of the 'salt' option to password_hash is deprecated in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 25
+[23-Aug-2022 03:21:36 UTC] PHP Deprecated:  password_hash(): Use of the 'salt' option to password_hash is deprecated in /home2/thesisapp/public_html/public/mobile/controller/login.php on line 25
