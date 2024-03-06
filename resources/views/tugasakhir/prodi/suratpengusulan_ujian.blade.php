@@ -117,7 +117,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
         Di, - <br>
         Makassar <br><br>
         Assalamualaikum Wr. Wb.<br>
-        Dengan Rahmat Allah S.W.T, Sehubungan dengan penyelesaian studi Mahasiswa PRogram Studi Teknik Informatika Fakultas Ilmu Komputer UMI Semester Akhir 2018/2019, maka dengan ini kami mengusulkan nama-nama tim Ujian Tugas Akhir untuk dibuatkan SK penunjukan dengan susunan sebagai berikut:
+        Dengan Rahmat Allah S.W.T, Sehubungan dengan penyelesaian studi Mahasiswa PRogram Studi Ilmu Hukum Fakultas Ilmu Komputer UMI Semester Akhir 2018/2019, maka dengan ini kami mengusulkan nama-nama tim Ujian Tugas Akhir untuk dibuatkan SK penunjukan dengan susunan sebagai berikut:
         </p>
         <center>
         <table border="1" style="border-collapse: collapse;">
@@ -166,7 +166,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
         </div>
         <br><br><br><br><br>
         <div class="legalitor">
-            @if (Auth::user()->name == "proditi")
+            @if (Auth::user()->name == "prodifh")
             <b><u>Tasrif Hasanuddin, S.T., M.Cs</u></b><br>
             <b>NIDN : 0910126901</b>
             @else

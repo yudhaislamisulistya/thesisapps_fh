@@ -93,8 +93,8 @@
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
 
         <h4 class="textheader">Fakultas Ilmu Komputer</h4><br>
-        @if (auth()->user()->name == "proditi")
-        <h4 class="textheader">Program Studi Teknik Informatika</h4>
+        @if (auth()->user()->name == "prodifh")
+        <h4 class="textheader">Program Studi Ilmu Hukum</h4>
         @else
         <h4 class="textheader">Program Studi Sistem Informasi</h4>
         @endif
@@ -151,7 +151,7 @@
         Assalamualaikum Wr. Wb.<br>
         Dengan Rahmat Allah S.W.T, Saya yang bertanda tangan dibawah ini sesuai peraturan Akademik Universitas Muslim
         Indonesia
-        tentang penyesuain Tugas Akhir Mahasiswa, Ketua Program Studi Teknik Informatika mengusulkan Calon Pembimbing
+        tentang penyesuain Tugas Akhir Mahasiswa, Ketua Program Studi Ilmu Hukum mengusulkan Calon Pembimbing
         Tugas Akhir.
         <br><br>
         Menunjuk saudara yang tercantum namanya untuk membimbing atau membina mahasiswa dalam penyusunan tugas akhir
@@ -167,7 +167,7 @@
         Makassar, {{Illuminate\Support\Carbon::parse(substr($datax[0]->created_at,0,10))->formatLocalized("%d %B %Y")}}
     </div>
     <br>
-        @if (Auth::user()->name == "proditi")
+        @if (Auth::user()->name == "prodifh")
             <div style="text-align: center; position: relative">
                 <img src="{{asset('gambar/stempelprodi.png')}}" alt="" height="100px" style="position: absolute; right: 140px">
                 <br>
@@ -182,7 +182,7 @@
         @endif
     <br><br><br><br>
     <div class="legalitor">
-        @if (Auth::user()->name == "proditi")
+        @if (Auth::user()->name == "prodifh")
         Tasrif Hasanuddin, S.T., M.Cs
         @else
         Ir. Herman, S.Kom.,M.Cs., MTA.

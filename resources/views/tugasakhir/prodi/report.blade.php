@@ -72,7 +72,7 @@
             <h5 class="textheader">Yayasan Wakaf UMI</h5><br>
             <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
             <h4 class="textheader">Fakultas Ilmu Komputer</h4><br>
-            <h3 class="textheader">Program Studi Teknik Informatika</h3>
+            <h3 class="textheader">Program Studi Ilmu Hukum</h3>
         </div>
         <hr>
         <div class="title">
@@ -80,7 +80,7 @@
             <h4 class="headingTitle">No. 0001/H.22/FIK-UMI/I/2019</h4>
         </div>
         <br>
-        Dengan Rahmat Allah S.W.T, Sesuai Dengan Surat Ketua Program Studi Teknik Informatika Nomor. 001/H.22/TI-FIK/UMI/I/2019
+        Dengan Rahmat Allah S.W.T, Sesuai Dengan Surat Ketua Program Studi Ilmu Hukum Nomor. 001/H.22/TI-FIK/UMI/I/2019
         Tentang Tugas Akhir Mahasiswa, Maka :
         <br>
         <p align="center">DEKAN FAKULTAS ILMU KOMPUTER</p>

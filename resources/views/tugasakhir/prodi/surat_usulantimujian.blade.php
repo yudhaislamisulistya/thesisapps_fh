@@ -134,7 +134,7 @@
             Di, - <br>
             Makassar <br><br>
             <b><i>Assalamu’alaikum Warahmatullahi Wabarakatuh</i></b>.<br>
-            Dengan Rahmat Allah S.W.T, Sehubungan dengan penyelesaian studi Mahasiswa PRogram Studi Teknik Informatika
+            Dengan Rahmat Allah S.W.T, Sehubungan dengan penyelesaian studi Mahasiswa PRogram Studi Ilmu Hukum
             Fakultas Ilmu Komputer UMI Semester Akhir TA 2019/2020, maka dengan ini kami mengusulkan nama-nama tim Ujian
             Tugas Akhir untuk dibuatkan SK penunjukan dengan susunan sebagai berikut:
         </p>
@@ -206,7 +206,7 @@
             Makassar, {{ $tgl_ujian }}
         </div>
         <br>
-        @if (Auth::user()->name == 'proditi')
+        @if (Auth::user()->name == 'prodifh')
             <div style="text-align: center; position: relative">
                 <img src="{{ asset('gambar/stempelprodi.png') }}" alt="" height="100px"
                     style="position: absolute; right: 140px">
@@ -225,7 +225,7 @@
         @endif
         <br><br><br><br>
         <div class="legalitor">
-            @if (Auth::user()->name == 'proditi')
+            @if (Auth::user()->name == 'prodifh')
                 <b><u>Tasrif Hasanuddin, S.T., M.Cs</u></b><br>
                 <b>NIDN : 0910126901</b>
             @else

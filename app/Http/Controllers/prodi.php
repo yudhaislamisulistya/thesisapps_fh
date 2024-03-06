@@ -230,7 +230,7 @@ class prodi extends Controller
     // Halaman Approve Hasil Ujian Proposal
     public function approve_hasilujian_proposal()
     {
-        if (Auth::user()->name == "proditi") {
+        if (Auth::user()->name == "prodifh") {
             $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
                 ->where('tipe_ujian', 0)
                 ->where('mst_pendaftaran.status_prodi', 1)
@@ -412,7 +412,7 @@ class prodi extends Controller
     // Halaman Approve Hasil Ujian TA
     public function approve_hasilujian_ta()
     {
-        if (Auth::user()->name == "proditi") {
+        if (Auth::user()->name == "prodifh") {
             $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
                 ->where('tipe_ujian', 2)
                 ->where('mst_pendaftaran.status_prodi', 1)
@@ -641,7 +641,7 @@ class prodi extends Controller
         $status = '';
         if (auth()->user()->name == "prodisi") {
             $status = '131';
-        } else if (auth()->user()->name == "proditi") {
+        } else if (auth()->user()->name == "prodifh") {
             $status = '130';
         }
 
@@ -772,7 +772,7 @@ class prodi extends Controller
 
     public function topik()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $data_pengusul = DB::table('trt_topik')
                 ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA')
@@ -833,7 +833,7 @@ class prodi extends Controller
 
     public function usulan_pembimbing()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $data = DB::table('trt_topik')
                 ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->select('t_mst_mahasiswa.*', 'trt_topik.*')
@@ -1001,7 +1001,7 @@ class prodi extends Controller
 
     public function sk_pembimbing()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $data = DB::table('t_mst_mahasiswa')
                 ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
@@ -1235,7 +1235,7 @@ class prodi extends Controller
 
     public function peserta_proposal()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
                 ->where('tipe_ujian', 0)
                 ->where('mst_pendaftaran.status_prodi', 1)
@@ -1264,7 +1264,7 @@ class prodi extends Controller
 
     public function peserta_ujianmeja()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
                 ->where('tipe_ujian', 2)
                 ->where('mst_pendaftaran.status_prodi', 1)
@@ -1322,7 +1322,7 @@ class prodi extends Controller
 
     public function jadwal()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $pendaftaran = Collection::make(mst_pendaftaran::get())
                 ->where('status_ujian', 0)
                 ->where('status_prodi', 1)
@@ -1360,7 +1360,7 @@ class prodi extends Controller
         if (empty($mst)) {
             if ($request->tipe_ujian == "3") {
                 for ($i = 0; $i < 3; $i++) {
-                    if (Auth::user()->name == "proditi") {
+                    if (Auth::user()->name == "prodifh") {
                         $request->merge([
                             "tipe_ujian" => $i,
                             "user_id" => "00",
@@ -1379,7 +1379,7 @@ class prodi extends Controller
                     mst_pendaftaran::create($request->all());
                 }
             } else {
-                if (Auth::user()->name == "proditi") {
+                if (Auth::user()->name == "prodifh") {
                     $request->merge([
                         "user_id" => "00",
                         "jml_peserta" => 0,
@@ -1443,7 +1443,7 @@ class prodi extends Controller
 
     public function sk_ujian()
     {
-        if (Auth::user()->name == "proditi" || Auth::user()->name == "akademikproditi") {
+        if (Auth::user()->name == "prodifh" || Auth::user()->name == "akademikprodifh") {
             $pendaftaran = mst_pendaftaran::where('status_prodi', 1)
                 ->get();
             $jadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
@@ -1465,7 +1465,7 @@ class prodi extends Controller
 
     public function sk_ujian_ta()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $pendaftaran = mst_pendaftaran::where('status_prodi', 1)
                 ->get();
             $jadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
@@ -1626,7 +1626,7 @@ class prodi extends Controller
 
     public function persyaratan_proposal()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
                 ->where("type", 0)
                 ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
@@ -1648,7 +1648,7 @@ class prodi extends Controller
 
     public function persyaratan_ujianmeja()
     {
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
                 ->where("type", 2)
                 ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
@@ -1791,7 +1791,7 @@ class prodi extends Controller
                 break;
         endswitch;
 
-        if (Auth::user()->name == 'proditi') {
+        if (Auth::user()->name == 'prodifh') {
             $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
                 ->where('tipe_ujian', $type)
                 ->where('mst_pendaftaran.status_prodi', 1)
@@ -2401,7 +2401,7 @@ class prodi extends Controller
     // Surat Keputusan Pembimbing
     public function surat_keputusan_pembimbing()
     {
-        if (Auth::user()->name == "proditi") {
+        if (Auth::user()->name == "prodifh") {
             $data = DB::table('t_mst_mahasiswa')
                 ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
@@ -2462,7 +2462,7 @@ class prodi extends Controller
 
     public function surat_penugasan_ujian_tugas_akhir()
     {
-        if (Auth::user()->name == "proditi") {
+        if (Auth::user()->name == "prodifh") {
             $data_sk_penugasan = DB::table('mst_sk_penugasan')
                 ->select('*')
                 ->join('trt_bimbingan', 'trt_bimbingan.bimbingan_id', '=', 'mst_sk_penugasan.bimbingan_id')

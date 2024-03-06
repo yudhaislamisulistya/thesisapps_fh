@@ -118,7 +118,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
         Makassar <br><br>
         Assalamualaikum Wr. Wb.<br>
         Dengan Rahmat Allah S.W.T, Saya yang bertanda tangan dibawah ini sesuai peraturan Akademik Universitas Muslim Indonesia
-        tentang penyesuain Tugas Akhir Mahasiswa, Ketua Program Studi Teknik Informatika mengusulkan Calon Pembimbing Tugas Akhir.
+        tentang penyesuain Tugas Akhir Mahasiswa, Ketua Program Studi Ilmu Hukum mengusulkan Calon Pembimbing Tugas Akhir.
         <br><br>
         Menunjuk saudara yang tercantum namanya untuk membimbing atau membina mahasiswa dalam penyusunan tugas akhir atas nama
         mahasiswa yang namanya terlampir dalam lampiran surat penunjukan.

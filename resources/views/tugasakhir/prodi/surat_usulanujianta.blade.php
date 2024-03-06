@@ -79,7 +79,7 @@
             <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
             <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
             <h4 class="textheader">Fakultas Ilmu Komputer</h4><br>
-            <h4 class="textheader">Program Studi Teknik Informatika</h4>
+            <h4 class="textheader">Program Studi Ilmu Hukum</h4>
         </div>
         <h6 class="headerAddress"> Alamat : Jalan Urip Sumoharjo Km. 05
             gedung Fakultas Ilmu Komputer Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
@@ -117,7 +117,7 @@
         Makassar <br><br>
         Assalamualaikum Wr. Wb.<br>
         Dengan Rahmat Allah S.W.T, Saya yang bertanda tangan dibawah ini sesuai peraturan Akademik Universitas Muslim Indonesia
-        tentang penyesuain Tugas Akhir Mahasiswa, Ketua Program Studi Teknik Informatika mengusulkan Calon Pembimbing Tugas Akhir.
+        tentang penyesuain Tugas Akhir Mahasiswa, Ketua Program Studi Ilmu Hukum mengusulkan Calon Pembimbing Tugas Akhir.
         <br><br>
         Menunjuk saudara yang tercantum namanya untuk membimbing atau membina mahasiswa dalam penyusunan tugas akhir atas nama
         mahasiswa yang namanya terlampir dalam lampiran surat penunjukan.
@@ -130,7 +130,7 @@
             Makassar, {{$tgl}}
         </div>
         <br>
-        @if (Auth::user()->name == "proditi")
+        @if (Auth::user()->name == "prodifh")
             <div style="text-align: center; position: relative">
                 <img src="{{asset('gambar/stempelprodi.png')}}" alt="" height="100px" style="position: absolute; right: 140px">
                 <br>
@@ -145,7 +145,7 @@
         @endif
         <br><br><br><br>
         <div class="legalitor">
-            @if (Auth::user()->name == "proditi")
+            @if (Auth::user()->name == "prodifh")
             Tasrif Hasanuddin, S.T., M.Cs
             @else
             Ir. Herman, S.Kom.,M.Cs., MTA.

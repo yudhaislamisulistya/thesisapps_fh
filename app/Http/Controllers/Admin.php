@@ -23,7 +23,7 @@ class Admin extends Controller
             $data->no_telepon = $request['no_telepon'];
             $filename = '';
 
-            if($request['prodi'] == "Teknik Informatika"){
+            if($request['prodi'] == "Ilmu Hukum"){
                 $filename = "ttd_kaprodi.png";
             }else if($request['prodi'] == "Sistem Informasi"){
                 $filename = "ttd_kaprodi_si.png";

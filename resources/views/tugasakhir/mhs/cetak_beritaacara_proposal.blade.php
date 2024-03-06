@@ -201,7 +201,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
 </div>
 <br><br><br><br>
 <div class="legalitor">
-    @if (helper::getProgramStudiByNim($nim) == "Teknik Informatika")
+    @if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
         <b><u>Tasrif Hasanuddin, S.T., M.Cs.</u></b><br>
         <b>NIDN : 0910126901</b><br>
     @else
@@ -464,7 +464,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
 </div>
 <br><br><br><br>
 <div class="legalitor">
-    @if (helper::getProgramStudiByNim($nim) == "Teknik Informatika")
+    @if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
         <b><u>Tasrif Hasanuddin, S.T., M.Cs.</u></b><br>
         <b>NIDN : 0910126901</b><br>
     @else

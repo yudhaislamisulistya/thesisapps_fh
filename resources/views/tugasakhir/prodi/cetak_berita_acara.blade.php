@@ -200,7 +200,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
 </div>
 <br>
 <br>
-@if (helper::getProgramStudiByNim($nim) == "Teknik Informatika")
+@if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
 <div style="text-align: center; position: relative">
     <img src="{{asset('gambar/stempelprodi.png')}}" alt="" height="100px" style="position: absolute; right: 140px">
     <br>
@@ -215,7 +215,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
 @endif
 <br><br><br>
 <div class="legalitor">
-    @if (helper::getProgramStudiByNim($nim) == "Teknik Informatika")
+    @if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
     <b><u>Tasrif Hasanuddin, S.T., M.Cs</u></b><br>
     <b>NIDN : 0910126901</b>
     @else
@@ -475,7 +475,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
     Ketua Program Studi
 </div>
 <br>
-@if (helper::getProgramStudiByNim($nim) == "Teknik Informatika")
+@if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
 <div style="text-align: center; position: relative">
     <img src="{{asset('gambar/stempelprodi.png')}}" alt="" height="100px" style="position: absolute; right: 140px">
     <br>
@@ -490,7 +490,7 @@ website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
 @endif
 <br><br><br>
 <div class="legalitor">
-    @if (helper::getProgramStudiByNim($nim) == "Teknik Informatika")
+    @if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
     <b><u>Tasrif Hasanuddin, S.T., M.Cs</u></b><br>
     <b>NIDN : 0910126901</b>
     @else

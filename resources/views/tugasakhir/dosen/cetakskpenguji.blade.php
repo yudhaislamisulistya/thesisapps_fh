@@ -206,7 +206,7 @@
         </div>
         <br><br><br><br>
         <div class="legalitor">
-            @if (helper::getProgramStudiByNim($nim) == "Teknik Informatika")
+            @if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
                 <b><u>Tasrif Hasanuddin, S.T., M.Cs.</u></b><br>
                 <b>NIDN : 0910126901</b><br>  
             @else

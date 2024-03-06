@@ -59,8 +59,8 @@ BEGIN PAGE
                             @elseif(Auth::user()->level==4)
                                 Hi, <strong>Akademik Fakultas</strong>
                             @elseif(Auth::user()->level==5)
-                                @if (Auth::user()->name == 'proditi')
-                                    Hi, <strong>Teknik Informatika</strong>
+                                @if (Auth::user()->name == 'prodifh')
+                                    Hi, <strong>Ilmu Hukum</strong>
                                 @else
                                     Hi, <strong>Sistem Informasi</strong>
                                 @endif

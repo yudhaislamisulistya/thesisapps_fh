@@ -19,7 +19,7 @@
         <h3 class="page-heading">Catatan</h3>
         <!-- BEGIN DATA TABLE -->
         <div class="the-box">
-            @if (auth()->user()->name == "akademikproditi" || auth()->user()->name == "akademikprodisi" )
+            @if (auth()->user()->name == "akademikprodifh" || auth()->user()->name == "akademikprodisi" )
                 <form method="post" action="{{url('akademikprodi/detail_persyaratan_ujianmeja_catatan_post')}}" enctype="multipart/form-data">
             @else
                     <form method="post" action="{{url('prodi/detail_persyaratan_ujianmeja_catatan_post')}}" enctype="multipart/form-data">

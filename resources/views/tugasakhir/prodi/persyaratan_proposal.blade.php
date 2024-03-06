@@ -34,7 +34,7 @@
                                 <td width="1%" align="center">{{++$key}}</td>
                                 <td>{{$value->C_NPM}}</td>
                                 <td>{{$value->NAMA_MAHASISWA}}</td>
-                                @if (auth()->user()->name == 'akademikproditi' || auth()->user()->name == 'akademikprodisi')
+                                @if (auth()->user()->name == 'akademikprodifh' || auth()->user()->name == 'akademikprodisi')
                                     <td><a href="{{ url('akademikprodi/detail_persyaratan_proposal/'.$value->C_NPM)}}"><i class="fa fa-copy icon-square icon-xs icon-primary"></i></a></td>
                                 @else
                                     <td><a href="{{ url('prodi/detail_persyaratan_proposal/'.$value->C_NPM)}}"><i class="fa fa-copy icon-square icon-xs icon-primary"></i></a></td>

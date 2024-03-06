@@ -14,7 +14,7 @@
                     <i class="fa fa-users icon-bg"></i>
                     <div class="tiles-inner text-center">
                         <p>Persiapan Proposal</p>
-                        @if (Auth::user()->name == 'proditi')
+                        @if (Auth::user()->name == 'prodifh')
                         <h1 class="bolded">{{count(helper::getStatusBimbinganByStatusTi(0))}}</h1>
                         @elseif (Auth::user()->name == 'prodisi')
                             <h1 class="bolded">{{count(helper::getStatusBimbinganByStatusSi(0))}}</h1>
@@ -36,7 +36,7 @@
                     <i class="fa fa-users icon-bg"></i>
                     <div class="tiles-inner text-center">
                         <p>Persiapan Ujian TA</p>
-                        @if (Auth::user()->name == 'proditi')
+                        @if (Auth::user()->name == 'prodifh')
                             <h1 class="bolded">{{count(helper::getStatusBimbinganByStatusTi(2))}}</h1>
                         @elseif (Auth::user()->name == 'prodisi')
                             <h1 class="bolded">{{count(helper::getStatusBimbinganByStatusSi(2))}}</h1>
@@ -58,7 +58,7 @@
                     <i class="fa fa-users icon-bg"></i>
                     <div class="tiles-inner text-center">
                         <p>Lulusan</p>
-                        @if (Auth::user()->name == 'proditi')
+                        @if (Auth::user()->name == 'prodifh')
                         <h1 class="bolded">{{count(helper::getStatusBimbinganByStatusTi(3))}}</h1>
                         @elseif (Auth::user()->name == 'prodisi')
                             <h1 class="bolded">{{count(helper::getStatusBimbinganByStatusSi(3))}}</h1>

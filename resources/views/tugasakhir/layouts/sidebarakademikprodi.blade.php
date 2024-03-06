@@ -10,8 +10,8 @@
                 <div class="media-body">
                     <h4>Welcome, <br /><strong>
                     
-                        @if (Auth::user()->name == 'akademikproditi')
-                            Akademik Program Studi Teknik Informatika
+                        @if (Auth::user()->name == 'akademikprodifh')
+                            Akademik Program Studi Ilmu Hukum
                         @else
                             Akademik Program Studi Sistem Informasi
                         @endif

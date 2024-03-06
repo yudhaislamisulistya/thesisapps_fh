@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <br><br>
-                    @if (Auth::user()->name == 'proditi')
+                    @if (Auth::user()->name == 'prodifh')
                         <input type="hidden" name="status_prodi" value="1">
                     @else
                         <input type="hidden" name="status_prodi" value="2">
@@ -144,7 +144,7 @@
                         <label class="col-lg-2 control-label">Nama Periode</label>
                         <div class="col-xs-5">
                             @php
-                            if (Auth::user()->name == 'proditi') {
+                            if (Auth::user()->name == 'prodifh') {
                                 $mstpendaftaran = Illuminate\Database\Eloquent\Collection::make(\App\Model\mst_pendaftaran::whereNotIn("pendaftaran_id", \App\TrtJadwalUjian::select("pendaftaran_id"))
                                 ->where('status_prodi', 1)
                                 ->get())

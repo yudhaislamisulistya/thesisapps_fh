@@ -11,7 +11,7 @@
                 <div class="media-body">
                     <h4>Welcome, <br /><strong>Program Studi
                         {{
-                            Auth::user()->name == 'proditi' ? 'Teknik Informatika' : (Auth::user()->name == 'prodisi' ? 'Sistem Informasi' : 'Admin')
+                            Auth::user()->name == 'prodifh' ? 'Ilmu Hukum' : (Auth::user()->name == 'prodisi' ? 'Sistem Informasi' : 'Admin')
                         }}
                     </strong>
                     </h4>

@@ -48,7 +48,7 @@
             <br>
             <div class="row text-left">
                 <div class="col-sm-6">
-                    @if (auth()->user()->name == 'akademikproditi' || auth()->user()->name == 'akademikprodisi')
+                    @if (auth()->user()->name == 'akademikprodifh' || auth()->user()->name == 'akademikprodisi')
                     <button onclick="showModal(this)" data-target="#modalPrimary" data-toggle="modal"
                         data-href="{{ url("akademikprodi/konfirmasi_persyaratan_ujian_by_nim/1")}}/{{$data[0]['C_NPM']}}"
                         class="btn btn-primary btn-perspective">Terima Semua</button>
@@ -98,7 +98,7 @@
                                     style="color: #fff"><i class="fa fa-paperclip"></i></button>
                             </td>
                             <td>
-                                @if (auth()->user()->name == 'akademikproditi' || auth()->user()->name == 'akademikprodisi')
+                                @if (auth()->user()->name == 'akademikprodifh' || auth()->user()->name == 'akademikprodisi')
                                 @if($value->status == 2)
                                 <button onclick="showModal(this)" data-target="#modalPrimary" data-toggle="modal"
                                     data-href="{{ url("akademikprodi/konfirmasi_persyaratan_ujian/1/$value->syarat_ujian_id/$value->C_NPM")}}"
@@ -147,7 +147,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if (auth()->user()->name == 'akademikproditi' || auth()->user()->name == 'akademikprodisi')
+                                @if (auth()->user()->name == 'akademikprodifh' || auth()->user()->name == 'akademikprodisi')
                                 <a class="btn btn-info"
                                     href="{{url('akademikprodi/detail_persyaratan_proposal/catatan')}}/{{$trtsyaratujian->id}}/{{$mhs->C_NPM}}"><i
                                         class="fa fa-newspaper-o"></i></a>
