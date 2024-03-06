@@ -93,12 +93,12 @@
     <img src="{{asset('umi.png')}}" alt="Logo Institusi"/>
     <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
     <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-    <h4 class="textheader">Fakultas Ilmu Komputer</h4>
+    <h4 class="textheader">Fakultas Ilmu Hukum</h4>
 </div>
 <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
-website: fikom.umi.ac.id, email:S1.teknik.informatika@umi.ac.id
+<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
+website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>

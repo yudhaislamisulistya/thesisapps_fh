@@ -465,7 +465,7 @@ class mhs extends Controller
 
     public function signup_proposal()
     {
-        if (substr(Auth::user()->name, 0, 3) == '130') {
+        if (substr(Auth::user()->name, 0, 3) == '040') {
             $data = DB::table('mst_pendaftaran')
             ->select('*')
             ->Where(['status_ujian' => 0, 'tipe_ujian' => 0, 'status_prodi' => 1])

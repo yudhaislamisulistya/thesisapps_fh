@@ -78,11 +78,11 @@
             <img src="{{asset('umi.png')}}" alt="Logo Institusi"/>
             <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
             <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-            <h4 class="textheader">Fakultas Ilmu Komputer</h4><br>
+            <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
             <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
         </div>
         <h6 class="headerAddress"> Alamat : Jalan Urip Sumoharjo Km. 05
-            gedung Fakultas Ilmu Komputer Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
+            gedung Fakultas Ilmu Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
         </h6>
         <hr>
         <div class="title">
@@ -95,7 +95,7 @@
         </div>
         <br>
         <p align="justify">
-        Sesuai Peraturan akademik pada Program Studi {{helper::getProgramStudiByNim($nim)}} Fakultas Ilmu Komputer Universitas Muslim Indonesia dengan ini menetapkan tim penguji atau penanggap pada ujian {{strtolower($tipe_ujian)}}, maka
+        Sesuai Peraturan akademik pada Program Studi {{helper::getProgramStudiByNim($nim)}} Fakultas Ilmu Hukum Universitas Muslim Indonesia dengan ini menetapkan tim penguji atau penanggap pada ujian {{strtolower($tipe_ujian)}}, maka
         </p>
         <b><center>KETUA PROGRAM STUDI {{strtoupper(helper::getProgramStudiByNim($nim))}}</center></b>
         <p>

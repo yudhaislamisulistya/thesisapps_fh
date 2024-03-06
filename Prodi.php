@@ -291,7 +291,7 @@ class prodi extends Controller
         if (auth()->user()->name == "prodisi") {
             $status = '131';
         } else if (auth()->user()->name == "prodifh") {
-            $status = '130';
+            $status = '040';
         }
 
 

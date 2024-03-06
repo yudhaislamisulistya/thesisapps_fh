@@ -14,15 +14,15 @@
                 <li class="active"> Bidang Ilmu TA</li>
             </ol>
 
-            <!-- Begin breadcrumb -->
+            {{-- <!-- Begin breadcrumb -->
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
                 <li><a href="#fakelink">Chart or graph</a></li>
                 <li class="active">Morris chart</li>
             </ol>
-            <!-- End breadcrumb -->
+            <!-- End breadcrumb --> --}}
 
-            <!-- BEGIN MORRIS CHART -->
+            {{-- <!-- BEGIN MORRIS CHART -->
             <div class="row">
                 <div class="col-sm-6">
                     <div class="the-box">
@@ -37,7 +37,7 @@
                     </div><!-- .the-box  -->
                 </div><!-- /.col-sm-6 -->
             </div>
-            <!-- END MORRIS CHART -->
+            <!-- END MORRIS CHART --> --}}
 
             <h3 class="page-heading">Form Bidang Ilmu Tugas Akhir</h3>
             <!-- BEGIN DATA TABLE -->

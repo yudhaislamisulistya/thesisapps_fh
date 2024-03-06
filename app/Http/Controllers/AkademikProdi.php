@@ -205,7 +205,7 @@ class AkademikProdi extends Controller
         if (Auth::user()->name == 'akademikprodifh') {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
             ->where("type", 0)
-            ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+            ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
             ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
         }else{
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
@@ -222,7 +222,7 @@ class AkademikProdi extends Controller
         if (Auth::user()->name == 'akademikprodifh') {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
             ->where("type", 2)
-            ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+            ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
             ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
         }else{
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
@@ -339,7 +339,7 @@ class AkademikProdi extends Controller
         if (auth()->user()->name == "prodisi" || auth()->user()->name == "akademikprodisi") {
             $status = '131';
         } else if (auth()->user()->name == "prodifh" || auth()->user()->name == "akademikprodifh") {
-            $status = '130';
+            $status = '040';
         }
 
         $data = DB::table('t_mst_mahasiswa')
@@ -449,10 +449,10 @@ class AkademikProdi extends Controller
     {
         $data = DB::table('t_mst_mahasiswa')
             ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA')
-            ->orwhere('C_NPM', 'LIKE', '1302013%')
-            ->orwhere('C_NPM', 'LIKE', '1302014%')
-            ->orwhere('C_NPM', 'LIKE', '1302015%')
-            ->orwhere('C_NPM', 'LIKE', '1302016%')
+            ->orwhere('C_NPM', 'LIKE', '0402013%')
+            ->orwhere('C_NPM', 'LIKE', '0402014%')
+            ->orwhere('C_NPM', 'LIKE', '0402015%')
+            ->orwhere('C_NPM', 'LIKE', '0402016%')
             ->get();
 
         foreach ($data as $value) {

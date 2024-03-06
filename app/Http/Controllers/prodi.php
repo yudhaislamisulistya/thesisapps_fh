@@ -642,7 +642,7 @@ class prodi extends Controller
         if (auth()->user()->name == "prodisi") {
             $status = '131';
         } else if (auth()->user()->name == "prodifh") {
-            $status = '130';
+            $status = '040';
         }
 
 
@@ -668,10 +668,10 @@ class prodi extends Controller
     {
         $data = DB::table('t_mst_mahasiswa')
             ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA')
-            ->orwhere('C_NPM', 'LIKE', '1302013%')
-            ->orwhere('C_NPM', 'LIKE', '1302014%')
-            ->orwhere('C_NPM', 'LIKE', '1302015%')
-            ->orwhere('C_NPM', 'LIKE', '1302016%')
+            ->orwhere('C_NPM', 'LIKE', '0402013%')
+            ->orwhere('C_NPM', 'LIKE', '0402014%')
+            ->orwhere('C_NPM', 'LIKE', '0402015%')
+            ->orwhere('C_NPM', 'LIKE', '0402016%')
             ->get();
 
         foreach ($data as $value) {
@@ -777,13 +777,13 @@ class prodi extends Controller
                 ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA')
                 ->where('trt_topik.status', 0)
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->distinct()
                 ->get();
             $data_riwayat_usulan = DB::table('trt_topik')
                 ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA', 'trt_topik.topik', 'trt_topik.kerangka', 'trt_topik.status')
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->get();
         } else {
             $data_pengusul = DB::table('trt_topik')
@@ -838,7 +838,7 @@ class prodi extends Controller
                 ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->select('t_mst_mahasiswa.*', 'trt_topik.*')
                 ->where('trt_topik.status', 1)
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->whereNotIn(
                     't_mst_mahasiswa.C_NPM',
                     function ($q) {
@@ -1006,14 +1006,14 @@ class prodi extends Controller
                 ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
                 ->select('t_mst_mahasiswa.NAMA_MAHASISWA', 't_mst_dosen.NAMA_DOSEN')
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->get();
 
             $penetapan_pengusulan = DB::table('trt_bimbingan')
                 ->join('users', 'trt_bimbingan.C_NPM', '=', 'users.name')
                 ->select('*')
                 ->where('status_sk', '<>', 1)
-                ->where('trt_bimbingan.C_NPM', 'LIKE', '130%')
+                ->where('trt_bimbingan.C_NPM', 'LIKE', '040%')
                 ->get();
 
             $riwayat_usulan = DB::table('trt_sk')
@@ -1629,7 +1629,7 @@ class prodi extends Controller
         if (Auth::user()->name == 'prodifh') {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
                 ->where("type", 0)
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
         } else {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
@@ -1651,7 +1651,7 @@ class prodi extends Controller
         if (Auth::user()->name == 'prodifh') {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
                 ->where("type", 2)
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
         } else {
             $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
@@ -2406,13 +2406,13 @@ class prodi extends Controller
                 ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
                 ->select('t_mst_mahasiswa.NAMA_MAHASISWA', 't_mst_dosen.NAMA_DOSEN')
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->get();
 
             $penetapan_pengusulan = DB::table('trt_bimbingan')
                 ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
                 ->select('*')
-                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '130%')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
                 ->where('status_sk', '<>', 1)
                 ->get();
 
@@ -2425,7 +2425,7 @@ class prodi extends Controller
             $data_sk = DB::table('mst_sk_pembimbing')
                 ->join('trt_bimbingan', 'mst_sk_pembimbing.bimbingan_id', '=', 'trt_bimbingan.bimbingan_id')
                 ->select('*')
-                ->where('trt_bimbingan.C_NPM', 'LIKE', '130%')
+                ->where('trt_bimbingan.C_NPM', 'LIKE', '040%')
                 ->orderBy('mst_sk_pembimbing.sk_pembimbing_id', 'DESC')
                 ->get();
         } else {
@@ -2466,7 +2466,7 @@ class prodi extends Controller
             $data_sk_penugasan = DB::table('mst_sk_penugasan')
                 ->select('*')
                 ->join('trt_bimbingan', 'trt_bimbingan.bimbingan_id', '=', 'mst_sk_penugasan.bimbingan_id')
-                ->where('trt_bimbingan.C_NPM', 'LIKE', '130%')
+                ->where('trt_bimbingan.C_NPM', 'LIKE', '040%')
                 ->orderBy('mst_sk_penugasan.sk_penugasan_id', 'DESC')
                 ->get();
 

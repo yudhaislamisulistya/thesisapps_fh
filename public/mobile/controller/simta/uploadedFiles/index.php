@@ -6,5 +6,5 @@
 		die();
 	}
 
-	menuju('https://apps.fikom.umi.ac.id');
+	menuju('https://apps.fh.umi.ac.id');
 ?>

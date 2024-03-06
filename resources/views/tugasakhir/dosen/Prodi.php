@@ -315,7 +315,7 @@ class prodi extends Controller
         if (auth()->user()->name == "prodisi") {
             $status = '131';
         } else if (auth()->user()->name == "prodifh") {
-            $status = '130';
+            $status = '040';
         }
 
 
@@ -340,10 +340,10 @@ class prodi extends Controller
     public function make_user_all(){
         $data = DB::table('t_mst_mahasiswa')
             ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA')
-            ->orwhere('C_NPM', 'LIKE', '1302013%')
-            ->orwhere('C_NPM', 'LIKE', '1302014%')
-            ->orwhere('C_NPM', 'LIKE', '1302015%')
-            ->orwhere('C_NPM', 'LIKE', '1302016%')
+            ->orwhere('C_NPM', 'LIKE', '0402013%')
+            ->orwhere('C_NPM', 'LIKE', '0402014%')
+            ->orwhere('C_NPM', 'LIKE', '0402015%')
+            ->orwhere('C_NPM', 'LIKE', '0402016%')
             ->get();
         
         foreach ($data as $value) {

@@ -219,7 +219,7 @@ class dosen extends Controller
 
     public function usul_judul_post(Request $request)
     {
-        $data_mahasiswa_belum_ada_judul = DB::select("SELECT users.* from users left join trt_topik on users.name = trt_topik.C_NPM where trt_topik.C_NPM IS NULL AND users.name LIKE '130%' OR users.name LIKE '131%'");
+        $data_mahasiswa_belum_ada_judul = DB::select("SELECT users.* from users left join trt_topik on users.name = trt_topik.C_NPM where trt_topik.C_NPM IS NULL AND users.name LIKE '040%' OR users.name LIKE '131%'");
         foreach ($request->penerima_id as $value) {
             if ($value == "semua_mahasiswa") {
                 foreach ($data_mahasiswa_belum_ada_judul as $value_2) {
@@ -248,9 +248,9 @@ class dosen extends Controller
             ->orWhere('pembimbing_II_id', auth()->user()->name)
             ->get();
 
-        $data_semua_mahasiswa = DB::select("SELECT * FROM `users` WHERE name LIKE '130%' OR name LIKE '131%'");
-        $data_mahasiswa_belum_ada_judul = DB::select("SELECT users.* from users left join trt_topik on users.name = trt_topik.C_NPM where trt_topik.C_NPM IS NULL AND users.name LIKE '130%' OR users.name LIKE '131%'");
-        $data_mahasiswa_belum_menerima_usulan_judul = DB::select("SELECT users.* from users left join trt_usulan_judul on users.name = trt_usulan_judul.C_NPM where trt_usulan_judul.C_NPM IS NULL AND users.name LIKE '130%' OR users.name LIKE '131%'");
+        $data_semua_mahasiswa = DB::select("SELECT * FROM `users` WHERE name LIKE '040%' OR name LIKE '131%'");
+        $data_mahasiswa_belum_ada_judul = DB::select("SELECT users.* from users left join trt_topik on users.name = trt_topik.C_NPM where trt_topik.C_NPM IS NULL AND users.name LIKE '040%' OR users.name LIKE '131%'");
+        $data_mahasiswa_belum_menerima_usulan_judul = DB::select("SELECT users.* from users left join trt_usulan_judul on users.name = trt_usulan_judul.C_NPM where trt_usulan_judul.C_NPM IS NULL AND users.name LIKE '040%' OR users.name LIKE '131%'");
 
 
         $data2 = DB::table('t_mst_dosen')

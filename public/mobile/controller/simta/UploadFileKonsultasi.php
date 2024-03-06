@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $originalImgName= $_FILES['filename']['name'];
     $tempName= $_FILES['filename']['tmp_name'];
     $folder="uploadedFiles/";
-    $url = "https://apps.fikom.umi.ac.id/mobile/controller/simta/uploadedFiles/".$originalImgName; //update path as per your directory structure 
+    $url = "https://apps.fh.umi.ac.id/mobile/controller/simta/uploadedFiles/".$originalImgName; //update path as per your directory structure 
     $response = array();
 
     if(move_uploaded_file($tempName,$folder.$originalImgName)){

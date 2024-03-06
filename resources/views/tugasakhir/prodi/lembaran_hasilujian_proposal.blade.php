@@ -127,14 +127,14 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Komputer</h4><br>
+        <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
         <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
-            website: fikom.umi.ac.id, email: fikom.umi.ac.id / S1.teknik.informatika@umi.ac.id</i>
+            website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>
@@ -312,15 +312,15 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Komputer</h4>
+        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
-            website: fikom.umi.ac.id, email: fikom.umi.ac.id / S1.teknik.informatika@umi.ac.id</i>
+            website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>
@@ -494,15 +494,15 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Komputer</h4>
+        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
-            website: fikom.umi.ac.id, email: fikom.umi.ac.id / S1.teknik.informatika@umi.ac.id</i>
+            website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>
@@ -676,15 +676,15 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Komputer</h4>
+        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
-            website: fikom.umi.ac.id, email: fikom.umi.ac.id / S1.teknik.informatika@umi.ac.id</i>
+            website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>
@@ -858,15 +858,15 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Komputer</h4>
+        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
-            website: fikom.umi.ac.id, email: fikom.umi.ac.id / S1.teknik.informatika@umi.ac.id</i>
+            website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>
@@ -1040,15 +1040,15 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Komputer</h4>
+        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
-            website: fikom.umi.ac.id, email: fikom.umi.ac.id / S1.teknik.informatika@umi.ac.id</i>
+            website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>
@@ -1227,15 +1227,15 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Komputer</h4>
+        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Komputer
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
-            website: fikom.umi.ac.id, email: fikom.umi.ac.id / S1.teknik.informatika@umi.ac.id</i>
+            website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
 
     <h5 style="text-align: center"><i>Bismillahir Rahmanir Rahiim</i></h5>

@@ -53,9 +53,9 @@ BEGIN PAGE
                             <img src="{{ asset('master/assets/img/avatar/avatar-1.jpg')}}" class="avatar img-circle" alt="Avatar">
                             @if(Auth::user()->level==1)
                             @elseif(Auth::user()->level==2)
-                             Hi, <strong>Dekan Fakultas Ilmu Komputer</strong>
+                             Hi, <strong>Dekan Fakultas Ilmu Hukum</strong>
                             @elseif(Auth::user()->level==3)
-                             Hi, <strong>Wakil Dekan Fakultas Ilmu Komputer</strong>
+                             Hi, <strong>Wakil Dekan Fakultas Ilmu Hukum</strong>
                             @elseif(Auth::user()->level==4)
                                 Hi, <strong>Akademik Fakultas</strong>
                             @elseif(Auth::user()->level==5)

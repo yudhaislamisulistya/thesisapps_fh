@@ -1,7 +1,12 @@
 <!-- BEGIN FOOTER -->
+<?php
+
+$year_now = date('Y');
+
+?>
 <footer>
-    &copy; 2020 <a href="#fakelink">Universitas Muslim Indonesia</a><br />
-    Design by <a href="http://isohdesign.com" target="_blank">Fakultas Ilmu Komputer</a>.
+    &copy; <?= $year_now ?> <a href="#fakelink">Universitas Muslim Indonesia</a><br />
+    Design by <a href="http://isohdesign.com" target="_blank">Fakultas Ilmu Hukum</a>.
 </footer>
 <!-- END FOOTER -->
 

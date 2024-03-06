@@ -606,7 +606,7 @@ class Helper
         $v = DB::table('trt_bimbingan')
             ->select("*")
             ->where('trt_bimbingan.status_bimbingan', $status)
-            ->where('trt_bimbingan.C_NPM', 'LIKE', '130%')
+            ->where('trt_bimbingan.C_NPM', 'LIKE', '040%')
             ->get();
         return isset($v) ? $v : '-';
     }

@@ -76,12 +76,12 @@
         <img src="{{asset('umi.png')}}" alt="Logo Institusi" />
         <h3 class="textheader">Yayasan Wakaf UMI</h4><br>
             <h3 class="textheader">Universitas Muslim Indonesia</h4><br>
-                <h3 class="textheader">Fakultas Ilmu Komputer</h4><br>
+                <h3 class="textheader">Fakultas Ilmu Hukum</h4><br>
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
     <h6 class="headerAddress" style="text-align: center"> Jln. UripSumohardjo Km.05 GedungFakultasIlmuKomputerLt.1. Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
-website: fikom.umi.ac.id, email: fikom@umi.ac.id
+website: fh.umi.ac.id, email: fikom@umi.ac.id
     </h6>
     <br>
     <br>
@@ -101,7 +101,7 @@ website: fikom.umi.ac.id, email: fikom@umi.ac.id
     <p align="justify">
         Dengan rahmat Allah SWT, sesuai dengan surat ketua Program Studi {{helper::getProgramStudiByNim(auth()->user()->name)}} nomor : <b>{{helper::getNomorSKWithBimbinganId($data_sk[0]->bimbingan_id)}}</b> tentang tugas akhir mahasiswa maka :
     </p>
-    <center>DEKAN FAKULTAS ILMU KOMPUTER</center>
+    <center>DEKAN Fakultas Ilmu Hukum</center>
     <p>
         Menunjuk Saudara :
     </p>
@@ -215,12 +215,12 @@ website: fikom.umi.ac.id, email: fikom@umi.ac.id
         <img src="{{asset('umi.png')}}" alt="Logo Institusi" />
         <h3 class="textheader">Yayasan Wakaf UMI</h4><br>
             <h3 class="textheader">Universitas Muslim Indonesia</h4><br>
-                <h3 class="textheader">Fakultas Ilmu Komputer</h4>
+                <h3 class="textheader">Fakultas Ilmu Hukum</h4>
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
     <h6 class="headerAddress" style="text-align: center"> Jln. UripSumohardjo Km.05 GedungFakultasIlmuKomputerLt.1. Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
-website: fikom.umi.ac.id, email: fikom@umi.ac.id
+website: fh.umi.ac.id, email: fikom@umi.ac.id
     </h6>
     <br>
     <br>
@@ -240,7 +240,7 @@ website: fikom.umi.ac.id, email: fikom@umi.ac.id
         <p align="justify">
         Dengan rahmat Allah SWT, sesuai dengan surat ketua Program Studi {{helper::getProgramStudiByNim(auth()->user()->name)}} nomor : <b>{{helper::getNomorSKWithBimbinganId($data_sk[0]->bimbingan_id)}}</b> tentang tugas akhir mahasiswa maka :
         </p>
-        <center>DEKAN FAKULTAS ILMU KOMPUTER</center>
+        <center>DEKAN Fakultas Ilmu Hukum</center>
         <p>
         Menunjuk Saudara :
         </p>
