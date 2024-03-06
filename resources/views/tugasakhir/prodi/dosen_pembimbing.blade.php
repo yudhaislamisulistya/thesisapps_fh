@@ -1,3 +1,7 @@
+<?php
+ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+?>
+
 @extends('tugasakhir.index')
 @section('isi')
     <!-- BEGIN PAGE CONTENT -->
