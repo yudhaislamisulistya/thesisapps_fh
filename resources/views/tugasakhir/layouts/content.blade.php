@@ -355,7 +355,7 @@
     @endsection
     @section("script")
     <script>
-        axios.get(`/api/status_bimbingan_all`).then(res => {
+        axios.get(`https://thesis-dev.fikom.app/fh/api/status_bimbingan_all`).then(res => {
             console.log(res.data);
             Morris.Bar({
                 element: 'morris-bar',

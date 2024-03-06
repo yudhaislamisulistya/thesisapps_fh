@@ -183,7 +183,7 @@
         };
 
         const ruanganChange = (e, selected = initJamSelected()) => {
-            axios.get(`/api/cek_jamujian/${e.getAttribute("tipe-ujian")}/${e.value}/${e.getAttribute("nim")}/${e.getAttribute("pendaftaran-id")}`).then(res => {
+            axios.get(`https://thesis-dev.fikom.app/fh/api/cek_jamujian/${e.getAttribute("tipe-ujian")}/${e.value}/${e.getAttribute("nim")}/${e.getAttribute("pendaftaran-id")}`).then(res => {
                 let x;
                 let r;
                 @if(!empty($jadwal))

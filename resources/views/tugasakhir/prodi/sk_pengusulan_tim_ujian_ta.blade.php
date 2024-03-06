@@ -106,7 +106,7 @@
             var nomor = $('input[name="nomor"]').val();
             var nomor_new = nomor.replace(/\//g, "");
 
-            axios.get(`/api/cek_nomor_sk_ujian_ta/${nomor_new}`).then(res => {
+            axios.get(`https://thesis-dev.fikom.app/fh/api/cek_nomor_sk_ujian_ta/${nomor_new}`).then(res => {
                 console.log(res.data);
                 if (res.data == "tidak") {
                     $('#status').html("");

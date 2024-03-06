@@ -140,7 +140,7 @@ Apakah Anda yakin ingin menyimpan sementara?
         console.log(pembimbing1);
         console.log(pembimbing2);
 
-        axios.get(`/api/simpan_sementara_set_pembimbing/${nim}/${pembimbing1}/${pembimbing2}`)
+        axios.get(`https://thesis-dev.fikom.app/fh/api/simpan_sementara_set_pembimbing/${nim}/${pembimbing1}/${pembimbing2}`)
             .then(res => {
                 console.log('Status Data : ' + res.data);
                 if (res.data == 'berhasil') {
