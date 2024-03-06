@@ -45,10 +45,17 @@
                         <label class="col-lg-2 control-label">Bidang Ilmu Peminatan</label>
                         <div class="col-lg-5">
                             <select class="form-control" name="bidang_ilmu_peminatan" id="bidang_ilmu_peminatan">
-                                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                                <option value="Jaringan Komputer">Jaringan Komputer</option>
-                                <option value="Industri">Industri</option>
-                                <option value="Lainnya">Lainnya</option>
+                                <option value="Hukum Perdata">Hukum Perdata</option>
+                                <option value="Hukum Pidana">Hukum Pidana</option>
+                                <option value="Hukum Tata Negara">Hukum Tata Negara</option>
+                                <option value="Hukum Administrasi Negara">Hukum Administrasi Negara</option>
+                                <option value="Hukum Internasional">Hukum Internasional</option>
+                                <option value="Hukum Acara">Hukum Acara</option>
+                                <option value="Hukum Ekonomi">Hukum Ekonomi</option>
+                                <option value="Hukum Perusahaan">Hukum Perusahaan</option>
+                                <option value="Hukum Islam">Hukum Islam</option>
+                                <option value="Hukum Keagrariaan">Hukum Keagrariaan</option>
+                                <option value="Hukum Perikatan">Hukum Perikatan</option>
                             </select>
                         </div>
                     </div>

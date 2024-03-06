@@ -243,6 +243,11 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="the-box no-border full">
+                        <?php
+                        if(count(helper::get5Pengumuman()) == 0){
+                            echo '<h3 class="text-center">Belum ada pengumuman</h3>';
+                        }else{
+                        ?>
                         <button class="btn btn-block btn-primary btn-square"></button>
                         <ul class="widget-newsticker media-list">
                             @foreach (helper::get5Pengumuman() as $value)
@@ -257,7 +262,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading"><a
-                                            href="{{url('dsn/pengumuman/show/'.$value->pengumuman_id)}}">{{$value->judul}}</a>
+                                            href="{{url('mhs/pengumuman/show/'.$value->pengumuman_id)}}">{{$value->judul}}</a>
                                     </h4>
                                     <p class="text-muted"><small>Terbit : {{$value->last_update}}</small></p>
                                     <p>
@@ -268,6 +273,11 @@
                             @endforeach
                         </ul>
                         <button class="btn btn-block btn-primary btn-square"></button>
+                        <?php
+                        
+                        }
+                        
+                        ?>
                     </div><!-- /.the-box no-border -->
                 </div>
             </div>
@@ -309,6 +319,11 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="the-box no-border full">
+                        <?php
+                        if(count(helper::get5Pengumuman()) == 0){
+                            echo '<h3 class="text-center">Belum ada pengumuman</h3>';
+                        }else{
+                        ?>
                         <button class="btn btn-block btn-primary btn-square"></button>
                         <ul class="widget-newsticker media-list">
                             @foreach (helper::get5Pengumuman() as $value)
@@ -334,6 +349,11 @@
                             @endforeach
                         </ul>
                         <button class="btn btn-block btn-primary btn-square"></button>
+                        <?php
+                        
+                        }
+                        
+                        ?>
                     </div><!-- /.the-box no-border -->
                 </div>
             </div>
