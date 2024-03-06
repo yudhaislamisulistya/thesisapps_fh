@@ -144,7 +144,7 @@
             form = document.querySelector(`form[action="${formaction}"]`);
             form.submit();
             modal.querySelector(".modal-backdrop").click();
-            window.location.href = "https://thesis.fikom.app/";
+            window.location.href = "https://thesis-dev.fikom.app/fh/";
         }
     </script>
 @endsection

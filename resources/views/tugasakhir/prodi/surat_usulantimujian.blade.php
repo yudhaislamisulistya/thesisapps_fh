@@ -74,7 +74,7 @@
         }
 
         function back() {
-            window.location = 'http://localhost:8000';
+            window.location = 'https://thesis-dev.fikom.app/fh/';
         }
 
         function show() {

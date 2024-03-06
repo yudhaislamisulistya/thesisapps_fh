@@ -149,7 +149,7 @@ Apakah Anda yakin ingin menyimpan sementara?
                         text: "Data Berhasil Disimpan Sementara!",
                         icon: "success"
                     }).then(function () {
-                        window.location = "https://thesis.fikom.app/prodi/usulan_pembimbing";
+                        window.location = "https://thesis-dev.fikom.app/fh/prodi/usulan_pembimbing";
                     });
                 } else {
                     Swal.fire({
@@ -157,7 +157,7 @@ Apakah Anda yakin ingin menyimpan sementara?
                         text: "Data Gagal Ditambahkan!",
                         icon: "error"
                     }).then(function () {
-                        window.location = "https://thesis.fikom.app/prodi/usulan_pembimbing";
+                        window.location = "https://thesis-dev.fikom.app/fh/prodi/usulan_pembimbing";
                     });
 
                 }
