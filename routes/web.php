@@ -321,6 +321,10 @@ Route::group(['middleware' => 'wakil_dekan'], function () {
     Route::get('/wakildekan/appove_sk_ujian_ta/{id}', 'WakilDekan@approve_sk_ujian_ta');
 
     Route::get('/wakildekan/detail_status_bimbingan_mahasiswa/{status}/', 'WakilDekan@detail_status_bimbingan_mahasiswa');
+
+    // Pengajuan Topik Penelitian
+    Route::get('/wakildekan/topik', 'Prodi@topik');
+    Route::post('/wakildekan/topik', 'Prodi@topikpost');
 });
 
 Route::group(['middleware' => 'akademik_fakultas'], function () {
