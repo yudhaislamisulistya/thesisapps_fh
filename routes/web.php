@@ -293,7 +293,6 @@ Route::group(['middleware' => 'akademik_prodi'], function () {
     Route::post('/akademikprodi/add_sk_pembimbing', 'Prodi@add_sk_pembimbing');
     Route::get('/akademikprodi/cetakskpenguji/{pendaftaran_id}/{nim}', 'Prodi@cetakskpenguji');
     Route::get('/akademikprodi/cetak_berita_acara/{pendaftaran_id}/{nim}', 'Prodi@cetakBeritaAcara');
-
 });
 
 Route::group(['middleware' => 'dekan'], function () {
@@ -323,8 +322,12 @@ Route::group(['middleware' => 'wakil_dekan'], function () {
     Route::get('/wakildekan/detail_status_bimbingan_mahasiswa/{status}/', 'WakilDekan@detail_status_bimbingan_mahasiswa');
 
     // Pengajuan Topik Penelitian
-    Route::get('/wakildekan/topik', 'Prodi@topik');
-    Route::post('/wakildekan/topik', 'Prodi@topikpost');
+    Route::get('/wakildekan/topik', 'WakilDekan@topik');
+    Route::post('/wakildekan/topik', 'WakilDekan@topikpost');
+    Route::get('/wakildekan/detail_topikusulan/{id}', 'WakilDekan@detail_topikusulan');
+    Route::get('/wakildekan/detail_note/{id}', 'WakilDekan@detail_note');
+    Route::post('/wakildekan/detail_note/{id}', 'WakilDekan@note_update');
+    Route::get('/wakildekan/tolak_topik_penelitian/{id}', 'WakilDekan@tolak_topik_penelitian');
 });
 
 Route::group(['middleware' => 'akademik_fakultas'], function () {

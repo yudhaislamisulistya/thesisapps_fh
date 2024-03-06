@@ -69,4 +69,71 @@ class WakilDekan extends Controller
             return redirect::to('wakildekan/sk_ujian_ta')->with('status', 'error');
         }
     }
+
+    public function topik()
+    {
+        $data_pengusul = DB::table('trt_topik')
+            ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA')
+            ->where('trt_topik.status', 0)
+            ->distinct()
+            ->get();
+
+        $data_riwayat_usulan = DB::table('trt_topik')
+            ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA', 'trt_topik.topik', 'trt_topik.kerangka', 'trt_topik.status')
+            ->get();
+        return view('tugasakhir.wakildekan.topik', compact('data_riwayat_usulan', 'data_pengusul'));
+    }
+
+    public function topikpost(Request $request)
+    {
+        $datapost = $request->all();
+
+        DB::table('trt_topik')
+            ->where('topik_id', $datapost['topik_id'])
+            ->update(['status' => '1']);
+
+        DB::table('trt_topik')
+            ->where('C_NPM', $datapost['C_NPM'])
+            ->where('status', 0)
+            ->update(['status' => '2']);
+        return redirect::to('wakildekan/topik');
+    }
+
+    public function detail_topikusulan($id)
+    {
+        $data = DB::table('t_mst_mahasiswa')
+            ->select('*')
+            ->where('C_NPM', $id)
+            ->first();
+        $data_usulan = DB::table('trt_topik')
+            ->where('trt_topik.C_NPM', $id)
+            ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->select('*')
+            ->get();
+        return view('tugasakhir.wakildekan.detail_topikusulan', compact('data', 'data_usulan'));
+    }
+
+    // Ubah Note Pada Prodi
+    public function detail_note($id)
+    {
+        $data = DB::table("trt_topik")
+            ->select("*")
+            ->where("topik_id", $id)
+            ->get();
+        return view("tugasakhir.wakildekan.detail_note", compact('data'));
+    }
+    // Ubah Note Pada Prodi
+
+    // Proses Ubah Note Pada Prodi
+    public function note_update(Request $request, $id)
+    {
+        trt_topik::where("topik_id", $id)
+            ->update([
+                'note' => $request->note,
+            ]);
+        return redirect::to('wakildekan/topik');
+    }
+    // Akhir Proses Ubah Note Pada Prodi
 }
