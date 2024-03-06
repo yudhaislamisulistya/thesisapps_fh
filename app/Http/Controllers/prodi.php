@@ -34,7 +34,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-class prodi extends Controller
+class Prodi extends Controller
 {
 
     // Ubah Pembimbing Per Mahasiswa
