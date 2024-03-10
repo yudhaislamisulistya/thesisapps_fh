@@ -27,6 +27,18 @@ Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'data-master'], function () {
         Route::get('/periode-jabatan', 'Admin@periode_jabatan')->name('get_master_periode_jabatan');
         Route::post('/periode-jabatan', 'Admin@periode_jabatan_update')->name('update_master_periode_jabatan');
+
+        // Bidang Ilmu
+        Route::get('/bidang-ilmu', 'Admin@bidang_ilmu')->name('get_master_bidang_ilmu');
+        Route::post('/bidang-ilmu', 'Admin@bidang_ilmu_create')->name('create_master_bidang_ilmu');
+        Route::post('/bidang-ilmu/update', 'Admin@bidang_ilmu_update')->name('update_master_bidang_ilmu');
+        Route::get('/bidang-ilmu/delete/{id}', 'Admin@bidang_ilmu_delete')->name('delete_master_bidang_ilmu');
+
+        // Ruangan
+        Route::get('/ruangan', 'Admin@ruangan')->name('get_master_ruangan');
+        Route::post('/ruangan', 'Admin@ruangan_create')->name('create_master_ruangan');
+        Route::post('/ruangan/update', 'Admin@ruangan_update')->name('update_master_ruangan');
+        Route::get('/ruangan/delete/{id}', 'Admin@ruangan_delete')->name('delete_master_ruangan');
     });
     //AKADEMIK-PRODI
     /*

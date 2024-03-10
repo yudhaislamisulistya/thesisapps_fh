@@ -274,6 +274,18 @@
                 Periode Jabatan
             </a>
         </li>
+        <li>
+            <a href="{{url('/data-master/bidang-ilmu')}}">
+                <i class="fa fa-paperclip icon-sidebar"></i>
+                Bidang Ilmu
+            </a>
+        </li>
+        <li>
+            <a href="{{url('/data-master/ruangan')}}">
+                <i class="fa fa-paperclip icon-sidebar"></i>
+                Ruangan
+            </a>
+        </li>
     </ul>
 </div><!-- /.sidebar-left -->
 <!-- END SIDEBAR LEFT -->
