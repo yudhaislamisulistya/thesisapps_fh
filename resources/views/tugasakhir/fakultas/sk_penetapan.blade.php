@@ -45,7 +45,7 @@
                         <td>{{$value->judul}}</td>
                         <td>
                             <input type="text" class="form-control bold-border" name="nomor_sk" value="{{isset($value->bimbingan_id) ? helper::getNomorSkPerMhs($value->bimbingan_id) :'' }}"/>
-                            *0000/H.22/FIK-UMI/XII/2019
+                            *0000/H.22/FH-UMI/XII/2019
                             <input type="hidden" class="form-control bold-border" name="bimbingan_id" value="{{$value->bimbingan_id}}"/>
                         </td>
                         <td><button class="btn btn-primary btn-perspective" type="submit">Simpan</button></td>

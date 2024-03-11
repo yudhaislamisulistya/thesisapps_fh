@@ -77,10 +77,10 @@
         <hr>
         <div class="title">
             <h3 class="headingTitle"><u>SURAT PENUNJUKAN</u></h3><br>
-            <h4 class="headingTitle">No. 0001/H.22/FIK-UMI/I/2019</h4>
+            <h4 class="headingTitle">No. 0001/H.22/FH-UMI/I/2019</h4>
         </div>
         <br>
-        Dengan Rahmat Allah S.W.T, Sesuai Dengan Surat Ketua Program Studi Ilmu Hukum Nomor. 001/H.22/TI-FIK/UMI/I/2019
+        Dengan Rahmat Allah S.W.T, Sesuai Dengan Surat Ketua Program Studi Ilmu Hukum Nomor. 001/H.22/TI-FH/UMI/I/2019
         Tentang Tugas Akhir Mahasiswa, Maka :
         <br>
         <p align="center">DEKAN Fakultas Hukum</p>

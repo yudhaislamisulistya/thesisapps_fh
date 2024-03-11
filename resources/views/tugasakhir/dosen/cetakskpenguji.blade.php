@@ -91,7 +91,7 @@
 
         <div class="title">
             <u><h4 class="headingTitle">SURAT PENUNJUKAN</h4></u><br>
-            <h4 class="headingTitle">Nomor : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/H.22/TI/FIK-UMI/V/2019</h4></u>
+            <h4 class="headingTitle">Nomor : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/H.22/TI/FH-UMI/V/2019</h4></u>
         </div>
         <br>
         <p align="justify">

@@ -27,7 +27,7 @@
                             <label class="col-lg-2 control-label">Nomor Surat</label>
                             <div class="col-lg-6">
                                 <input type="text" class="form-control bold-border" name="nomor" placeholder=""/>
-                                <font color="red" size="2px">*000/H.22/TI/FIK-UMI/III/2019</font>
+                                <font color="red" size="2px">*000/H.22/TI/FH-UMI/III/2019</font>
                             </div>
                         </div>
                         <br><br>

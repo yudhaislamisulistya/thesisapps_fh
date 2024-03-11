@@ -189,7 +189,7 @@
                             {{ $value->jam_ujian }}
                             {{-- {{$waktu}} <br> --}}
                             {{ $value->nama_ruangan }} <br>
-                            Prodi FIK
+                            Prodi FH
                         </td>
                     </tr>
                 @endforeach

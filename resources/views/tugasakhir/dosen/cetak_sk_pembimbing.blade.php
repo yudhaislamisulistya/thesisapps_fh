@@ -201,7 +201,7 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
         <br>
         1. Yayasan Wakaf UMI <br>
         2. Rektor UMI <br>
-        3. Ketua Program Studi TI FIK UMI</i>
+        3. Ketua Program Studi TI FH UMI</i>
     </p>
 
 
@@ -342,7 +342,7 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
         <br>
         1. Yayasan Wakaf UMI <br>
         2. Rektor UMI <br>
-        3. Ketua Program Studi TI FIK UMI</i>
+        3. Ketua Program Studi TI FH UMI</i>
         </p>
         
         

@@ -66,7 +66,7 @@
                         <td>{{$value->judul}}</td>
                         <td>
                             <input required type="text" class="form-control bold-border" name="nomor_sk" value="{{isset($value->bimbingan_id) ? helper::getNomorSkPerMhsFromTrtPenguji($value->C_NPM) :'' }}"/>
-                            *0000/H.22/FIK-UMI/XII/2019
+                            *0000/H.22/FH-UMI/XII/2019
                             <input type="hidden" class="form-control bold-border" name="bimbingan_id" value="{{$value->bimbingan_id}}"/>
                             <input type="hidden" class="form-control bold-border" name="pendaftaran_id" value="{{$value->pendaftaran_id}}"/>
                             <input type="hidden" class="form-control bold-border" name="c_npm" value="{{$value->C_NPM}}"/>
