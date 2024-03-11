@@ -15,7 +15,7 @@ class akademik_fakultas
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && ($request->user()->level==4)) {
+        if (auth()->check() && ($request->user()->level==4) || ($request->user()->level==1)) {
             return $next($request);
         }
         return redirect()->guest('/');

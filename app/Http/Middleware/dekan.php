@@ -15,7 +15,7 @@ class dekan
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && ($request->user()->level==2)) {
+        if (auth()->check() && ($request->user()->level==2) || ($request->user()->level==1)) {
             return $next($request);
         }
         return redirect()->guest('/');
