@@ -136,4 +136,20 @@ class WakilDekan extends Controller
         return redirect::to('wakildekan/topik');
     }
     // Akhir Proses Ubah Note Pada Prodi
+
+    public function tolak_topik_penelitian($id)
+    {
+        try {
+
+            DB::table('trt_topik')
+                ->where('topik_id', $id)
+                ->update([
+                    'status' => 2
+                ]);
+
+            return redirect()->back()->with(['status' => "berhasil"]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['status' => "gagal"]);
+        }
+    }
 }
