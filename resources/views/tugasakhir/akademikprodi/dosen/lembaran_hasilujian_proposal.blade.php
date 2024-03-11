@@ -127,12 +127,12 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+        <h4 class="textheader">Fakultas Hukum</h4><br>
         <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
             website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
@@ -312,13 +312,13 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
+        <h4 class="textheader">Fakultas Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
             website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
@@ -494,13 +494,13 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
+        <h4 class="textheader">Fakultas Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
             website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
@@ -676,13 +676,13 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
+        <h4 class="textheader">Fakultas Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
             website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
@@ -858,13 +858,13 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
+        <h4 class="textheader">Fakultas Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
             website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
@@ -1040,13 +1040,13 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
+        <h4 class="textheader">Fakultas Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
             website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>
@@ -1227,13 +1227,13 @@
         <br>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4>
+        <h4 class="textheader">Fakultas Hukum</h4>
         <h4>
             {{-- <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br> --}}
     </div>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+    <h6 class="headerAddress" style="text-align: center"><i>Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.1, Kampus II UMI Tlp.(0411) 453009/082195858768, Makassar 90231
             website: fh.umi.ac.id, email: fh.umi.ac.id / S1.ilmu.hukum@umi.ac.id</i>
     </h6>

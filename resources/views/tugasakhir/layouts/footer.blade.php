@@ -6,7 +6,7 @@ $year_now = date('Y');
 ?>
 <footer>
     &copy; <?= $year_now ?> <a href="#fakelink">Universitas Muslim Indonesia</a><br />
-    Design by <a href="http://isohdesign.com" target="_blank">Fakultas Ilmu Hukum</a>.
+    Design by <a href="http://isohdesign.com" target="_blank">Fakultas Hukum</a>.
 </footer>
 <!-- END FOOTER -->
 

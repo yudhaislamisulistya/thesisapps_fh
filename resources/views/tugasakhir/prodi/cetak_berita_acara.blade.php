@@ -88,12 +88,12 @@
     <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
     <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
     <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-    <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+    <h4 class="textheader">Fakultas Hukum</h4><br>
     <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
 </div>
 <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
+<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
 website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </h6>
 <div class="title">
@@ -232,12 +232,12 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
     <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
     <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
     <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-    <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+    <h4 class="textheader">Fakultas Hukum</h4><br>
     <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
 </div>
 <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
+<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
 website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </h6>
 <div class="title">
@@ -330,12 +330,12 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
     <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
     <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
     <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-    <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+    <h4 class="textheader">Fakultas Hukum</h4><br>
     <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
 </div>
 <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
+<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
 website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </h6>
 <div class="title">
@@ -505,12 +505,12 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
     <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
     <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
     <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-    <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+    <h4 class="textheader">Fakultas Hukum</h4><br>
     <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
 </div>
 <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
+<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
 website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </h6>
 
@@ -638,12 +638,12 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
     <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
     <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
     <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-    <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+    <h4 class="textheader">Fakultas Hukum</h4><br>
     <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
 </div>
 <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
+<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
 website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </h6>
     <div class="title">
@@ -769,12 +769,12 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
     <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
     <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
     <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-    <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+    <h4 class="textheader">Fakultas Hukum</h4><br>
     <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
 </div>
 <span style="border: solid 0.5px; width: 100%; display: flex"></span>
 <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
+<h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
 website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </h6>
     <div class="title">
@@ -899,11 +899,11 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
         <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+        <h4 class="textheader">Fakultas Hukum</h4><br>
         <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
     </div>
     <h6 class="headerAddress" style="text-align: center"> Alamat : Jalan Urip Sumoharjo Km. 05
-        gedung Fakultas Ilmu Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
+        gedung Fakultas Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
     </h6>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
@@ -1029,11 +1029,11 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
         <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+        <h4 class="textheader">Fakultas Hukum</h4><br>
         <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
     </div>
     <h6 class="headerAddress" style="text-align: center"> Alamat : Jalan Urip Sumoharjo Km. 05
-        gedung Fakultas Ilmu Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
+        gedung Fakultas Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
     </h6>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
@@ -1159,11 +1159,11 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
         <img src="{{asset('umi.png')}}" alt="Logo Institusi" style="position:absolute; left: 80px "/>
         <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
         <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-        <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+        <h4 class="textheader">Fakultas Hukum</h4><br>
         <h4 class="textheader">Program Studi {{helper::getProgramStudiByNim($nim)}}</h4><br>
     </div>
     <h6 class="headerAddress" style="text-align: center"> Alamat : Jalan Urip Sumoharjo Km. 05
-        gedung Fakultas Ilmu Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
+        gedung Fakultas Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
     </h6>
     <span style="border: solid 0.5px; width: 100%; display: flex"></span>
     <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>

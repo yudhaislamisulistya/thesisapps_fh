@@ -92,12 +92,12 @@
             <img src="{{ asset('umi.png') }}" alt="Logo Institusi" />
             <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
             <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-            <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+            <h4 class="textheader">Fakultas Hukum</h4><br>
             <h4 class="textheader">Program Studi Ilmu Hukum</h4><br>
         </div>
         <span style="border: solid 0.5px; width: 100%; display: flex"></span>
         <span style="border: solid 1.5px; width: 99.8%; display: flex; margin-top:2px"></span>
-        <h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Ilmu Hukum
+        <h6 class="headerAddress" style="text-align: center"> Jln. Urip Sumohardjo Km.05 Gedung Fakultas Hukum
             Lt.I Kampus II UMI Tlp.(0411) 449775-453308-453818, Fax (0411) - 453009 Makassar 90231
             website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
         </h6>
@@ -130,12 +130,12 @@
         <br>
         <p align="justify">
             Kpd. Yth.,<br>
-            <b>Bapak Dekan Fakultas Ilmu Hukum</b><br>
+            <b>Bapak Dekan Fakultas Hukum</b><br>
             Di, - <br>
             Makassar <br><br>
             <b><i>Assalamu’alaikum Warahmatullahi Wabarakatuh</i></b>.<br>
             Dengan Rahmat Allah S.W.T, Sehubungan dengan penyelesaian studi Mahasiswa PRogram Studi Ilmu Hukum
-            Fakultas Ilmu Hukum UMI Semester Akhir TA 2019/2020, maka dengan ini kami mengusulkan nama-nama tim Ujian
+            Fakultas Hukum UMI Semester Akhir TA 2019/2020, maka dengan ini kami mengusulkan nama-nama tim Ujian
             Tugas Akhir untuk dibuatkan SK penunjukan dengan susunan sebagai berikut:
         </p>
         <center>

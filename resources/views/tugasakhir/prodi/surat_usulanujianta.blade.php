@@ -78,11 +78,11 @@
             <img src="{{asset('umi.png')}}" alt="Logo Institusi"/>
             <h4 class="textheader">Yayasan Wakaf UMI</h4><br>
             <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-            <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+            <h4 class="textheader">Fakultas Hukum</h4><br>
             <h4 class="textheader">Program Studi Ilmu Hukum</h4>
         </div>
         <h6 class="headerAddress"> Alamat : Jalan Urip Sumoharjo Km. 05
-            gedung Fakultas Ilmu Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
+            gedung Fakultas Hukum Lt.1 Kampus II UMI Tlp (0411)453009 Makassar 90231
         </h6>
         <hr>
         <div class="title">
@@ -112,7 +112,7 @@
         <br>
         <p align="justify">
         Kpd. Yth.,<br>
-        <b>Bapak Dekan Fakultas Ilmu Hukum</b><br>
+        <b>Bapak Dekan Fakultas Hukum</b><br>
         Di, - <br>
         Makassar <br><br>
         Assalamualaikum Wr. Wb.<br>

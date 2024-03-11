@@ -52,10 +52,11 @@ BEGIN PAGE
                         <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('master/assets/img/avatar/avatar-1.jpg')}}" class="avatar img-circle" alt="Avatar">
                             @if(Auth::user()->level==1)
+                            Hi, <strong>Admin</strong>
                             @elseif(Auth::user()->level==2)
-                             Hi, <strong>Dekan Fakultas Ilmu Hukum</strong>
+                             Hi, <strong>Dekan Fakultas Hukum</strong>
                             @elseif(Auth::user()->level==3)
-                             Hi, <strong>Wakil Dekan Fakultas Ilmu Hukum</strong>
+                             Hi, <strong>Wakil Dekan Fakultas Hukum</strong>
                             @elseif(Auth::user()->level==4)
                                 Hi, <strong>Akademik Fakultas</strong>
                             @elseif(Auth::user()->level==5)
@@ -74,6 +75,7 @@ BEGIN PAGE
                         </a>
                         <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
                             @if(Auth::user()->level==1)
+                            
                             @elseif(Auth::user()->level==2)
                             @elseif(Auth::user()->level==3)
                             @elseif(Auth::user()->level==4)

@@ -71,7 +71,7 @@
         <div class="header">
             <h5 class="textheader">Yayasan Wakaf UMI</h5><br>
             <h4 class="textheader">Universitas Muslim Indonesia</h4><br>
-            <h4 class="textheader">Fakultas Ilmu Hukum</h4><br>
+            <h4 class="textheader">Fakultas Hukum</h4><br>
             <h3 class="textheader">Program Studi Ilmu Hukum</h3>
         </div>
         <hr>
@@ -83,7 +83,7 @@
         Dengan Rahmat Allah S.W.T, Sesuai Dengan Surat Ketua Program Studi Ilmu Hukum Nomor. 001/H.22/TI-FIK/UMI/I/2019
         Tentang Tugas Akhir Mahasiswa, Maka :
         <br>
-        <p align="center">DEKAN Fakultas Ilmu Hukum</p>
+        <p align="center">DEKAN Fakultas Hukum</p>
         <br>
         Menununjuk Saudara :
         <br>
