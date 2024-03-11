@@ -2537,7 +2537,7 @@ class Prodi extends Controller
 
     public function dosen_pembimbingpost(Request $request)
     {
-        // Update Data Dosen Pembimbing noHp, jabatanFungsional, golongan by nidn
+        // Update Data Dosen Pembimbing noHp, jabatanFungsional, golongan by nidn new
         try {
             DB::table('t_mst_dosen')
                 ->where('C_KODE_DOSEN', $request->nidn)
