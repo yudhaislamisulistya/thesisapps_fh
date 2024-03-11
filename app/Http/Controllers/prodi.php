@@ -2534,4 +2534,23 @@ class Prodi extends Controller
 
         return view('tugasakhir.prodi.surat_usulantimujian', compact('nomor', 'perihal', 'datax', 'tgl_ujian'));
     }
+
+    public function dosen_pembimbingpost(Request $request)
+    {
+        // Update Data Dosen Pembimbing noHp, jabatanFungsional, golongan by nidn
+        try {
+            DB::table('t_mst_dosen')
+                ->where('C_KODE_DOSEN', $request->nidn)
+                ->update([
+                    'NO_HP' => $request->noHp,
+                    'jabatan_fungsional' => $request->jabatanFungsional,
+                    'website' => $request->golongan
+                ]);
+            return redirect()->back()->with(['status' => "berhasil"]);
+        } catch (\Exception $e) {
+            var_dump($e);
+            die();
+            return redirect()->back()->with(['status' => "gagal"]);
+        }
+    }
 }

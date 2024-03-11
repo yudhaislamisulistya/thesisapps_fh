@@ -172,6 +172,8 @@ Route::group(['middleware' => 'kaprodi'], function () {
     Route::get('/prodi/cetak_berita_acara/{pendaftaran_id}/{nim}', 'Prodi@cetakBeritaAcara');
     Route::get('/prodi/selesai_konfirmasi/{nim}/{type}', 'Prodi@selesaiKonfirmasi');
 
+    
+    Route::post('/prodi/dosen_pembimbing', 'Prodi@dosen_pembimbingpost');
     Route::post('/prodi/usulan_pembimbing', 'Prodi@usulan_pembimbingpostadd');
     Route::post('/prodi/sk_pengusulan', 'Prodi@sk_pengusulanpost');
     Route::post('/prodi/sk_pengusulan_tim_ujian_ta', 'Prodi@sk_pengusulan_tim_ujian_tapost');
