@@ -29,7 +29,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Progam Studi</th>
+                        <th>Status</th>
                         <th>Tanggal Menjabat</th>
                         <th>Tanggal Berakhir</th>
                         <th>Email</th>
@@ -43,7 +43,7 @@
                     <tr class="odd gradeX">
                         <td width="1%" align="center">{{++$key}}</td>
                         <td>{{$value->nama}}</td>
-                        <td>{{$value->prodi}}</td>
+                        <td>{{$value->status}}</td>
                         <td>{{$value->tanggal_menjabat}}</td>
                         <td>{{$value->tanggal_berakhir}}</td>
                         <td>{{$value->email}}</td>
@@ -57,7 +57,7 @@
                             <a href="#" id="update-data-btn" 
                             data-id="{{$value->id_jabatan}}"
                             data-nama="{{$value->nama}}"
-                            data-prodi="{{$value->prodi}}"
+                            data-status="{{$value->status}}"
                             data-tanggal-menjabat="{{$value->tanggal_menjabat}}"
                             data-tanggal-berakhir="{{$value->tanggal_berakhir}}"
                             data-email="{{$value->email}}"
@@ -90,8 +90,8 @@
                                 <input type="text" class="form-control" id="nama" name="nama" required>
                             </div>
                             <div class="form-group">
-                                <label for="prodi">Prodi</label>
-                                <input type="text" class="form-control" id="prodi" name="prodi" required>
+                                <label for="status">Status</label>
+                                <input type="text" class="form-control" id="status" name="status" required>
                             </div>
                             <div class="form-group">
                                 <label for="tanggal_menjabat">Tanggal Menjabat</label>
@@ -134,7 +134,7 @@
             $('body').on('click', '#update-data-btn', function() {
                 var id_jabatan = $(this).data('id');
                 var nama = $(this).data('nama');
-                var prodi = $(this).data('prodi');
+                var status = $(this).data('status');
                 var tanggal_menjabat = $(this).data('tanggal-menjabat');
                 var tanggal_berakhir = $(this).data('tanggal-berakhir');
                 var email = $(this).data('email');
@@ -142,7 +142,7 @@
                 var ttd = $(this).data('ttd');
                 $('#id_jabatan').val(id_jabatan);
                 $('#nama').val(nama);
-                $('#prodi').val(prodi);
+                $('#status').val(status);
                 $('#tanggal_menjabat').val(tanggal_menjabat);
                 $('#tanggal_berakhir').val(tanggal_berakhir);
                 $('#email').val(email);

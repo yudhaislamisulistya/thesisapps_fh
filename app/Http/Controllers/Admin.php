@@ -19,18 +19,12 @@ class Admin extends Controller
             $request = request()->all();
             $data = mst_periode_jabatan::find($request['id_jabatan']);
             $data->nama = $request['nama'];
-            $data->prodi = $request['prodi'];
+            $data->status = $request['status'];
             $data->tanggal_menjabat = $request['tanggal_menjabat'];
             $data->tanggal_berakhir = $request['tanggal_berakhir'];
             $data->email = $request['email'];
             $data->no_telepon = $request['no_telepon'];
-            $filename = '';
-
-            if($request['prodi'] == "Ilmu Hukum"){
-                $filename = "ttd_kaprodi.png";
-            }else if($request['prodi'] == "Sistem Informasi"){
-                $filename = "ttd_kaprodi_si.png";
-            }
+            $filename = 'ttd-' . time() . '.png';
 
             if (request()->hasFile('ttd')) {
                 $file = request()->file('ttd');
