@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\mst_bidangilmu;
 use App\Model\mst_periode_jabatan;
 use App\Model\mst_ruangan;
+use App\Model\trt_prodi;
 
 class Admin extends Controller
 {
@@ -128,6 +129,52 @@ class Admin extends Controller
             return redirect()->back()->with(['status' => "berhasil", 'message' => "Berhasil menghapus ruangan"]);
         } catch (\Exception $th) {
             return redirect()->back()->with(['status' => "gagal", 'message' => "Gagal menghapus ruangan"]);
+        }
+    }
+
+    public function prodi(){
+        $data = trt_prodi::orderBy('prodi_id', 'desc')->get();
+        return view('tugasakhir.admin.prodi', compact('data'));
+    }
+
+    public function prodi_create(){
+        try {
+            $request = request()->all();
+            $data = new trt_prodi();
+            $data->kode_prodi = $request['kode_prodi'];
+            $data->nama = $request['nama'];
+            $data->save();
+
+            return redirect()->back()->with(['status' => "berhasil", 'message' => "Berhasil menambahkan prodi"]);
+        } catch (\Exception $th) {
+            return redirect()->back()->with(['status' => "gagal", 'message' => "Gagal menambahkan prodi"]);
+        }
+    }
+
+    public function prodi_update(){
+        try {
+            $request = request()->all();
+            $data = trt_prodi::find($request['prodi_id']);
+            $data->kode_prodi = $request['kode_prodiEdit'];
+            $data->nama = $request['nameEdit'];
+            $data->save();
+
+            return redirect()->back()->with(['status' => "berhasil", 'message' => "Berhasil mengubah prodi"]);
+        } catch (\Exception $th) {
+            var_dump($th->getMessage());
+            die();
+            return redirect()->back()->with(['status' => "gagal", 'message' => "Gagal mengubah prodi"]);
+        }
+    }
+
+    public function prodi_delete($id){
+        try {
+            $data = trt_prodi::find($id);
+            $data->delete();
+
+            return redirect()->back()->with(['status' => "berhasil", 'message' => "Berhasil menghapus prodi"]);
+        } catch (\Exception $th) {
+            return redirect()->back()->with(['status' => "gagal", 'message' => "Gagal menghapus prodi"]);
         }
     }
 }

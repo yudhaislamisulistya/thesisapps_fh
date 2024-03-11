@@ -286,6 +286,12 @@
                 Ruangan
             </a>
         </li>
+        <li>
+            <a href="{{url('/data-master/prodi')}}">
+                <i class="fa fa-paperclip icon-sidebar"></i>
+                Program Studi
+            </a>
+        </li>
     </ul>
 </div><!-- /.sidebar-left -->
 <!-- END SIDEBAR LEFT -->

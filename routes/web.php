@@ -39,6 +39,12 @@ Route::group(['middleware' => 'admin'], function () {
         Route::post('/ruangan', 'Admin@ruangan_create')->name('create_master_ruangan');
         Route::post('/ruangan/update', 'Admin@ruangan_update')->name('update_master_ruangan');
         Route::get('/ruangan/delete/{id}', 'Admin@ruangan_delete')->name('delete_master_ruangan');
+
+        // Prodi
+        Route::get('/prodi', 'Admin@prodi')->name('get_master_prodi');
+        Route::post('/prodi', 'Admin@prodi_create')->name('create_master_prodi');
+        Route::post('/prodi/update', 'Admin@prodi_update')->name('update_master_prodi');
+        Route::get('/prodi/delete/{id}', 'Admin@prodi_delete')->name('delete_master_prodi');
     });
     //AKADEMIK-PRODI
     /*
