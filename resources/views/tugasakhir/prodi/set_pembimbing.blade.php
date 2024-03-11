@@ -184,7 +184,7 @@ Apakah Anda yakin ingin menyimpan sementara?
                 class: "text-warning"
             }
         ];
-        axios.get(`/prodi/usulan_tmp/pembimbing/getstatus/${index}/${id}/{{$data_mahasiswa->C_NPM}}`)
+        axios.get(`https://thesis-dev.fikom.app/fh/api/prodi/usulan_tmp/pembimbing/getstatus/${index}/${id}/{{$data_mahasiswa->C_NPM}}`)
             .then(res => {
                 if (index === "0") {
                     status.map(s => {
