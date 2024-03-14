@@ -514,4 +514,10 @@ Route::group(['middleware' => 'mhs'], function () {
     Route::get('/mhs/surat_sk_pembimbing/{nomor}', 'mhs@surat_sk_pembimbing');
     Route::get('/mhs/surat_sk_proposal/{pendaftaran_id}', 'mhs@surat_sk_proposal');
     Route::get('/mhs/surat_sk_ujian_meja/{nomor}', 'mhs@surat_sk_ujian_meja');
+
+    // Data Pembimbing
+    Route::get('/mhs/data_pembimbing', 'mhs@data_pembimbing');
+
+    // Data Penguji
+    Route::get('/mhs/data_penguji', 'mhs@data_penguji');
 });

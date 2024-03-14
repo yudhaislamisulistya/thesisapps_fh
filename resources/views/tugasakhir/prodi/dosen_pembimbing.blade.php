@@ -57,7 +57,7 @@ ini_set('max_execution_time', 300); //300 seconds = 5 minutes
                             <th>No</th>
                             <th>NIDN</th>
                             <th>Nama</th>
-                            <th>Jabatan Fungsional</th>
+                            <th>Jabatan Fungsional/Golongan</th>
                             <th>Jumlah Bimbingan</th>
                             <th>Jumlah Bimbingan Semester Aktif</th>
                             <th>Jumlah Menguji</th>
@@ -72,7 +72,7 @@ ini_set('max_execution_time', 300); //300 seconds = 5 minutes
                                 <td width="1%" align="center">{{++$key}}</td>
                                 <td>{{$value->C_KODE_DOSEN}}</td>
                                 <td>{{$value->NAMA_DOSEN}}</td>
-                                <td>{{$value->jabatan_fungsional}}</td>
+                                <td>{{$value->jabatan_fungsional}} / {{$value->website}}</td>
                                 <td>
                                     <table class="table">
                                         <thead class="bg-info text-white text-center">

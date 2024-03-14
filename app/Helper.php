@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+
 
 class Helper
 {
@@ -835,13 +837,14 @@ class Helper
         return isset($v) ? $v : '0';
     }
 
-    public static function getPeriodePendaftaranByStatusUjian($status_ujian, $tipe_ujian){
+    public static function getPeriodePendaftaranByStatusUjian($status_ujian, $tipe_ujian)
+    {
         $v = DB::table('mst_pendaftaran')
             ->select("*")
             ->where('status_ujian', $status_ujian)
             ->where('tipe_ujian', $tipe_ujian)
             ->get();
-        
+
         return $v;
     }
 
@@ -854,6 +857,50 @@ class Helper
             ->where('status', 1)
             ->first();
         return isset($v) ? $v->status : '0';
+    }
+
+
+    public static function formatTanggalIndonesia($tanggal)
+    {
+        // Setel locale Carbon ke bahasa Indonesia
+        Carbon::setLocale('id');
+
+        // Array untuk menerjemahkan nama hari
+        $hariIndonesia = [
+            'Sunday' => 'Minggu',
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu'
+        ];
+
+        // Array untuk menerjemahkan nama bulan
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        // Parse tanggal menggunakan Carbon
+        $tanggalCarbon = Carbon::parse($tanggal);
+
+        // Format hari dan bulan
+        $hari = $hariIndonesia[$tanggalCarbon->format('l')]; // Mengambil nama hari dalam bahasa Inggris dan menerjemahkannya
+        $bulan = $bulanIndonesia[$tanggalCarbon->format('F')]; // Mengambil nama bulan dalam bahasa Inggris dan menerjemahkannya
+
+        // Mengembalikan string tanggal dalam format bahasa Indonesia
+        return "{$tanggalCarbon->format('d')} {$bulan} {$tanggalCarbon->format('Y')}";
     }
 }
 

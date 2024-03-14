@@ -309,7 +309,7 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
 
         <div class="legalitor">
             Makassar, @foreach($data_sk as $key => $value)
-                            {{Illuminate\Support\Carbon::parse(substr($value->created_at,0,10))->formatLocalized("%d %B %Y")}}
+                            {{helper::formatTanggalIndonesia(substr($value->created_at,0,10))}}
                         @endforeach
             <br>
             Dekan

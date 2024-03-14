@@ -164,7 +164,7 @@
         <br><br>
     </p>
     <div class="legalitor">
-        Makassar, {{Illuminate\Support\Carbon::parse(substr($datax[0]->created_at,0,10))->formatLocalized("%d %B %Y")}}
+        Makassar, {{helper::formatTanggalIndonesia(substr($datax[0]->created_at,0,10))}}
     </div>
     <br>
         @if (Auth::user()->name == "prodifh")

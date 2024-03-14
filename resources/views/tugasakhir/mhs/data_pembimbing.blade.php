@@ -7,34 +7,35 @@
         <ol class="breadcrumb default square rsaquo sm">
             <li><a href="index.html"><i class="fa fa-home"></i></a></li>
             <li><a href="#fakelink">Home</a></li>
-            <li class="active">Pengajuan Topik</li>
+            <li class="active">Data Pembimbing</li>
         </ol>
-        <h3 class="page-heading">Riwayat Ujian</h3>
+        <h3 class="page-heading">Data Pembimbing</h3>
         <div class="the-box">
             <div class="table-responsive">
                 <table class="table table-striped table-hover" id="datatable-example">
                     <thead class="the-box dark full">
                     <tr>
                         <th>No</th>
-                        <th>Tipe Ujian</th>
-                        <th>Detail Ujian</th>
+                        <th>NIDN</th>
+                        <th>Nama Dosen</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($data as $key => $value)
+                    @foreach ($dataDetailPembimbing as $key => $value)
                         <tr class="odd gradeX">
                             <td width="1%" align="center">{{++$key}}</td>
-                            @php
-                            $status = '';
-                                if ($value->tipe_ujian == 0)
-                                    $status = '<span class="label label-success">Proposal</span>';
-                                else if($value->tipe_ujian == 2){
-                                    $status = '<span class="label label-warning">Ujian Meja</span>';
-                                }
-                            @endphp
-                            
-                            <td><?= $status ?></td>
-                            <td><a href="{{ url('mhs/detail_ujian')}}/{{$value->C_NPM}}/{{$value->tipe_ujian}}"><i class="fa fa-paperclip icon-square icon-xs icon-dark"></i></a></td>
+                            <td>{{$value->C_KODE_DOSEN}}</td>
+                            <td>{{$value->NAMA_DOSEN}}</td>
+                            <td>{{$value->JENIS_KELAMIN}}</td>
+                            <td>
+                                @if($value->status == "Pembimbing Utama")
+                                    <span class="label label-success">{{$value->status}}</span>
+                                @else
+                                    <span class="label label-warning">{{$value->status}}</span>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

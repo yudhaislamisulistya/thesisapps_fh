@@ -45,6 +45,12 @@
                             auth()->user()->name)->select("bimbingan_id"))->whereIn("pendaftaran_id",\App\Model\mst_pendaftaran::where("tipe_ujian",
                             0)->select("pendaftaran_id"))->count();
                             @endphp
+                            {{-- if data is null, then show Jadwal Ujian Proposal Belum Tersedia --}}
+                            @if(count($data) == 0)
+                            <tr class="odd gradeX">
+                                <td colspan="6" align="center">Jadwal Ujian Proposal Belum Tersedia</td>
+                            </tr>
+                            @endif
                             @foreach ($data as $key => $value)
                             <tr class="odd gradeX">
                                 <td width="1%" align="center">{{++$key}}</td>
@@ -138,13 +144,24 @@
                                 </td>
                                 <td>
                                     @if(!empty($trtsyaratujian))
-                                    <button type="button" value="{{$key-1}}" onclick="showPostModal(this)"
-                                        data-formaction="{{url("mhs/syarat_ujianpost")}}" data-target="#modalInfo"
-                                        data-toggle="modal" class="btn btn-info"><i class="fa fa-edit"></i></button>
-                                    <button type="button" onclick="showModal(this)"
-                                        data-href="{{ url("mhs/syarat_ujiandel/0/$value->syarat_ujian_id")}}"
-                                        data-target="#modalDanger" data-toggle="modal" class="btn btn-danger"><i
-                                            class="fa fa-trash"></i></button>
+                                        @if($trtsyaratujian->status == "1")
+                                            <button type="button" value="{{$key-1}}" onclick="showPostModal(this)"
+                                                data-formaction="{{url("mhs/syarat_ujianpost")}}" data-target="#modalInfo"
+                                                data-toggle="modal" class="btn btn-info" disabled><i class="fa fa-edit"></i></button>
+                                            <button type="button" onclick="showModal(this)"
+                                                data-href="{{ url("mhs/syarat_ujiandel/0/$value->syarat_ujian_id")}}"
+                                                data-target="#modalDanger" data-toggle="modal" class="btn btn-danger" disabled><i
+                                                    class="fa fa-trash" ></i></button>
+                                        @else
+                                            <button type="button" value="{{$key-1}}" onclick="showPostModal(this)"
+                                                data-formaction="{{url("mhs/syarat_ujianpost")}}" data-target="#modalInfo"
+                                                data-toggle="modal" class="btn btn-info"><i class="fa fa-edit
+                                                    "></i></button>
+                                            <button type="button" onclick="showModal(this)"
+                                                data-href="{{ url("mhs/syarat_ujiandel/0/$value->syarat_ujian_id")}}"
+                                                data-target="#modalDanger" data-toggle="modal" class="btn btn-danger"><i
+                                                    class="fa fa-trash"></i></button>
+                                        @endif
                                     @else
                                     <button id="tombol_satu" type="button" value="{{$key-1}}"
                                         onclick="showPostModal(this)" data-formaction="{{url("mhs/syarat_ujianpost")}}"

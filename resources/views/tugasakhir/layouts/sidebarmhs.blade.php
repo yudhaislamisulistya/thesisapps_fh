@@ -49,7 +49,7 @@
         </li>
         <li>
             <a href="#fakelink">
-                <i class="fa fa-envelope icon-sidebar"></i>
+                <i class="fa fa-repeat icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Usulan Judul
             </a>
@@ -84,7 +84,7 @@
         </li>
         <li>
             <a href="#fakelink">
-                <i class="fa  fa-clipboard icon-sidebar"></i>
+                <i class="fa fa-book icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Ujian Meja
             </a>
@@ -92,6 +92,20 @@
                 <li><a href="{{url('mhs/signup_ujianmeja')}}">Daftar Ujian</a></li>
                 <li><a href="{{url('mhs/beritaacara_ujian')}}/{{auth()->user()->name}}">Berita Acara</a></li>
             </ul>
+        </li>
+        {{-- Data Pembimbing --}}
+        <li>
+            <a href="{{url('mhs/data_pembimbing')}}">
+                <i class="fa fa-user icon-sidebar"></i>
+                Data Pembimbing
+            </a>
+        </li>
+        {{-- Data Penguji --}}
+        <li>
+            <a href="{{url('mhs/data_penguji')}}">
+                <i class="fa fa-users icon-sidebar"></i>
+                Data Penguji
+            </a>
         </li>
     </ul>
 </div><!-- /.sidebar-left -->

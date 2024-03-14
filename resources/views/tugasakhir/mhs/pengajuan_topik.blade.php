@@ -94,8 +94,8 @@
                             </div>
                     </div>
                     <br><br>
-                    <div class="form-group mt-2">
-                        <div class="col-lg-12" align="right">
+                    <div class="form-group">
+                        <div class="col-lg-12" align="right" style="margin-top: 20px">
                             <button class="btn btn-primary btn-perspective" type="submit">Simpan</button>
                         </div>
                     </div>
@@ -291,16 +291,28 @@
                             <td><span class="label label-danger">Ditolak</span></td>
                             @endif
                             @if($trtbimbingan->isEmpty())
+                            @if($value->status == 1 || $value->status == 2)
+                            <td>
+                                Judul Sudah Diterima/Ditolak  
+                            </td>
+                            @else
+                            {{-- disable --}}
                             <td>
                                 <button class="btn btn-danger" onclick="showModal(this)" data-target="#modalDanger"
                                     data-toggle="modal"
                                     data-href="{{ url('mhs/pengajuan_topikdel/'.$value->topik_id)}}"><i
                                         class="fa fa-trash-o"></i></button>
-                                <a class="btn btn-info" href="{{url('mhs/ubah_judul')}}/{{$value->topik_id}}"><i class="fa fa-edit"></i></a>    
+                                <a class="btn btn-info" href="{{url('mhs/ubah_judul')}}/{{$value->topik_id}}"><i class="fa fa-edit"></i></a>
                             </td>
+                            @endif
                             @else
                             <td>
-                                <a class="btn btn-info" href="{{url('mhs/ubah_judul')}}/{{$value->topik_id}}"><i class="fa fa-edit"></i></a>    
+                                {{-- <a class="btn btn-info" href="{{url('mhs/ubah_judul')}}/{{$value->topik_id}}"><i class="fa fa-edit"></i></a>     --}}
+                                @if($value->status == 1)
+                                Judul Sudah Diterima
+                                @else
+                                <a class="btn btn-info" href="{{url('mhs/ubah_judul')}}/{{$value->topik_id}}"><i class="fa fa-edit"></i></a>  
+                                @endif  
                             </td>
                             @endif
                         </tr>
@@ -400,7 +412,9 @@ Apakah Anda yakin ingin menghapus data?
                 class: "text-warning"
             }
         ];
-        axios.get(`/mhs/usulan_tmp/pembimbing/getstatus/${index}/${id}`).then(res => {
+        console.log(index);
+        console.log(id);
+        axios.get(`https://thesis-dev.fikom.app/fh/mhs/usulan_tmp/pembimbing/getstatus/${index}/${id}`).then(res => {
             if (index === "0") {
                 status.map(s => {
                     if (s.value === res.data) {

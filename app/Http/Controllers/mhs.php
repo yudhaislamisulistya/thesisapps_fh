@@ -387,7 +387,7 @@ class mhs extends Controller
                     }
                 }
             }
-    
+
             $mstpesan = mst_pesan::create([
                 "perihal_pesan" => $request->perihal_pesan,
                 "isi_pesan" => $request->isi_pesan,
@@ -467,9 +467,9 @@ class mhs extends Controller
     {
         if (substr(Auth::user()->name, 0, 3) == '040') {
             $data = DB::table('mst_pendaftaran')
-            ->select('*')
-            ->Where(['status_ujian' => 0, 'tipe_ujian' => 0, 'status_prodi' => 1])
-            ->get();
+                ->select('*')
+                ->Where(['status_ujian' => 0, 'tipe_ujian' => 0, 'status_prodi' => 1])
+                ->get();
 
             $syarat = DB::table('mst_syarat_ujian')
                 ->select('*')
@@ -489,12 +489,12 @@ class mhs extends Controller
                     "tipe_ujian",
                     0
                 )->select("pendaftaran_id"))->count();
-        }else{
+        } else {
             $data = DB::table('mst_pendaftaran')
-            ->select('*')
-            ->Where(['status_ujian' => 0, 'tipe_ujian' => 0, 'status_prodi' => 2])
-            ->get();
-            
+                ->select('*')
+                ->Where(['status_ujian' => 0, 'tipe_ujian' => 0, 'status_prodi' => 2])
+                ->get();
+
 
             $syarat = DB::table('mst_syarat_ujian')
                 ->select('*')
@@ -552,7 +552,7 @@ class mhs extends Controller
 
     public function registrasi(Request $request)
     {
-        try{
+        try {
             $datapost = $request->all();
             $mstsyaratujian = \App\Model\mst_syarat_ujian::where(["tipe_ujian" => $request->tipe_ujian])->count();
             $trtsyaratujian = \App\TrtSyaratUjian::where(["C_NPM" => auth()->user()->name, "status" => 1])->whereIn("syarat_ujian_id", \App\Model\mst_syarat_ujian::where(["tipe_ujian" => $request->tipe_ujian])->select("syarat_ujian_id"))->count();
@@ -604,12 +604,12 @@ class mhs extends Controller
                     ]);
                 } else {
                     $data_penguji_lengkap = TrtPenguji::where('C_NPM', auth()->user()->name)->where('tipe_ujian', 0)->first();
-                    if($data_penguji_lengkap == null || $data_penguji_lengkap == ''){
+                    if ($data_penguji_lengkap == null || $data_penguji_lengkap == '') {
                         TrtPenguji::create([
                             'C_NPM' => $datapost["C_NPM"],
                             'tipe_ujian' => $datapost["tipe_ujian"],
                         ]);
-                    }else{
+                    } else {
                         TrtPenguji::create([
                             'C_NPM' => $datapost["C_NPM"],
                             'tipe_ujian' => $datapost["tipe_ujian"],
@@ -636,7 +636,7 @@ class mhs extends Controller
                     ->update(['jml_peserta' => $data_jml->jml_peserta]);
             endif;
             return redirect('mhs/riwayat_ujian/' . $datapost["C_NPM"]);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return redirect('mhs/signup_ujianmeja');
         }
     }
@@ -992,10 +992,107 @@ class mhs extends Controller
             $nim = auth()->user()->name;
             $tgl_sekarang = helper::tgl_indo_lengkap(date('Y-m-d'));
 
-            return view('tugasakhir.prodi.cetakskpenguji', compact("nim", "penguji", "bimbingan", "tipe_ujian", "tgl_ujian","tanggal", "bulan",
-            "tahun", "waktu", "ruangan", 'tgl_sekarang'));
+            return view('tugasakhir.prodi.cetakskpenguji', compact(
+                "nim",
+                "penguji",
+                "bimbingan",
+                "tipe_ujian",
+                "tgl_ujian",
+                "tanggal",
+                "bulan",
+                "tahun",
+                "waktu",
+                "ruangan",
+                'tgl_sekarang'
+            ));
         } catch (Exception $error) {
             return redirect('mhs/download');
+        }
+    }
+
+    // Data Pembimbing
+    public function data_pembimbing()
+    {
+        try {
+            $dataPembimbing = DB::table('trt_bimbingan')
+                ->select(
+                    'trt_bimbingan.pembimbing_I_id',
+                    'trt_bimbingan.pembimbing_II_id',
+                )
+                ->where('trt_bimbingan.C_NPM', auth()->user()->name)
+                ->get();
+            $dataDetailPembimbing = [];
+            foreach ($dataPembimbing as $pembimbing) {
+                $hasilQuery = DB::table('t_mst_dosen')
+                    ->select('t_mst_dosen.*')
+                    ->where('t_mst_dosen.C_KODE_DOSEN', $pembimbing->pembimbing_I_id)
+                    ->orWhere('t_mst_dosen.C_KODE_DOSEN', $pembimbing->pembimbing_II_id)
+                    ->get()
+                    ->toArray(); // Ubah hasil query menjadi array
+
+                // Gabungkan array hasil query ini dengan array utama
+                $dataDetailPembimbing = array_merge($dataDetailPembimbing, $hasilQuery);
+            }
+            // dataDetailPembimbing add status = Pembimbing I / Pembimbing II
+            foreach ($dataDetailPembimbing as $key => $value) {
+                if ($dataPembimbing[0]->pembimbing_I_id == $value->C_KODE_DOSEN) {
+                    $dataDetailPembimbing[$key]->status = "Pembimbing Utama";
+                } else {
+                    $dataDetailPembimbing[$key]->status = "Pembimbing Pendamping";
+                }
+            }
+            // return json
+            // return response()->json($dataDetailPembimbing);
+            return view('tugasakhir.mhs.data_pembimbing', compact('dataDetailPembimbing'));
+        } catch (Exception $error) {
+            return redirect('/');
+        }
+    }
+
+    // Data Penguji
+    public function data_penguji()
+    {
+        try {
+            $dataPenguji = DB::table('trt_penguji')
+                ->select(
+                    'trt_penguji.ketua_sidang_id',
+                    'trt_penguji.penguji_I_id',
+                    'trt_penguji.penguji_II_id',
+                    'trt_penguji.penguji_III_id',
+                    'trt_penguji.tipe_ujian' // Pilih tipe_ujian juga
+                )
+                ->where('trt_penguji.C_NPM', auth()->user()->name)
+                ->get();
+
+            $dataDetailPenguji = [];
+            foreach ($dataPenguji as $penguji) {
+                $dosenIds = [
+                    $penguji->ketua_sidang_id,
+                    $penguji->penguji_I_id,
+                    $penguji->penguji_II_id,
+                    $penguji->penguji_III_id
+                ];
+
+                foreach ($dosenIds as $dosenId) {
+                    $dosen = DB::table('t_mst_dosen')
+                        ->select('t_mst_dosen.*')
+                        ->where('t_mst_dosen.C_KODE_DOSEN', $dosenId)
+                        ->first();
+
+                    if ($dosen) {
+                        $dosen->status = $dosenId == $penguji->ketua_sidang_id ? 'Ketua Sidang' : ($dosenId == $penguji->penguji_I_id ? 'Penguji I' : ($dosenId == $penguji->penguji_II_id ? 'Penguji II' : 'Penguji III'));
+
+                        $dosen->tipe_ujian = $penguji->tipe_ujian == 0 ? 'Proposal' : ($penguji->tipe_ujian == 2 ? 'Ujian Meja' : 'Tipe Ujian Tidak Diketahui');
+
+                        $dataDetailPenguji[] = $dosen;
+                    }
+                }
+            }
+
+            // return response()->json($dataDetailPenguji);
+            return view('tugasakhir.mhs.data_penguji', compact('dataDetailPenguji'));
+        } catch (Exception $error) {
+            return redirect('/');
         }
     }
 }
