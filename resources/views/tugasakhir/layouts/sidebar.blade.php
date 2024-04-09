@@ -353,6 +353,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ url('/data-master/ketua-bidang') }}">
+                <i class="fa fa-paperclip icon-sidebar"></i>
+                Ketua Bidang
+            </a>
+        </li>
+        <li>
             <a href="{{ url('/data-master/bidang-ilmu') }}">
                 <i class="fa fa-paperclip icon-sidebar"></i>
                 Bidang Ilmu

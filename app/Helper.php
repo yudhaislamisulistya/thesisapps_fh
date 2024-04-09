@@ -902,6 +902,56 @@ class Helper
         // Mengembalikan string tanggal dalam format bahasa Indonesia
         return "{$tanggalCarbon->format('d')} {$bulan} {$tanggalCarbon->format('Y')}";
     }
+
+    // Get All Bidang Ilmu -> mst_bidangilmu
+    public static function getAllBidangIlmu()
+    {
+        $v = DB::table('mst_bidangilmu')
+            ->select("*")
+            ->get();
+        return isset($v) ? $v : '-';
+    }
+
+    // Get Bidang Ilmu By bidangilmu_id
+    public static function getBidangIlmuById($id)
+    {
+        $v = DB::table('mst_bidangilmu')
+            ->select("*")
+            ->where('bidangilmu_id', $id)
+            ->first();
+        return isset($v) ? $v : '-';
+    }
+
+    // Get Dosen by C_KODE_DOSEN -> t_mst_dosen
+    public static function getDosenByKodeDosen($kode_dosen)
+    {
+        $v = DB::table('t_mst_dosen')
+            ->select("*")
+            ->where('C_KODE_DOSEN', $kode_dosen)
+            ->first();
+        return isset($v) ? $v : '-';
+    }
+
+    // Get users by Email -> users
+    public static function getUserByEmail($email)
+    {
+        $v = DB::table('users')
+            ->select("*")
+            ->where('email', $email)
+            ->first();
+        return isset($v) ? $v : '-';
+    }
+
+    // Get Deskripsi for Ketua Bidang Ilmu from table users
+    public static function getCKodeDosenKetuaBidangIlmu($name)
+    {
+        $v = DB::table('users')
+            ->select("*")
+            ->where('name', $name)
+            ->first();
+        $kode_dosen = substr($v->email, 0, strpos($v->email, '@'));
+        return isset($v) ? $kode_dosen : '-';
+    }
 }
 
 // Menghilngkan Tag HTML

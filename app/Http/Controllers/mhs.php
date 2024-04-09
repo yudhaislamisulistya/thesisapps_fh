@@ -319,25 +319,27 @@ class mhs extends Controller
 
     public function pengajuan_topikpost(Request $request)
     {
-        $datapost = $request->except(["bidang_ilmu"]);
-        $datapost['status'] = 0;
-        $datapost['user_id'] = $datapost['C_NPM'];
-        $datapost['bidang_ilmu_peminatan'] = $datapost['bidang_ilmu_peminatan'];
-        $datapost['bidang_ilmu_peminatan'] = $datapost['bidang_ilmu_peminatan'];
-        $file = isset($datapost['kerangka']) ? $datapost['kerangka'] : '';
-        $datapost['kerangka'] = helper::uploadFile($file, 'dokumen/', '');
-        $datapost["note"] = $datapost["note"];
+        try {
+            $datapost = $request->except(["bidang_ilmu"]);
+            $datapost['status'] = 0;
+            $datapost['user_id'] = $datapost['C_NPM'];
+            $datapost['C_NPM'] = $datapost['C_NPM'];
+            $datapost["note"] = $datapost["note"];
+            $file = $request->file('kerangka');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
 
-        $trt_topik = trt_topik::create($datapost);
-        foreach ($request->bidang_ilmu as $key => $bidangilmu) {
-            RequestPembimbing::create([
-                "C_NPM" => $request->C_NPM,
-                "bidang_ilmu" => $bidangilmu,
-                "topik" => $trt_topik->topik_id,
-            ]);
+            if ($file->move(public_path('dokumen/'), $fileName)) {
+                $datapost['kerangka'] = $fileName;
+            }
+
+
+
+            trt_topik::create($datapost);
+
+            return redirect()->back()->with(["status" => "berhasil", "message" => "Topik Berhasil Diajukan"]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(["status" => "gagal", "message" => "Topik Gagal Diajukan"]);
         }
-
-        return redirect()->back();
     }
 
     public function riwayat_ujian($nim)

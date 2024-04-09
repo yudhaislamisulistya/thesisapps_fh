@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'kaprodi' => \App\Http\Middleware\kaprodi::class,
         'akademik_prodi' => \App\Http\Middleware\akademik_prodi::class,
         'dosen' => \App\Http\Middleware\dosen::class,
-        'mhs' => \App\Http\Middleware\mhs::class
+        'mhs' => \App\Http\Middleware\mhs::class,
+        'ketua_bidang' => \App\Http\Middleware\ketua_bidang::class
     ];
 }

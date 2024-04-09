@@ -45,6 +45,13 @@ Route::group(['middleware' => 'admin'], function () {
         Route::post('/prodi', 'Admin@prodi_create')->name('create_master_prodi');
         Route::post('/prodi/update', 'Admin@prodi_update')->name('update_master_prodi');
         Route::get('/prodi/delete/{id}', 'Admin@prodi_delete')->name('delete_master_prodi');
+
+        // Ketua Bidang CRUD
+        Route::get('/ketua-bidang', 'Admin@ketua_bidang')->name('get_master_ketua_bidang');
+        Route::post('/ketua-bidang', 'Admin@ketua_bidang_create')->name('create_master_ketua_bidang');
+        Route::post('/ketua-bidang/update', 'Admin@ketua_bidang_update')->name('update_master_ketua_bidang');
+        Route::get('/ketua-bidang/delete/{id}', 'Admin@ketua_bidang_delete')->name('delete_master_ketua_bidang');
+        Route::get('/reset-password-ketua-bidang/{id}', 'Admin@reset_password_ketua_bidang')->name('reset_password_ketua_bidang');
     });
     //AKADEMIK-PRODI
     /*
@@ -113,6 +120,18 @@ Route::group(['middleware' => 'admin'], function () {
  	Route::post('/fakultas/cetakskpembimbing/', 'fakultas@cetakskpembimbing');
     */
 });
+
+// Route Group For Ketua Bidang
+Route::group(['middleware' => 'ketua_bidang'], function () {
+    Route::group(['prefix' => 'ketuabidang'], function () {
+        // Penentuan Bidang Prefix
+        Route::group(['prefix' => 'penentuan_bidang'], function () {
+            Route::get('/', 'KetuaBidang@penentuan_bidang')->name('get_ketua_bidang_penentuan_bidang');
+            Route::post('/update', 'KetuaBidang@penentuan_bidang_update')->name('update_ketua_bidang_penentuan_bidang');
+        });
+    });
+});
+    
 
 
 

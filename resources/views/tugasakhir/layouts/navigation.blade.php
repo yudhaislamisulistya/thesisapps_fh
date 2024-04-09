@@ -71,6 +71,8 @@ BEGIN PAGE
                                 Hi, <strong>{{helper::getDeskripsi(auth()->user()->name)}}</strong>
                             @elseif(Auth::user()->level==8)
                                 Hi, <strong>{{helper::getNamaMhs(auth()->user()->name)}}</strong>
+                            @elseif(Auth::user()->level==9)
+                                Hi, <strong>{{helper::getDeskripsi(helper::getCKodeDosenKetuaBidangIlmu(auth()->user()->name))}}</strong>
                             @endif
                         </a>
                         <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
@@ -88,6 +90,8 @@ BEGIN PAGE
                                 <li><a href="{{ url('dsn/ubah_password/')}}">Change password</a></li>
                             @elseif(Auth::user()->level==8)
                                 <li><a href="{{ url('mhs/ubah_password/')}}">Change password</a></li>
+                            @elseif(Auth::user()->level==9)
+                                <li><a href="{{ url('ketuabidang/ubah_password/')}}">Change password</a></li>
                             @endif
                             <li class="divider"></li>
                             <li>

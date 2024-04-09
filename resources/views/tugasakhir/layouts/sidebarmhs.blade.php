@@ -84,6 +84,17 @@
         </li>
         <li>
             <a href="#fakelink">
+                <i class="fa fa-file icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Seminar Hasil
+            </a>
+            <ul class="submenu">
+                <li><a href="{{url('mhs/signup_seminarhasil')}}">Daftar Ujian</a></li>
+                <li><a href="{{url('mhs/beritaacara_seminarhasil')}}/{{auth()->user()->name}}">Berita Acara</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#fakelink">
                 <i class="fa fa-book icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Ujian Meja

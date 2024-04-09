@@ -19,6 +19,8 @@
 	@include('tugasakhir.layouts.sidebardosen')
 @elseif(Auth::user()->level==8)
 	@include('tugasakhir.layouts.sidebarmhs')
+@elseif(Auth::user()->level==9)
+	@include('tugasakhir.layouts.sidebarketuabidang')
 @endif
 
 @yield('isi')
