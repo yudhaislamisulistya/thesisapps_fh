@@ -492,6 +492,7 @@ Route::group(['middleware' => 'dosen'], function () {
 
     // Surat Keputusan Pembimbing
     Route::get('/dsn/sk_pembimbing', 'dosen@sk_pembimbing')->name('get_dosen_sk_pembimbing');
+    Route::post('/dsn/cetakskpembimbing/', 'dosen@cetakskpembimbing')->name('post_dosen_cetakskpembimbing');
 });
 
 Route::group(['middleware' => 'mhs'], function () {

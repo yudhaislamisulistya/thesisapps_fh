@@ -859,4 +859,16 @@ class dosen extends Controller
 
         return view('tugasakhir.dosen.sk_pembimbing', compact('penetapan_pengusulan', 'data', 'data_sk'));
     }
+
+    public function cetakskpembimbing(Request $request)
+    {
+        $datapost = $request->all();
+        $data_sk = DB::table('mst_sk_pembimbing')
+            ->join('trt_bimbingan', 'mst_sk_pembimbing.bimbingan_id', '=', 'trt_bimbingan.bimbingan_id')
+            ->select('*')
+            ->where('mst_sk_pembimbing.nomor_sk', $datapost['nomor'])
+            ->get();
+        $tgl_ujian = Helper::tgl_indo_lengkap(date('Y-m-d'));
+        return view('tugasakhir.fakultas.cetakskpembimbing', compact('data_sk', 'tgl_ujian'));
+    }
 }
