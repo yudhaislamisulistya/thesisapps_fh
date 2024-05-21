@@ -1046,4 +1046,86 @@ class fakultas extends Controller
         }
         return view('tugasakhir.prodi.peserta_ujianmeja', compact('pendaftaran'));
     }
+
+    public function jadwalPerMhs($tipe_ujian)
+    {
+        switch ($tipe_ujian):
+            case "proposal":
+                $type = 0;
+                break;
+            case "seminarhasil":
+                $type = 1;
+                break;
+            case "ujianmeja":
+                $type = 2;
+                break;
+        endswitch;
+
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', $type)
+                ->where('mst_pendaftaran.status_prodi', 1)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        } else {
+            $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', $type)
+                ->where('mst_pendaftaran.status_prodi', 2)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        }
+        return view('tugasakhir.fakultas.jadwalpermhs', compact('data'));
+    }
+
+    public function detailJadwalPermhs($pendaftaran_id)
+    {
+        $info = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $pendaftaran_id)->first();
+        $data = DB::select("SELECT * FROM mst_pendaftaran,trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa WHERE mst_pendaftaran.pendaftaran_id = trt_reg.pendaftaran_id AND trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND trt_reg.pendaftaran_id = ? AND trt_reg.status = ?", [$pendaftaran_id, $info->tipe_ujian]);
+
+        return view('tugasakhir.fakultas.detail_jadwalpermhs', compact("data", "info"));
+    }
+
+    public function set_jadwalujianpermhs($pendaftaran_id, $nim)
+    {
+        $xinfo = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $pendaftaran_id)->first();
+        $info = trt_reg::join("trt_bimbingan", "trt_bimbingan.bimbingan_id", "=", "trt_reg.bimbingan_id")
+            ->join("t_mst_mahasiswa", "t_mst_mahasiswa.C_NPM", "=", "trt_bimbingan.C_NPM")
+            ->join("trt_penguji", "trt_penguji.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+            ->where([
+                "trt_reg.pendaftaran_id" => $pendaftaran_id,
+                "trt_reg.status" => $xinfo->tipe_ujian,
+                "trt_penguji.tipe_ujian" => $xinfo->tipe_ujian,
+                "t_mst_mahasiswa.C_NPM" => $nim
+            ])->first();
+
+        $jadwal = TrtJadwalUjianPerMhs::where([
+            "C_NPM" => $nim,
+            "jadwal_ujian" => $xinfo->id
+        ])->first();
+
+
+        return view('tugasakhir.fakultas.set_jadwalpermhs', compact("info", "pendaftaran_id", "jadwal"));
+    }
+
+    public function set_jadwalujianpermhspost($pendaftaran_id, Request $request)
+    {
+        $trtjadwalujian = TrtJadwalUjian::where("pendaftaran_id", $pendaftaran_id)->first();
+        $trtjadwalujianpermhs = TrtJadwalUjianPerMhs::where(["C_NPM" => $request->C_NPM, "jadwal_ujian" => $trtjadwalujian->id])->first();
+        $request->merge(["jadwal_ujian" => $trtjadwalujian->id]);
+        $request->merge(["jam_ujian" => $request->jam_ujian]);
+        if (empty($trtjadwalujianpermhs)) {
+            TrtJadwalUjianPerMhs::create($request->all());
+        } else {
+            TrtJadwalUjianPerMhs::where(["C_NPM" => $request->C_NPM, "jadwal_ujian" => $trtjadwalujian->id])
+                ->update($request->except([
+                    "C_NPM", "jadwal_ujian", "_token"
+                ]));
+        }
+
+        return redirect()->to("/fakultas/detail_jadwalpermhs/$pendaftaran_id")->with((['status' => "berhasil", 'message' => "Berhasil menetapkan jadwal ujian"]));
+    }
 }

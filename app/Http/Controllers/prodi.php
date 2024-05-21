@@ -1810,8 +1810,6 @@ class Prodi extends Controller
             ->where("mst_pendaftaran.pendaftaran_id", $pendaftaran_id)->first();
         $data = DB::select("SELECT * FROM mst_pendaftaran,trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa WHERE mst_pendaftaran.pendaftaran_id = trt_reg.pendaftaran_id AND trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND trt_reg.pendaftaran_id = ? AND trt_reg.status = ?", [$pendaftaran_id, $info->tipe_ujian]);
 
-        // return $data;
-
         return view('tugasakhir.prodi.detail_jadwalpermhs', compact("data", "info"));
     }
 

@@ -462,6 +462,13 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::post('/fakultas/ubah_periode_pendaftaran/', 'fakultas@ubah_periode_pendaftaran')->name('post_fakultas_ubah_periode_pendaftaran');
     Route::get('/fakultas/hapus-jadwal-ujian-per-mahasiswa/{C_NPM}/{pendaftaran_id}', "fakultas@hapusJadwalUjianPerMahasiswa")->name('hapusJadwalUjianPerMahasiswa');
     Route::get('/fakultas/daftar_peserta/{id}', 'fakultas@daftar_peserta')->name('get_prodi_daftar_peserta');
+
+    // Menetapkan Jadwal Ujian dan SK
+    Route::get('/fakultas/jadwalpermhs/{tipe_ujian}', 'fakultas@jadwalPerMhs')->name('get_fakultas_jadwalPerMhs');
+    Route::get('/fakultas/detail_jadwalpermhs/{pendaftaran_id}', 'fakultas@detailJadwalPermhs')->name('get_fakultas_detailJadwalPermhs');
+    Route::get('/fakultas/set_jadwalpermhs/{pendaftaran_id}/{nim}', 'fakultas@set_jadwalujianpermhs');
+    Route::post('/fakultas/set_jadwalpermhs/{pendaftaran_id}', 'fakultas@set_jadwalujianpermhspost');
+    //
 });
 
 Route::group(['middleware' => 'dosen'], function () {
