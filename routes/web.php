@@ -132,6 +132,12 @@ Route::group(['middleware' => 'ketua_bidang'], function () {
             Route::get('/', 'KetuaBidang@penentuan_pembimbing')->name('get_ketua_bidang_penentuan_pembimbing');
             Route::post('/update', 'KetuaBidang@penentuan_pembimbing_update')->name('update_ketua_bidang_penentuan_pembimbing');
         });
+        // Set Penguji
+        Route::get('peserta_proposal', 'KetuaBidang@peserta_proposal')->name('get_ketua_bidang_peserta_proposal');
+        Route::get('peserta_ujianmeja', 'KetuaBidang@peserta_ujianmeja')->name('get_ketua_bidang_peserta_ujianmeja');
+        Route::get('daftar_peserta/{id}', 'KetuaBidang@daftar_peserta')->name('get_ketua_bidang_daftar_peserta');
+        Route::get('set_penguji/{pendaftaran_id}/{nim}/{tipe_ujian}', 'KetuaBidang@set_penguji')->name('set_penguji');
+        Route::post('set_penguji/{pendaftaran_id}', 'KetuaBidang@set_pengujipost')->name('set_penguji_post');
     });
 });
 
@@ -374,6 +380,13 @@ Route::group(['middleware' => 'wakil_dekan'], function () {
     // Penetapan Pembimbing dan Judul
     Route::get('/wakildekan/penetapan_pembimbing_dan_judul', 'WakilDekan@penetapan_pembimbing_dan_judul')->name('get_wakil_dekan_penetapan_pembimbing_dan_judul');
     Route::post('/wakildekan/penetapan_pembimbing_dan_judul', 'WakilDekan@penetapan_pembimbing_dan_judul_post')->name('post_wakil_dekan_penetapan_pembimbing_dan_judul');
+
+    // Menetapkan Penguji
+    Route::get('/wakildekan/peserta_proposal', 'WakilDekan@peserta_proposal')->name('get_wakil_dekan_peserta_proposal');
+    Route::get('/wakildekan/peserta_ujianmeja', 'WakilDekan@peserta_ujianmeja')->name('get_wakil_dekan_peserta_ujianmeja');
+    Route::get('/wakildekan/daftar_peserta/{id}', 'WakilDekan@daftar_peserta')->name('get_wakil_dekan_daftar_peserta');
+    Route::get('/wakildekan/set_penguji/{pendaftaran_id}/{nim}/{tipe_ujian}', 'WakilDekan@set_penguji')->name('set_penguji_by_wakil_dekan');
+    Route::post('/wakildekan/set_penguji/{pendaftaran_id}', 'WakilDekan@set_pengujipost')->name('set_penguji_by_wakil_dekan_post');
 });
 
 Route::group(['middleware' => 'akademik_fakultas'], function () {
@@ -426,6 +439,29 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::post('/fakultas/surat_pengusulan', 'fakultas@surat_pengusulan')->name('post_fakultas_surat_pengusulan');
     Route::get('/fakultas/detail_riwayat_sk_pengusulan/{nomor}', 'fakultas@detail_riwayat_sk_pengusulan')->name('get_fakultas_detail_riwayat_sk_pengusulan');
     Route::get('/fakultas/surat_pengusulan/{nomor}', 'fakultas@get_surat_pengusulan')->name('get_fakultas_surat_pengusulan');
+
+    // Pelaksanaan Ujian dan Konfirmasi Ujian
+    Route::get("/fakultas/persyaratan_proposal", "fakultas@persyaratan_proposal")->name('get_fakultas_persyaratan_proposal');
+    Route::get("/fakultas/persyaratan_ujianmeja", "fakultas@persyaratan_ujianmeja")->name('get_fakultas_persyaratan_ujianmeja');
+    Route::get("/fakultas/detail_persyaratan_proposal/{id}", "fakultas@detail_persyaratan_proposal")->name('get_fakultas_detail_persyaratan_proposal');
+    Route::get("/fakultas/detail_persyaratan_ujianmeja/{id}", "fakultas@detail_persyaratan_ujianmeja")->name('get_fakultas_detail_persyaratan_ujianmeja');
+    Route::get("/fakultas/konfirmasi_persyaratan_ujian_by_nim/{status}/{nim}", "fakultas@konfirmasi_persyaratan_ujian_by_nim")->name('get_fakultas_konfirmasi_persyaratan_ujian_by_nim');
+    Route::get("/fakultas/konfirmasi_persyaratan_ujian/{status}/{id}/{nim}", "fakultas@konfirmasi_persyaratan_ujian")->name('get_fakultas_konfirmasi_persyaratan_ujian');
+    Route::get('/fakultas/detail_persyaratan_proposal/catatan/{id}/{nim}', 'fakultas@detail_persyaratan_proposal_catatan')->name('get_fakultas_detail_persyaratan_proposal_catatan');
+    Route::post('/fakultas/detail_persyaratan_proposal_catatan_post/', 'fakultas@detail_persyaratan_proposal_catatan_post')->name('post_fakultas_detail_persyaratan_proposal_catatan_post');
+    Route::get('/fakultas/detail_persyaratan_ujianmeja/catatan/{id}/{nim}', 'fakultas@detail_persyaratan_ujianmeja_catatan')->name('get_fakultas_detail_persyaratan_ujianmeja_catatan');
+    Route::post('/fakultas/detail_persyaratan_ujianmeja_catatan_post/', 'fakultas@detail_persyaratan_ujianmeja_catatan_post')->name('post_fakultas_detail_persyaratan_ujianmeja_catatan_post');
+    Route::get('/fakultas/selesai_konfirmasi/{nim}/{type}', 'fakultas@selesaiKonfirmasi')->name('get_fakultas_selesaiKonfirmasi');
+
+    // Jadwal Ujian
+    Route::get('/fakultas/jadwal', 'fakultas@jadwal')->name('get_fakultas_jadwal');
+    Route::post('/fakultas/jadwalujian', 'fakultas@jadwalUjianPost')->name('post_fakultas_jadwalujian');
+    Route::post('/fakultas/jadwal', 'fakultas@jadwalpostadd')->name('post_fakultas_jadwalpostadd');
+    Route::get('/fakultas/pendaftarandel/{id}', 'fakultas@pendaftarandel')->name('get_fakultas_pendaftarandel');
+    Route::get('/fakultas/temp_daftar_peserta/{id}', 'fakultas@temp_daftar_peserta')->name('get_fakultas_temp_daftar_peserta');
+    Route::post('/fakultas/ubah_periode_pendaftaran/', 'fakultas@ubah_periode_pendaftaran')->name('post_fakultas_ubah_periode_pendaftaran');
+    Route::get('/fakultas/hapus-jadwal-ujian-per-mahasiswa/{C_NPM}/{pendaftaran_id}', "fakultas@hapusJadwalUjianPerMahasiswa")->name('hapusJadwalUjianPerMahasiswa');
+    Route::get('/fakultas/daftar_peserta/{id}', 'fakultas@daftar_peserta')->name('get_prodi_daftar_peserta');
 });
 
 Route::group(['middleware' => 'dosen'], function () {

@@ -285,7 +285,7 @@ Apakah Anda yakin ingin menghapus data?
         console.log(tgl_start);
         console.log(tgl_end);
         console.log(kuota);
-        
+
 
        if (nama_periode == "" || tipe_ujian == "" || tgl_start == "" || tgl_end == "" || kuota == "") {
             console.log("Ini Bagian Satu");
@@ -294,7 +294,7 @@ Apakah Anda yakin ingin menghapus data?
         } else {
             $('#status').html("");
             $("#tombol_dua").removeAttr("disabled");
-        }      
+        }
     });
 
     $('#tombol_tiga').on('click', function () {
@@ -305,7 +305,7 @@ Apakah Anda yakin ingin menghapus data?
         console.log(pendaftaran_id);
         console.log(jml_peserta);
         console.log(tgl_ujian);
-        
+
 
        if (pendaftaran_id == "" || jml_peserta == "" || tgl_ujian == "") {
             console.log("Ini Bagian Satu");
@@ -314,7 +314,7 @@ Apakah Anda yakin ingin menghapus data?
         } else {
             $('#status').html("");
             $("#tombol_dua").removeAttr("disabled");
-        }      
+        }
     });
     let modal, modalId, modalFooter, link, form, formaction;
     const showPostModal = e => {

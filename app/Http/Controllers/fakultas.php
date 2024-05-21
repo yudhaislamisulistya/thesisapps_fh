@@ -9,16 +9,21 @@ use Illuminate\Support\Facades\Redirect;
 use App\Model\mst_sk_pembimbing;
 use App\Model\mst_sk_penugasan;
 use App\Model\mst_tmp_usulan;
+use App\Model\t_mst_mahasiswa;
 use App\Model\trt_bimbingan;
 use App\Model\trt_hasil;
+use App\Model\trt_reg;
 use App\Model\trt_sk;
 use App\MstRuangan;
 use App\TrtJadwalUjian;
 use App\TrtJadwalUjianPerMhs;
+use App\TrtPengajuanDokumen;
 use App\TrtPenguji;
+use App\TrtSyaratUjian;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as DB;
 
@@ -676,5 +681,369 @@ class fakultas extends Controller
         $nomor = $datax[0]->nomor;
 
         return view('tugasakhir.prodi.suratpengusulan', compact('nomor', 'perihal', 'tgl', 'datax'));
+    }
+
+    public function persyaratan_proposal()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+                ->where("type", 0)
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
+        } else {
+            $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+                ->where("type", 0)
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '131%')
+                ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
+        }
+        return view("tugasakhir.prodi.persyaratan_proposal", compact("data"));
+    }
+
+    public function persyaratan_ujianmeja()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+                ->where("type", 2)
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
+        } else {
+            $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+                ->where("type", 2)
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '131%')
+                ->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
+        }
+        return view("tugasakhir.prodi.persyaratan_ujianmeja", compact("data"));
+    }
+
+    public function detail_persyaratan_proposal($id)
+    {
+        $mhs = t_mst_mahasiswa::where("C_NPM", $id)->first();
+        $data = TrtSyaratUjian::join("mst_syarat_ujian", "trt_syarat_ujian.syarat_ujian_id", "=", "mst_syarat_ujian.syarat_ujian_id")->where(["tipe_ujian" => 0, "C_NPM" => $id])->get();
+        return view("tugasakhir.prodi.detail_persyaratan_proposal", compact("data", "mhs"));
+    }
+
+    public function detail_persyaratan_ujianmeja($id)
+    {
+        $mhs = t_mst_mahasiswa::where("C_NPM", $id)->first();
+        $data = TrtSyaratUjian::join("mst_syarat_ujian", "trt_syarat_ujian.syarat_ujian_id", "=", "mst_syarat_ujian.syarat_ujian_id")->where(["tipe_ujian" => 2, "C_NPM" => $id])->get();
+        return view("tugasakhir.prodi.detail_persyaratan_ujianmeja", compact("data", "mhs"));
+    }
+
+    public function konfirmasi_persyaratan_ujian_by_nim($status, $nim)
+    {
+        $data = TrtSyaratUjian::where([
+            "C_NPM" => $nim
+        ])->update([
+            "status" => $status
+        ]);
+        return redirect()->back();
+    }
+
+    public function konfirmasi_persyaratan_ujian($status, $id, $nim)
+    {
+        TrtSyaratUjian::where([
+            "syarat_ujian_id" => $id,
+            "C_NPM" => $nim
+        ])->update([
+            "status" => $status
+        ]);
+        return redirect()->back();
+    }
+
+    // Tampil Catatan Pada Syarat Ujian
+    public function detail_persyaratan_proposal_catatan($id, $nim)
+    {
+        $data = DB::table('trt_syarat_ujian')
+            ->select("*")
+            ->where("id", $id)
+            ->where("C_NPM", $nim)
+            ->get();
+
+        return view('tugasakhir.prodi.detail_persyaratan_proposal_catatan', compact('data', 'nim'));
+    }
+
+    public function detail_persyaratan_proposal_catatan_post(Request $request)
+    {
+        try {
+            TrtSyaratUjian::where("id", $request->id)
+                ->where('C_NPM', $request->C_NPM)
+                ->update([
+                    "catatan" => $request->catatan
+                ]);
+            return redirect::to('akademikprodi/detail_persyaratan_proposal/' . $request->C_NPM)->with('status', 'success');
+        } catch (Exception $exception) {
+            return redirect::to('akademikprodi/detail_persyaratan_proposal/' . $request->C_NPM)->with('status', 'error');
+        }
+    }
+
+    // Tampil Catatan Pada Syarat Ujian
+    public function detail_persyaratan_ujianmeja_catatan($id, $nim)
+    {
+        $data = DB::table('trt_syarat_ujian')
+            ->select("*")
+            ->where("id", $id)
+            ->where("C_NPM", $nim)
+            ->get();
+
+        return view('tugasakhir.prodi.detail_persyaratan_ujianmeja_catatan', compact('data', 'nim'));
+    }
+
+    public function detail_persyaratan_ujianmeja_catatan_post(Request $request)
+    {
+        try {
+            TrtSyaratUjian::where("id", $request->id)
+                ->where('C_NPM', $request->C_NPM)
+                ->update([
+                    "catatan" => $request->catatan
+                ]);
+            return redirect::to('akademikprodi/detail_persyaratan_ujianmeja/' . $request->C_NPM)->with('status', 'success');
+        } catch (Exception $exception) {
+            return redirect::to('akademikprodi/detail_persyaratan_ujianmeja/' . $request->C_NPM)->with('status', 'error');
+        }
+    }
+
+    public function selesaiKonfirmasi($nim, $type)
+    {
+        TrtPengajuanDokumen::where([
+            "C_NPM" => $nim,
+            "type" => $type
+        ])->delete();
+
+        switch ($type) {
+            case "0":
+                $to = "persyaratan_proposal";
+                break;
+            case "1":
+                $to = "persyaratan_seminarhasil";
+                break;
+            case "2":
+                $to = "persyaratan_ujianmeja";
+                break;
+        }
+        return redirect("/akademikprodi/$to");
+    }
+
+    public function jadwal()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $pendaftaran = Collection::make(mst_pendaftaran::get())
+                ->where('status_ujian', 0)
+                ->where('status_prodi', 1)
+                ->unique("nama_periode")
+                ->sortByDesc('created_at');
+            $jadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+                ->where('mst_pendaftaran.status_prodi', 1)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        } else {
+            $pendaftaran = Collection::make(mst_pendaftaran::get())
+                ->where('status_ujian', 0)
+                ->where('status_prodi', 2)
+                ->unique("nama_periode")
+                ->sortByDesc('created_at');
+            $jadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+                ->where('mst_pendaftaran.status_prodi', 2)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        }
+        return view('tugasakhir.fakultas.jadwal', compact('pendaftaran', "jadwalujian"));
+    }
+
+    public function jadwalpostadd(Request $request)
+    {
+        try {
+            $mst = mst_pendaftaran::where("nama_periode", $request->nama_periode)->first();
+            if (empty($mst)) {
+                if ($request->tipe_ujian == "3") {
+                    for ($i = 0; $i < 3; $i++) {
+                        if (Auth::user()->name == "akademikfakultasfh") {
+                            $request->merge([
+                                "tipe_ujian" => $i,
+                                "user_id" => "00",
+                                "jml_peserta" => 0,
+                                "status_prodi" => 1
+                            ]);
+                        } else {
+                            $request->merge([
+                                "tipe_ujian" => $i,
+                                "user_id" => "00",
+                                "jml_peserta" => 0,
+                                "status_prodi" => 2
+                            ]);
+                        }
+
+                        mst_pendaftaran::create($request->all());
+                    }
+                } else {
+                    if (Auth::user()->name == "akademikfakultasfh") {
+                        $request->merge([
+                            "user_id" => "00",
+                            "jml_peserta" => 0,
+                            'status_prodi' => 1
+                        ]);
+                    } else {
+                        $request->merge([
+                            "user_id" => "00",
+                            "jml_peserta" => 0,
+                            'status_prodi' => 2
+                        ]);
+                    }
+                    mst_pendaftaran::create($request->all());
+                }
+            }
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil menambahkan data jadwal"]));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "gagal menambahkan data jadwal"]));
+        }
+    }
+
+    public function jadwalUjianPost(Request $request)
+    {
+        try {
+            if (count($request->all()) == 4) {
+                $namaperiode = mst_pendaftaran::find($request->pendaftaran_id)->nama_periode;
+                $countname = mst_pendaftaran::where("nama_periode", $namaperiode)->count();
+                mst_pendaftaran::where([
+                    "nama_periode" => $namaperiode,
+                ])->update([
+                    'status_ujian' => 1,
+                ]);
+                $request->merge(["status" => $request->tipe_ujian]);
+                if ($countname == 3) {
+                    $pendaftaran = mst_pendaftaran::where("nama_periode", $namaperiode)->get();
+                    foreach ($pendaftaran as $p) {
+                        $request->merge([
+                            "pendaftaran_id" => $p->pendaftaran_id
+                        ]);
+                        TrtJadwalUjian::create($request->all());
+                    }
+                } else {
+                    TrtJadwalUjian::create($request->all());
+                }
+            }
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil menambahkan data jadwal"]));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "gagal menambahkan data jadwal"]));
+        }
+    }
+
+    public function pendaftarandel($id)
+    {
+        try {
+            $namaperiode = mst_pendaftaran::find($id)->nama_periode;
+            $countname = mst_pendaftaran::where('nama_periode', $namaperiode)->count();
+            if ($countname == 3) {
+                mst_pendaftaran::where('nama_periode', $namaperiode)->delete();
+            } else {
+                mst_pendaftaran::where('pendaftaran_id', $id)->delete();
+            }
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil menghapus data jadwal"]));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "gagal menghapus data jadwal"]));
+        }
+    }
+
+    public function temp_daftar_peserta($id)
+    {
+        $info = DB::select("SELECT * FROM mst_pendaftaran WHERE mst_pendaftaran.pendaftaran_id = ?", [$id]);
+
+        $data = DB::select("SELECT * FROM mst_pendaftaran,trt_reg, trt_bimbingan, t_mst_mahasiswa WHERE mst_pendaftaran.pendaftaran_id = trt_reg.pendaftaran_id AND trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_reg.pendaftaran_id = ? AND trt_reg.status = ?", [$id, $info[0]->tipe_ujian]);
+
+        return view('tugasakhir.fakultas.temp_daftar_peserta', compact("data", "info"));
+    }
+
+    public function ubah_periode_pendaftaran(Request $request)
+    {
+
+        try {
+            for ($i = 0; $i < count($request->C_NPM); $i++) {
+                DB::table('trt_reg')->where('C_NPM', $request->C_NPM[$i])->update([
+                    "pendaftaran_id" => $request->pindah_periode[$i],
+                ]);
+            }
+
+
+            foreach (helper::getPeriodePendaftaranByStatusUjian($request->status_ujian, $request->tipe_ujian) as $item) {
+                $data_pendaftar = DB::table('trt_reg')
+                    ->select('*')
+                    ->where('pendaftaran_id', $item->pendaftaran_id)
+                    ->get();
+
+                DB::table('mst_pendaftaran')->where('pendaftaran_id', $item->pendaftaran_id)->update([
+                    "jml_peserta" => count($data_pendaftar),
+                ]);
+            }
+
+            return redirect()->back();
+        } catch (Exception $e) {
+            return $e;
+        }
+        return $request;
+    }
+
+    public function hapusJadwalUjianPerMahasiswa($C_NPM, $pendaftaran_id)
+    {
+        try {
+            trt_reg::where('C_NPM', $C_NPM)->where('pendaftaran_id', $pendaftaran_id)->delete();
+            $data_pendaftaran = mst_pendaftaran::where('pendaftaran_id', $pendaftaran_id)->first();
+            mst_pendaftaran::where('pendaftaran_id', $pendaftaran_id)->update(
+                [
+                    "jml_peserta" => $data_pendaftaran->jml_peserta - 1,
+                ]
+            );
+            TrtPenguji::where('C_NPM', $C_NPM)->where('tipe_ujian', $data_pendaftaran->tipe_ujian)->delete();
+            return redirect()->back()->with(['status' => "berhasil_hapus"]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['status' => "gagal_hapus"]);
+        }
+    }
+
+    public function daftar_peserta($id)
+    {
+        $info = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $id)->first();
+        $data = DB::select("SELECT * FROM mst_pendaftaran,trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa WHERE mst_pendaftaran.pendaftaran_id = trt_reg.pendaftaran_id AND trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND trt_reg.pendaftaran_id = ? AND trt_reg.status = ?", [$id, $info->tipe_ujian]);
+
+        return view('tugasakhir.fakultas.daftar_peserta', compact("data", "info"));
+    }
+
+    public function peserta_proposal()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 0)
+                ->where('mst_pendaftaran.status_prodi', 1)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        } else {
+            $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 0)
+                ->where('mst_pendaftaran.status_prodi', 2)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        }
+        return view('tugasakhir.prodi.peserta_proposal', compact('pendaftaran'));
+    }
+
+    public function peserta_ujianmeja()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 2)
+                ->where('mst_pendaftaran.status_prodi', 1)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        } else {
+            $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 2)
+                ->where('mst_pendaftaran.status_prodi', 2)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        }
+        return view('tugasakhir.prodi.peserta_ujianmeja', compact('pendaftaran'));
     }
 }

@@ -45,6 +45,17 @@
         </li>
         <li>
             <a href="#fakelink">
+                <i class="fa fa-users icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Peserta Ujian
+            </a>
+            <ul class="submenu">
+                <li><a href="{{ route('get_ketua_bidang_peserta_proposal') }}">Proposal</a></li>
+                <li><a href="{{ route('get_ketua_bidang_peserta_ujianmeja') }}">Ujian Meja</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#fakelink">
                 <i class="fa fa-calendar icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Jadwal Ujian Per Mahasiswa

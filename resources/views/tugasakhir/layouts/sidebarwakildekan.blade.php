@@ -46,6 +46,17 @@
             </a>
         </li>
         <li>
+            <a href="#fakelink">
+                <i class="fa fa-users icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Peserta Ujian
+            </a>
+            <ul class="submenu">
+                <li><a href="{{ route('get_wakil_dekan_peserta_proposal') }}">Proposal</a></li>
+                <li><a href="{{ route('get_wakil_dekan_peserta_ujianmeja') }}">Ujian Meja</a></li>
+            </ul>
+        </li>
+        <li>
             <a href="{{ url('wakildekan/sk_ujian_ta') }}">
                 <i class="fa fa-paperclip icon-sidebar"></i>
                 SK Ujian Meja
@@ -133,8 +144,8 @@
                     </a></li>
                 <li><a href="#fakelink">
                         <span class="user-status warning"></span>
-                        <img src="{{ asset('master/assets/img/avatar/avatar-8.jpg') }}" class="ava-sidebar img-circle"
-                            alt="Avatar">
+                        <img src="{{ asset('master/assets/img/avatar/avatar-8.jpg') }}"
+                            class="ava-sidebar img-circle" alt="Avatar">
                         <i class="fa fa-apple device-status"></i>
                         Frank Oliver
                         <span class="small-caps">4 hours</span>

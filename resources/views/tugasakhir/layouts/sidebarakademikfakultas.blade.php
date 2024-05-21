@@ -58,6 +58,23 @@
             </a>
         </li>
         <li>
+            <a href="#fakelink">
+                <i class="fa fa-file-text icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Konfirmasi Persyaratan Ujian
+            </a>
+            <ul class="submenu">
+                <li><a href="{{ route('get_fakultas_persyaratan_proposal') }}">Proposal</a></li>
+                <li><a href="{{ route('get_fakultas_persyaratan_ujianmeja') }}">Ujian Meja</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="{{ route('get_fakultas_jadwal') }}">
+                <i class="fa fa-calendar icon-sidebar"></i>
+                Jadwal Ujian
+            </a>
+        </li>
+        <li>
             <a href="{{ route('tampilSKUjianFakultas') }}">
                 <i class="fa fa-paperclip icon-sidebar"></i>
                 SK Ujian
