@@ -413,6 +413,19 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     // Penentuan Bidang
     Route::get('fakultas/penentuan_bidang', 'fakultas@penentuan_bidang')->name('get_fakultas_penentuan_bidang');
     Route::post('fakultas/penentuan_bidang', 'fakultas@post_penentuan_bidang')->name('post_fakultas_penentuan_bidang');
+
+    // Usulan Pembimbing
+    Route::get('/fakultas/usulan_pembimbing', 'fakultas@usulan_pembimbing')->name('get_fakultas_usulan_pembimbing');
+    Route::post('/fakultas/usulan_pembimbing', 'fakultas@usulan_pembimbingpostadd')->name('post_fakultas_usulan_pembimbing');
+    Route::get('/fakultas/set_pembimbing/{id}/{status}', 'fakultas@set_pembimbing')->name('get_fakultas_set_pembimbing');
+
+    // Surat Usulan Pembimbing
+    Route::get('/fakultas/surat_usulan_pembimbing', 'fakultas@surat_usulan_pembimbing')->name('get_fakultas_surat_usulan_pembimbing');
+    Route::get('/fakultas/riwayat_sk_pengusulan', 'fakultas@riwayat_sk_pengusulan')->name('get_fakultas_riwayat_sk_pengusulan');
+    Route::post('/fakultas/sk_pengusulan', 'fakultas@sk_pengusulanpost')->name('post_fakultas_sk_pengusulan');
+    Route::post('/fakultas/surat_pengusulan', 'fakultas@surat_pengusulan')->name('post_fakultas_surat_pengusulan');
+    Route::get('/fakultas/detail_riwayat_sk_pengusulan/{nomor}', 'fakultas@detail_riwayat_sk_pengusulan')->name('get_fakultas_detail_riwayat_sk_pengusulan');
+    Route::get('/fakultas/surat_pengusulan/{nomor}', 'fakultas@get_surat_pengusulan')->name('get_fakultas_surat_pengusulan');
 });
 
 Route::group(['middleware' => 'dosen'], function () {
@@ -476,6 +489,9 @@ Route::group(['middleware' => 'dosen'], function () {
     Route::get('/dsn/detailhasil_proposal/{kode_dosen}/{reg_id}/{pendaftaran_id}/{nim}/{status}', 'mhs@detail_hasil_proposal');
 
     Route::get('/dsn/detailhasil_ujianmeja/{kode_dosen}/{reg_id}/{pendaftaran_id}/{nim}/{status}', 'mhs@detail_hasil_ujianmeja');
+
+    // Surat Keputusan Pembimbing
+    Route::get('/dsn/sk_pembimbing', 'dosen@sk_pembimbing')->name('get_dosen_sk_pembimbing');
 });
 
 Route::group(['middleware' => 'mhs'], function () {

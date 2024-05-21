@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Model\mst_sk_pembimbing;
 use App\Model\mst_sk_penugasan;
+use App\Model\mst_tmp_usulan;
 use App\Model\trt_bimbingan;
 use App\Model\trt_hasil;
+use App\Model\trt_sk;
 use App\MstRuangan;
 use App\TrtJadwalUjian;
 use App\TrtJadwalUjianPerMhs;
@@ -17,6 +19,7 @@ use App\TrtPenguji;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as DB;
 
 class fakultas extends Controller
@@ -290,10 +293,6 @@ class fakultas extends Controller
             ->where('trt_jadwal_ujian.status', 2)
             ->get();
 
-
-
-
-
         return view('tugasakhir.fakultas.cetakskpenugasan', compact('data_sk'));
     }
 
@@ -457,5 +456,225 @@ class fakultas extends Controller
             die();
             return redirect::back()->with((['status' => "gagal", 'message' => "gagal menentukan bidang ilmu"]));
         }
+    }
+
+    public function usulan_pembimbing()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $data = DB::table('trt_topik')
+                ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->select('t_mst_mahasiswa.*', 'trt_topik.*')
+                ->orderBy('trt_topik.topik_id', 'DESC')
+                ->where('trt_topik.status', 1)
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->whereNotIn(
+                    't_mst_mahasiswa.C_NPM',
+                    function ($q) {
+                        $q
+                            ->select('C_NPM')
+                            ->from('trt_bimbingan');
+                    }
+                )
+                ->get();
+        } else {
+            $data = DB::table('trt_topik')
+                ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->select('t_mst_mahasiswa.*', 'trt_topik.*')
+                ->orderBy('trt_topik.topik_id', 'DESC')
+                ->where('trt_topik.status', 1)
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '131%')
+                ->whereNotIn(
+                    't_mst_mahasiswa.C_NPM',
+                    function ($q) {
+                        $q
+                            ->select('C_NPM')
+                            ->from('trt_bimbingan');
+                    }
+                )
+                ->get();
+        }
+        return view('tugasakhir.fakultas.usulan_pembimbing', compact('data'));
+    }
+
+    public function usulan_pembimbingpostadd(Request $request)
+    {
+        try {
+            $datapost = $request->all();
+            $datapost['status_I'] = '0';
+            $datapost['status_II'] = '0';
+            $datapost['status_bimbingan'] = '0';
+            $datapost['status_sk'] = '0';
+            $datapost['user_id'] = '1';
+            trt_bimbingan::updateOrCreate([
+                "C_NPM" => $request->C_NPM,
+            ], $datapost);
+            mst_tmp_usulan::where("C_NPM", $request->C_NPM)->delete();
+
+            return redirect()->to('fakultas/usulan_pembimbing')->with((['status' => "berhasil", 'message' => "berhasil menambahkan data bimbingan"]));
+        } catch (\Throwable $th) {
+            return redirect()->to('fakultas/usulan_pembimbing')->with((['status' => "gagal", 'message' => "gagal menambahkan data bimbingan"]));
+        }
+    }
+
+    public function set_pembimbing($id, $status)
+    {
+        $data_mahasiswa = DB::table('t_mst_mahasiswa')
+            ->select('*')
+            ->where('C_NPM', $id)
+            ->first();
+        $data_topik = DB::table('trt_topik')
+            ->select('*')
+            ->where('C_NPM', $id)
+            ->where('status', 1)
+            ->first();
+
+        $data = DB::table('t_mst_dosen')
+            ->leftJoin("trt_level_pembimbing", "trt_level_pembimbing.C_KODE_DOSEN", "=", "t_mst_dosen.C_KODE_DOSEN")
+            ->select('t_mst_dosen.*', 'trt_level_pembimbing.level')
+            ->get();
+
+
+        if ($status == 1) {
+            $cek = DB::table('mst_tmp_usulan')
+                ->select('*')
+                ->where('C_NPM', $id)
+                ->get();
+        } else if ($status == 2) {
+            $cek = DB::table('trt_bimbingan')
+                ->select('*')
+                ->where('C_NPM', $id)
+                ->get();
+        }
+
+        return view('tugasakhir.fakultas.set_pembimbing', compact('data', 'data_mahasiswa', 'data_topik', 'cek'));
+    }
+
+    public function surat_usulan_pembimbing()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $data = DB::table('t_mst_mahasiswa')
+                ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
+                ->select('t_mst_mahasiswa.NAMA_MAHASISWA', 't_mst_dosen.NAMA_DOSEN')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->get();
+
+            $penetapan_pengusulan = DB::table('trt_bimbingan')
+                ->join('users', 'trt_bimbingan.C_NPM', '=', 'users.name')
+                ->select('*')
+                ->where('status_sk', '<>', 1)
+                ->where('trt_bimbingan.C_NPM', 'LIKE', '040%')
+                ->get();
+
+            $riwayat_usulan = DB::table('trt_sk')
+                ->select('nomor', 'tgl_surat')
+                ->distinct('nomor')
+                ->get();
+        } else {
+            $data = DB::table('t_mst_mahasiswa')
+                ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
+                ->select('t_mst_mahasiswa.NAMA_MAHASISWA', 't_mst_dosen.NAMA_DOSEN')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '131%')
+                ->get();
+
+            $penetapan_pengusulan = DB::table('trt_bimbingan')
+                ->join('users', 'trt_bimbingan.C_NPM', '=', 'users.name')
+                ->select('*')
+                ->where('status_sk', '<>', 1)
+                ->where('trt_bimbingan.C_NPM', 'LIKE', '131%')
+                ->get();
+
+            $riwayat_usulan = DB::table('trt_sk')
+                ->select('nomor', 'tgl_surat')
+                ->distinct('nomor')
+                ->get();
+        }
+        return view('tugasakhir.fakultas.surat_usulan_pembimbing', compact('riwayat_usulan', 'penetapan_pengusulan', 'data'));
+    }
+
+    function riwayat_sk_pengusulan()
+    {
+        $data = DB::select('SELECT DISTINCT nomor, tgl_surat, perihal FROM trt_sk');
+        return view('tugasakhir.prodi.riwayat_sk_pengusulan', compact('data'));
+    }
+
+    public function sk_pengusulanpost(Request $request)
+    {
+        $datapost = $request->all();
+        if (isset($datapost["data"])) {
+            $data = $datapost['data'];
+
+            $datax = DB::table('trt_bimbingan')
+                ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->select('*')
+                ->whereIn('trt_bimbingan.C_NPM', $data)
+                ->get();
+
+            return view('tugasakhir.fakultas.sk_pengusulan', compact('datax', 'data'));
+        }
+        return redirect()->back();
+    }
+
+    public function surat_pengusulan(Request $request)
+    {
+        $datapost = $request->all();
+        $nomor = $datapost['nomor'];
+        $perihal = $datapost['perihal'];
+        $tgl = $datapost['tgl'];
+        $tgl = substr($tgl, 6, 4) . "-" . substr($tgl, 3, 2) . "-" . substr($tgl, 0, 2);
+
+        $data = $datapost['data'];
+        $datax = DB::table('trt_bimbingan')
+            ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->select('*')
+            ->whereIn('trt_bimbingan.C_NPM', $data)
+            ->get();
+        $a = 0;
+        foreach ($datax as $key => $value) {
+            $simpan['bimbingan_id'] = $datax[$a]->bimbingan_id;
+            $simpan['tipe'] = 1;
+            $simpan['nomor'] = $nomor;
+            $simpan['perihal'] = $perihal;
+            $simpan['tgl_surat'] = $tgl;
+            $simpan['user_id'] = 0;
+            trt_sk::create($simpan);
+
+            DB::table('trt_bimbingan')
+                ->where('bimbingan_id', $datax[$a]->bimbingan_id)
+                ->update(['status_sk' => '1']);
+            $a++;
+        }
+
+        $tgl = helper::tgl_indo_lengkap($tgl);
+
+        return view('tugasakhir.fakultas.suratpengusulan', compact('nomor', 'perihal', 'tgl', 'datax'));
+    }
+
+    function detail_riwayat_sk_pengusulan($nomor)
+    {
+        $data = DB::table("trt_sk")
+            ->select("*")
+            ->join('trt_bimbingan', 'trt_bimbingan.bimbingan_id', '=', 'trt_sk.bimbingan_id')
+            ->where('trt_sk.nomor', '=', str_replace("$", "/", $nomor))
+            ->get();
+
+        return view('tugasakhir.prodi.detail_riwayat_sk_pengusulan', compact('data'));
+    }
+
+    public function get_surat_pengusulan($nomor)
+    {
+        $datax = DB::table("trt_sk")
+            ->select("*")
+            ->join('trt_bimbingan', 'trt_bimbingan.bimbingan_id', '=', 'trt_sk.bimbingan_id')
+            ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->where('trt_sk.nomor', '=', str_replace("$", "/", $nomor))
+            ->get();
+
+        $perihal = $datax[0]->perihal;
+        $tgl = $datax[0]->tgl_surat;
+        $nomor = $datax[0]->nomor;
+
+        return view('tugasakhir.prodi.suratpengusulan', compact('nomor', 'perihal', 'tgl', 'datax'));
     }
 }

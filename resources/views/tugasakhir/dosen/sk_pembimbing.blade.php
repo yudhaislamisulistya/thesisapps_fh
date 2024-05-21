@@ -80,44 +80,5 @@
         <!-- END DATA TABLE -->
 
 
-        <!-- BEGIN DATA TABLE -->
-        <h3 class="page-heading">Daftar Surat Usulan Pembimbing</h3>
-        <div class="the-box">
-            <div class="table-responsive">
-                <form method="post" action="{{url('fakultas/sk_penetapan')}}">
-                    {{ csrf_field() }}
-                    <table class="table table-striped table-hover" id="datatable-example">
-                        <thead class="the-box dark full">
-                            <tr>
-                                <th>No</th>
-                                <th>No Surat Usulan</th>
-                                <th>Tanggal</th>
-                                <th>Detail</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($riwayat_usulan as $key => $value)
-                            <tr class="odd gradeX">
-                                <td width="1%" align="center">{{++$key}}</td>
-                                <td>{{$value->nomor}}</td>
-                                <td>{{$value->tgl_surat}}</td>
-                                <td>
-                                    <button class="btn btn-primary fa fa-paperclip btn-perspective" name="nomor"
-                                        value="{{$value->nomor}}" type="submit"></button>
-                                </td>
-                                <td>
-                                    <?= helper::getStatusSuratUsulan($value->nomor) ?>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </form>
-            </div><!-- /.table-responsive -->
-        </div><!-- /.the-box .default -->
-        <!-- END DATA TABLE -->
-
-
     </div><!-- /.container-fluid -->
     @endsection

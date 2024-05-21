@@ -10,39 +10,37 @@
             <!-- Begin breadcrumb -->
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                <li><a href="#fakelink">Home</a></li>
-                <li class="active">Riwayat SK Pengusulan</li>
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li class="active">Usulan Pembimbing</li>
             </ol>
             <!-- End breadcrumb -->
 
             <!-- BEGIN DATA TABLE -->
-            <h3 class="page-heading">Daftar Riwayat SK Pengusulan</h3>
+            <h3 class="page-heading">Daftar Calon Mahasiswa Bimbingan</h3>
             <div class="the-box">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="datatable-example">
                         <thead class="the-box dark full">
                             <tr>
                                 <th>No</th>
-                                <th>Nomor SK</th>
-                                <th>Tgl Pengusulan</th>
-                                <th>Detail</th>
-                                <th>Cetak</th>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>Topik Usulan</th>
+                                <th>Set Pembimbing</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key => $value)
                                 <tr class="odd gradeX">
                                     <td width="1%" align="center">{{ ++$key }}</td>
-                                    <td>{{ $value->nomor }}</td>
-                                    <td>{{ $value->tgl_surat }}</td>
+                                    <td>{{ $value->C_NPM }}</td>
+                                    <td>{{ $value->NAMA_MAHASISWA }}</td>
+                                    <td>{{ $value->topik }}</td>
                                     <td>
-                                        <a class="btn btn-info"
-                                            href="{{ url('fakultas/detail_riwayat_sk_pengusulan') }}/{{ str_replace('/', "$", $value->nomor) }}">Detail</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary"
-                                            href="{{ url('fakultas/surat_pengusulan/') }}/{{ str_replace('/', "$", $value->nomor) }}"><i
-                                                class="fa fa-file-text"></i>Cetak</a>
+                                        <a href="{{ route('get_fakultas_set_pembimbing', ['id' => $value->C_NPM, 'status' => 1]) }}">
+                                            <i class="fa fa-copy icon-square icon-xs icon-primary">
+                                            </i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

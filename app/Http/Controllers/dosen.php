@@ -826,12 +826,37 @@ class dosen extends Controller
             ->join('trt_jadwal_ujian_per_mhs', 'trt_jadwal_ujian_per_mhs.C_NPM', '=', 'trt_bimbingan.C_NPM')
             ->join('trt_jadwal_ujian', 'trt_jadwal_ujian.id', '=', 'trt_jadwal_ujian_per_mhs.jadwal_ujian')
             ->join('mst_ruangan', 'mst_ruangan.id', '=', 'trt_jadwal_ujian_per_mhs.ruangan')
-            ->select(['mst_sk_penugasan.created_at','mst_sk_penugasan.sk_penugasan_id', 'mst_sk_penugasan.nomor_sk', 'trt_bimbingan.pembimbing_I_id', "trt_bimbingan.pembimbing_II_id", "trt_penguji.ketua_sidang_id", "trt_penguji.penguji_I_id", "trt_penguji.penguji_II_id", "trt_penguji.penguji_III_id", "trt_penguji.C_NPM", "trt_jadwal_ujian.tgl_ujian", "trt_jadwal_ujian_per_mhs.jam_ujian", "mst_ruangan.nama_ruangan", "trt_jadwal_ujian.pendaftaran_id"])
+            ->select(['mst_sk_penugasan.created_at', 'mst_sk_penugasan.sk_penugasan_id', 'mst_sk_penugasan.nomor_sk', 'trt_bimbingan.pembimbing_I_id', "trt_bimbingan.pembimbing_II_id", "trt_penguji.ketua_sidang_id", "trt_penguji.penguji_I_id", "trt_penguji.penguji_II_id", "trt_penguji.penguji_III_id", "trt_penguji.C_NPM", "trt_jadwal_ujian.tgl_ujian", "trt_jadwal_ujian_per_mhs.jam_ujian", "mst_ruangan.nama_ruangan", "trt_jadwal_ujian.pendaftaran_id"])
             ->where('trt_bimbingan.bimbingan_id', $data->bimbingan_id)
             ->where('trt_penguji.tipe_ujian', 2)
             ->where('trt_jadwal_ujian.status', 2)
             ->get();
 
         return view('tugasakhir.fakultas.cetakskpenugasan', compact('data_sk'));
+    }
+
+    public function sk_pembimbing()
+    {
+        $data = DB::table('t_mst_mahasiswa')
+            ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
+            ->select('t_mst_mahasiswa.NAMA_MAHASISWA', 't_mst_dosen.NAMA_DOSEN')
+            ->get();
+
+        $penetapan_pengusulan = DB::table('trt_bimbingan')
+            ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->select('*')
+            ->where('status_sk', '<>', 1)
+            ->get();
+
+        $data_sk = DB::table('mst_sk_pembimbing')
+            ->join('trt_bimbingan', 'mst_sk_pembimbing.bimbingan_id', '=', 'trt_bimbingan.bimbingan_id')
+            ->select('*')
+            ->where('trt_bimbingan.pembimbing_I_id', auth()->user()->name)
+            ->orWhere('trt_bimbingan.pembimbing_II_id', auth()->user()->name)
+            ->orderBy('mst_sk_pembimbing.sk_pembimbing_id', 'DESC')
+            ->get();
+
+        return view('tugasakhir.dosen.sk_pembimbing', compact('penetapan_pengusulan', 'data', 'data_sk'));
     }
 }

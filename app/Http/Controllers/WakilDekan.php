@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\mst_tmp_usulan;
+use App\Model\trt_bimbingan;
 use App\Model\trt_topik;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -39,7 +42,7 @@ class WakilDekan extends Controller
     public function approve_sk_pembimbing($id)
     {
         try {
-            DB::update('update mst_sk_pembimbing set status = 1 where sk_pembimbing_id = ?', [$id]);
+            DB::update('update mst_sk_pembimbing set status = 2 where sk_pembimbing_id = ?', [$id]);
             return redirect::to('wakildekan/sk_pembimbing')->with('status', 'success');
         } catch (Exception $exception) {
             return redirect::to('wakildekan/sk_pembimbing')->with('status', 'error');
@@ -194,7 +197,7 @@ class WakilDekan extends Controller
             $data['pembimbing_I_id'] = $data['pembimbing_ketua'] == '0' ? null : $data['pembimbing_ketua'];
             $data['pembimbing_II_id'] = $data['pembimbing_anggota'] == '0' ? null : $data['pembimbing_anggota'];
 
-            $queryMstTmpUsulan = DB::table('mst_tmp_usulan')
+            DB::table('mst_tmp_usulan')
                 ->where('C_NPM', $data['C_NPM'])
                 ->update([
                     'pembimbing_I_id' => $data['pembimbing_I_id'],
@@ -203,18 +206,15 @@ class WakilDekan extends Controller
                     'pembimbing_II_status' => 1
                 ]);
 
-            $queryTrtTopik = DB::table('trt_topik')
+            DB::table('trt_topik')
                 ->where('C_NPM', $data['C_NPM'])
                 ->update([
                     'topik' => $data['topik'],
-                    'status_penetapan' => 3
+                    'status_penetapan' => 3,
+                    'status' => 1,
                 ]);
 
-            if ($queryMstTmpUsulan && $queryTrtTopik) {
-                return redirect()->back()->with((['status' => "berhasil", 'message' => "Data berhasil disimpan"]));
-            } else {
-                return redirect()->back()->with((['status' => "gagal", 'message' => "Data gagal disimpan"]));
-            }
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "Data berhasil disimpan"]));
         } catch (\Exception $e) {
             return redirect()->back()->with((['status' => "gagal", 'message' => "Data gagal disimpan"]));
         }
