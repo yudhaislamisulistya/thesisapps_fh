@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use App\Model\mst_pendaftaran;
 use Illuminate\Http\Request;
-use helper;
-use DB;
 use Illuminate\Support\Facades\Redirect;
-use App\Model\trt_topik;
-use App\Model\trt_reg;
 use App\Model\mst_sk_pembimbing;
 use App\Model\mst_sk_penugasan;
 use App\Model\trt_bimbingan;
@@ -20,6 +17,7 @@ use App\TrtPenguji;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Exception;
+use Illuminate\Support\Facades\DB as DB;
 
 class fakultas extends Controller
 {
@@ -211,9 +209,9 @@ class fakultas extends Controller
         $a = 0;
         foreach ($datax as $key => $value) {
             $simpan['pendaftaran_id'] = $datax[$a]->pendaftaran_id;
-            $simpan['nomor'] = $nomor;
-            $simpan['perihal'] = $perihal;
-            $simpan['tgl_surat'] = $tgl;
+            // $simpan['nomor'] = $nomor;
+            // $simpan['perihal'] = $perihal;
+            // $simpan['tgl_surat'] = $tgl;
             DB::table('mst_pendaftaran')
                 ->where('pendaftaran_id', $datax[$a]->pendaftaran_id)
                 ->update(['status_sk' => '1']);
@@ -286,7 +284,7 @@ class fakultas extends Controller
             ->join('trt_jadwal_ujian_per_mhs', 'trt_jadwal_ujian_per_mhs.C_NPM', '=', 'trt_bimbingan.C_NPM')
             ->join('trt_jadwal_ujian', 'trt_jadwal_ujian.id', '=', 'trt_jadwal_ujian_per_mhs.jadwal_ujian')
             ->join('mst_ruangan', 'mst_ruangan.id', '=', 'trt_jadwal_ujian_per_mhs.ruangan')
-            ->select(['mst_sk_penugasan.created_at','mst_sk_penugasan.sk_penugasan_id', 'mst_sk_penugasan.nomor_sk', 'trt_bimbingan.pembimbing_I_id', "trt_bimbingan.pembimbing_II_id", "trt_penguji.ketua_sidang_id", "trt_penguji.penguji_I_id", "trt_penguji.penguji_II_id", "trt_penguji.penguji_III_id", "trt_penguji.C_NPM", "trt_jadwal_ujian.tgl_ujian", "trt_jadwal_ujian_per_mhs.jam_ujian", "mst_ruangan.nama_ruangan", "trt_jadwal_ujian.pendaftaran_id"])
+            ->select(['mst_sk_penugasan.created_at', 'mst_sk_penugasan.sk_penugasan_id', 'mst_sk_penugasan.nomor_sk', 'trt_bimbingan.pembimbing_I_id', "trt_bimbingan.pembimbing_II_id", "trt_penguji.ketua_sidang_id", "trt_penguji.penguji_I_id", "trt_penguji.penguji_II_id", "trt_penguji.penguji_III_id", "trt_penguji.C_NPM", "trt_jadwal_ujian.tgl_ujian", "trt_jadwal_ujian_per_mhs.jam_ujian", "mst_ruangan.nama_ruangan", "trt_jadwal_ujian.pendaftaran_id"])
             ->where('trt_bimbingan.bimbingan_id', $datapost['bimbingan_id'])
             ->where('trt_penguji.tipe_ujian', 2)
             ->where('trt_jadwal_ujian.status', 2)
@@ -324,7 +322,7 @@ class fakultas extends Controller
             ->select('*')
             ->where('mst_sk_pembimbing.nomor_sk', $datapost['nomor'])
             ->get();
-        $tgl_ujian = helper::tgl_indo_lengkap(date('Y-m-d'));
+        $tgl_ujian = Helper::tgl_indo_lengkap(date('Y-m-d'));
         return view('tugasakhir.fakultas.cetakskpembimbing', compact('data_sk', 'tgl_ujian'));
     }
 
@@ -407,5 +405,57 @@ class fakultas extends Controller
             ->orderBy('mst_pendaftaran.created_at', 'desc')
             ->get();
         return view('tugasakhir.prodi.sk_ujian', compact('pendaftaran', "jadwalujian"));
+    }
+
+    // Menampilkan Halaman Penentuan Bidang
+    public function penentuan_bidang()
+    {
+        $data_riwayat_usulan = DB::table('trt_topik')
+            ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA', 'trt_topik.topik', 'trt_topik.kerangka', 'trt_topik.status', 'trt_topik.status_penetapan', 'trt_topik.bidang_ilmu_peminatan')
+            ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+            ->get();
+
+        $data_bidang_ilmu = DB::table('mst_bidangilmu')
+            ->select('*')
+            ->get();
+
+
+        return view('tugasakhir.fakultas.penentuan_bidang', compact('data_riwayat_usulan', 'data_bidang_ilmu'));
+    }
+
+    // Menentukan Bidang Ilmu
+    public function post_penentuan_bidang(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $status = DB::table('trt_topik')
+                ->where('C_NPM', $data['C_NPM'])
+                ->update([
+                    'bidang_ilmu_peminatan' => $data['bidang_ilmu_peminatan'],
+                    'status_penetapan' => 1
+                ]);
+
+            $queryMstTmpUsulan = DB::table('mst_tmp_usulan')
+                ->updateOrInsert(
+                    ['C_NPM' => $data['C_NPM']], // Kondisi untuk mengecek apakah record ada
+                    [
+                        'pembimbing_I_id' => null,
+                        'pembimbing_II_id' => null,
+                        'updated_at' => Carbon::now(), // Menambahkan nilai untuk kolom updated_at
+                        'created_at' => Carbon::now() // Menambahkan nilai untuk kolom created_at jika diperlukan
+                    ]
+                );
+
+            if ($status && $queryMstTmpUsulan) {
+                return redirect::back()->with((['status' => "berhasil", 'message' => "berhasil menentukan bidang ilmu"]));
+            } else {
+                return redirect::back()->with((['status' => "gagal", 'message' => "gagal menentukan bidang ilmu"]));
+            }
+        } catch (\Throwable $th) {
+            var_dump($th);
+            die();
+            return redirect::back()->with((['status' => "gagal", 'message' => "gagal menentukan bidang ilmu"]));
+        }
     }
 }

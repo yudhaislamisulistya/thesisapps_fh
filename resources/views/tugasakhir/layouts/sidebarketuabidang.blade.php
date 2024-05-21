@@ -38,9 +38,9 @@
         </li>
         <li class="static">MENU DOSEN</li>
         <li>
-            <a href="{{ url('ketuabidang/penentuan_bidang') }}">
+            <a href="{{ url('ketuabidang/penentuan_pembimbing') }}">
                 <i class="fa fa-stack-overflow icon-sidebar"></i>
-                Penentuan Bidang
+                Penentuan Pembimbing
             </a>
         </li>
         <li>

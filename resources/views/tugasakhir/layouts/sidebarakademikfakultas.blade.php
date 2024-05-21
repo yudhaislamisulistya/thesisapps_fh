@@ -30,6 +30,12 @@
         </li>
         <li class="static">MENU AKADEMIK-FAKULTAS</li>
         <li>
+            <a href="{{url('fakultas/penentuan_bidang')}}" >
+                <i class="fa fa-users icon-sidebar"></i>
+                Penentuan Bidang
+            </a>
+        </li>
+        <li>
             <a href="{{route('tampilSKUjianFakultas')}}" >
                 <i class="fa fa-paperclip icon-sidebar"></i>
                 SK Ujian

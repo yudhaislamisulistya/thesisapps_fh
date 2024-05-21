@@ -11,9 +11,12 @@
 |
 */
 
-//Route::get('/', function () { 
+//Route::get('/', function () {
 //    return view('welcome');
 //});
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
@@ -125,13 +128,13 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'ketua_bidang'], function () {
     Route::group(['prefix' => 'ketuabidang'], function () {
         // Penentuan Bidang Prefix
-        Route::group(['prefix' => 'penentuan_bidang'], function () {
-            Route::get('/', 'KetuaBidang@penentuan_bidang')->name('get_ketua_bidang_penentuan_bidang');
-            Route::post('/update', 'KetuaBidang@penentuan_bidang_update')->name('update_ketua_bidang_penentuan_bidang');
+        Route::group(['prefix' => 'penentuan_pembimbing'], function () {
+            Route::get('/', 'KetuaBidang@penentuan_pembimbing')->name('get_ketua_bidang_penentuan_pembimbing');
+            Route::post('/update', 'KetuaBidang@penentuan_pembimbing_update')->name('update_ketua_bidang_penentuan_pembimbing');
         });
     });
 });
-    
+
 
 
 
@@ -191,7 +194,7 @@ Route::group(['middleware' => 'kaprodi'], function () {
     Route::get('/prodi/cetak_berita_acara/{pendaftaran_id}/{nim}', 'Prodi@cetakBeritaAcara');
     Route::get('/prodi/selesai_konfirmasi/{nim}/{type}', 'Prodi@selesaiKonfirmasi');
 
-    
+
     Route::post('/prodi/dosen_pembimbing', 'Prodi@dosen_pembimbingpost');
     Route::post('/prodi/usulan_pembimbing', 'Prodi@usulan_pembimbingpostadd');
     Route::post('/prodi/sk_pengusulan', 'Prodi@sk_pengusulanpost');
@@ -402,6 +405,10 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get('/fakultas/detail_skujian/{id}', 'Prodi@detail_skujian');
     Route::get('/fakultas/cetakskpenguji/{pendaftaran_id}/{nim}', 'Prodi@cetakskpenguji');
     Route::get('/fakultas/cetak_berita_acara/{pendaftaran_id}/{nim}', 'Prodi@cetakBeritaAcara');
+
+    // Penentuan Bidang
+    Route::get('fakultas/penentuan_bidang', 'fakultas@penentuan_bidang')->name('get_fakultas_penentuan_bidang');
+    Route::post('fakultas/penentuan_bidang', 'fakultas@post_penentuan_bidang')->name('post_fakultas_penentuan_bidang');
 });
 
 Route::group(['middleware' => 'dosen'], function () {
