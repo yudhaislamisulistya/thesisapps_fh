@@ -139,10 +139,14 @@
                                             text-decoration: none;
                                             /* Ensures no underline on hover */
                                         }
+
+                                        .bg-secondary {
+                                            background-color: #cecece !important;
+                                        }
                                     </style>
 
                                     <td>
-                                        @if ($d->status_penetapan == 1)
+                                        @if ($d->status_penetapan_penguji == 1)
                                             <a href="#" class="custom-link" disabled>
                                                 <span class="bg-secondary custom-span">Sudah ditetapkan</span>
                                             </a>

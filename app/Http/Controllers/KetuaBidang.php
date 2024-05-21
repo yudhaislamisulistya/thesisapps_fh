@@ -131,9 +131,6 @@ class KetuaBidang extends Controller
         AND trt_reg.status = ?
         AND LOWER(REPLACE(trt_topik.bidang_ilmu_peminatan, ' ', '')) = ?", [$id, $info->tipe_ujian, $sessionBidang]);
 
-        var_dump($data);
-        die();
-
         return view('tugasakhir.ketuabidang.daftar_peserta', compact("data", "info"));
     }
 
