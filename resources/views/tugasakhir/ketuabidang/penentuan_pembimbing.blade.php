@@ -11,7 +11,7 @@
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
                 <li><a href="#fakelink">Home</a></li>
-                <li class="active">Penentuban Bidang</li>
+                <li class="active">Penentuan Bidang</li>
             </ol>
 
             <h3 class="page-heading">Daftar Riwayat Usulan</h3>
@@ -64,7 +64,7 @@
                                         @elseif($value->status_penetapan == 2)
                                             <span class="label label-success">Sudah Menentukan Pembimbing</span>
                                         @elseif($value->status_penetapan == 3)
-                                            <span class="label label-info">Sudah Ditetapkan Pembimbing dan Judul</span>
+                                            <span class="label label-primary">Sudah Ditetapkan Pembimbing dan Judul oleh Wakil Dekan</span>
                                         @elseif($value->status_penetapan == 4)
                                             <span class="label label-success">Selesai</span>
                                         @endif
@@ -86,13 +86,19 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary" onclick="showModalBidang(this)"
-                                            data-c_npm="{{ $value->C_NPM }}"
-                                            data-pembimbing-ketua="{{ $value->pembimbing_I_id }}"
-                                            data-pembimbing-anggota="{{ $value->pembimbing_II_id }}"
-                                            data-target="#modalBidang" data-toggle="modal">
-                                            <i class="fa fa-pencil"> Pilih Pembimbing</i>
-                                        </button>
+                                        @if ($value->status_penetapan != 3)
+                                            <button class="btn btn-primary" onclick="showModalBidang(this)"
+                                                data-c_npm="{{ $value->C_NPM }}" data-topik="{{ $value->topik }}"
+                                                data-pembimbing-ketua="{{ $value->pembimbing_I_id }}"
+                                                data-pembimbing-anggota="{{ $value->pembimbing_II_id }}"
+                                                data-target="#modalBidang" data-toggle="modal">
+                                                <i class="fa fa-pencil"> Pilih Pembimbing</i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="fa fa-pencil"> Pilih Pembimbing</i>
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

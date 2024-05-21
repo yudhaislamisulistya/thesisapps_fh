@@ -66,7 +66,7 @@
                                 @foreach ($data as $key => $value)
                                 <option value="{{$value->bidangilmu_id}}">{{$value->bidang_ilmu}}</option>
                                 @endforeach
-                            </select> 
+                            </select>
                         </div>
                     </div>
                     <br><br> --}}
@@ -139,7 +139,7 @@
             </div><!-- /.the-box -->
 
 
-            <h3 class="page-heading">Request Pembimbing</h3>
+            <h3 class="page-heading">Pembimbing</h3>
             <!-- BEGIN DATA TABLE -->
             <div class="the-box">
                 @if ($trtbimbingan->isEmpty())
@@ -149,10 +149,9 @@
                         );
                     @endphp
 
-                    @if ($statusKonfirmasiTopikPenelitian == 0 || $statusKonfirmasiTopikPenelitian == 2)
-                        <div class="alert alert-danger" role="alert">
-                            Status Belum Bisa Memilih Pembimbing <a href="#" class="alert-link">Belum Dikonfirmasi,
-                                Belum Ajukan Topik Penelitian atau Judul Ditolak</a>. Harap Perhatikan Yah.
+                    @if ($statusKonfirmasiTopikPenelitian == 1 || $statusKonfirmasiTopikPenelitian == 2)
+                        <div class="alert alert-success" role="alert">
+                            Pembimbing Sudah di tetapkan
                         </div>
                     @endif
                     <form method="post" action="{{ url('mhs/usulan_tmp') }}" enctype="multipart/form-data">
@@ -163,8 +162,7 @@
                                 <label class="col-lg-2 control-label">Pembimbing Utama</label>
                                 <div class="col-xs-5">
                                     <select class="form-control bold-border" name="pembimbing_I_id"
-                                        onchange="initStatusPembimbing(this)" index="0"
-                                        {{ $statusKonfirmasiTopikPenelitian == 0 ? 'disabled' : '' }}>
+                                        onchange="initStatusPembimbing(this)" index="0" disabled>
                                         @foreach ($cek as $key => $value)
                                             <option value="{{ $value->pembimbing_I_id }}">
                                                 {{ helper::getDeskripsi($value->pembimbing_I_id) }}
@@ -187,8 +185,7 @@
                                 <label class="col-lg-2 control-label">Pembimbing Pendamping</label>
                                 <div class="col-xs-5">
                                     <select class="form-control bold-border" name="pembimbing_II_id"
-                                        onchange="initStatusPembimbing(this)" index="1"
-                                        {{ $statusKonfirmasiTopikPenelitian == 0 ? 'disabled' : '' }}>
+                                        onchange="initStatusPembimbing(this)" index="1" disabled>
                                         @foreach ($cek as $key => $value)
                                             <option value="{{ $value->pembimbing_II_id }}">
                                                 {{ helper::getDeskripsi($value->pembimbing_II_id) }}
@@ -207,16 +204,6 @@
                                     style="display: none;padding: 5px"></span>
                             </div>
                             <br><br>
-                            <div class="form-group">
-                                <div class="col-xs-7" align="right">
-                                    @if ($statusKonfirmasiTopikPenelitian == 1)
-                                        <button id="tombol_request_satu" class="btn btn-info btn-perspective"
-                                            type="button" onclick="showPostModal(this)"
-                                            data-formaction="{{ url('mhs/usulan_tmp') }}" data-target="#modalInfo"
-                                            data-toggle="modal">Simpan</button>
-                                    @endif
-                                </div>
-                            </div>
                         </fieldset>
                     </form>
                 @else
@@ -309,7 +296,7 @@
                                     @if ($trtbimbingan->isEmpty())
                                         @if ($value->status == 1 || $value->status == 2)
                                             <td>
-                                                Judul Sudah Diterima/Ditolak
+                                                Judul Sudah Diterima/Ditetapkan
                                             </td>
                                         @else
                                             {{-- disable --}}

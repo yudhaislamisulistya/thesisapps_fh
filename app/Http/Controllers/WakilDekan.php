@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\trt_topik;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Carbon;
 use Exception;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class WakilDekan extends Controller
@@ -150,6 +149,74 @@ class WakilDekan extends Controller
             return redirect()->back()->with(['status' => "berhasil"]);
         } catch (\Exception $e) {
             return redirect()->back()->with(['status' => "gagal"]);
+        }
+    }
+
+    public function penetapan_pembimbing_dan_judul()
+    {
+        try {
+            $data_riwayat_usulan = DB::table('trt_topik')
+                ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->join('mst_tmp_usulan', 'trt_topik.C_NPM', '=', 'mst_tmp_usulan.C_NPM')
+                ->select(
+                    't_mst_mahasiswa.C_NPM',
+                    't_mst_mahasiswa.NAMA_MAHASISWA',
+                    'trt_topik.topik',
+                    'trt_topik.kerangka',
+                    'trt_topik.status',
+                    'trt_topik.status_penetapan',
+                    'trt_topik.bidang_ilmu_peminatan',
+                    'mst_tmp_usulan.pembimbing_I_id',
+                    'mst_tmp_usulan.pembimbing_II_id',
+                    'mst_tmp_usulan.pembimbing_I_status',
+                    'mst_tmp_usulan.pembimbing_II_status'
+                )
+                ->orderBy('trt_topik.topik_id', 'desc')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->get();
+
+            $listdosen = DB::table('t_mst_dosen')
+                ->leftJoin("trt_level_pembimbing", "trt_level_pembimbing.C_KODE_DOSEN", "=", "t_mst_dosen.C_KODE_DOSEN")
+                ->select('t_mst_dosen.*', 'trt_level_pembimbing.level')
+                ->get();
+
+            return view('tugasakhir.wakildekan.penetapan_pembimbing_dan_judul', compact('data_riwayat_usulan', 'listdosen'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['status' => "gagal", 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function penetapan_pembimbing_dan_judul_post()
+    {
+        try {
+            $data = request()->all();
+            $data['topik'] = $data['topik'] == '-' ? null : $data['topik'];
+            $data['pembimbing_I_id'] = $data['pembimbing_ketua'] == '0' ? null : $data['pembimbing_ketua'];
+            $data['pembimbing_II_id'] = $data['pembimbing_anggota'] == '0' ? null : $data['pembimbing_anggota'];
+
+            $queryMstTmpUsulan = DB::table('mst_tmp_usulan')
+                ->where('C_NPM', $data['C_NPM'])
+                ->update([
+                    'pembimbing_I_id' => $data['pembimbing_I_id'],
+                    'pembimbing_II_id' => $data['pembimbing_II_id'],
+                    'pembimbing_I_status' => 1,
+                    'pembimbing_II_status' => 1
+                ]);
+
+            $queryTrtTopik = DB::table('trt_topik')
+                ->where('C_NPM', $data['C_NPM'])
+                ->update([
+                    'topik' => $data['topik'],
+                    'status_penetapan' => 3
+                ]);
+
+            if ($queryMstTmpUsulan && $queryTrtTopik) {
+                return redirect()->back()->with((['status' => "berhasil", 'message' => "Data berhasil disimpan"]));
+            } else {
+                return redirect()->back()->with((['status' => "gagal", 'message' => "Data gagal disimpan"]));
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "Data gagal disimpan"]));
         }
     }
 }

@@ -34,6 +34,12 @@
         </li>
         <li class="static">MENU WAKIL DEKAN</li>
         <li>
+            <a href="{{ route('get_wakil_dekan_penetapan_pembimbing_dan_judul') }}">
+                <i class="fa fa-stack-overflow icon-sidebar"></i>
+                Penetapan Pembimbing dan Judul
+            </a>
+        </li>
+        <li>
             <a href="{{ url('wakildekan/sk_pembimbing') }}">
                 <i class="fa fa-stack-overflow icon-sidebar"></i>
                 SK Pembimbing

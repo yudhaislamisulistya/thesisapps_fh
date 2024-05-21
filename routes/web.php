@@ -370,6 +370,10 @@ Route::group(['middleware' => 'wakil_dekan'], function () {
     Route::get('/wakildekan/detail_note/{id}', 'WakilDekan@detail_note');
     Route::post('/wakildekan/detail_note/{id}', 'WakilDekan@note_update');
     Route::get('/wakildekan/tolak_topik_penelitian/{id}', 'WakilDekan@tolak_topik_penelitian');
+
+    // Penetapan Pembimbing dan Judul
+    Route::get('/wakildekan/penetapan_pembimbing_dan_judul', 'WakilDekan@penetapan_pembimbing_dan_judul')->name('get_wakil_dekan_penetapan_pembimbing_dan_judul');
+    Route::post('/wakildekan/penetapan_pembimbing_dan_judul', 'WakilDekan@penetapan_pembimbing_dan_judul_post')->name('post_wakil_dekan_penetapan_pembimbing_dan_judul');
 });
 
 Route::group(['middleware' => 'akademik_fakultas'], function () {

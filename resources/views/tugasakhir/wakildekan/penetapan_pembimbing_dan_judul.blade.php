@@ -11,7 +11,7 @@
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
                 <li><a href="#fakelink">Home</a></li>
-                <li class="active">Penentuban Bidang</li>
+                <li class="active">Penetapan Pembimbing dan Judul</li>
             </ol>
 
             <h3 class="page-heading">Daftar Riwayat Usulan</h3>
@@ -33,6 +33,8 @@
                                 <th>Kerangka Pikir</th>
                                 <th>Nama Bidang</th>
                                 <th>Status Penentuan Bidang</th>
+                                <th>Pembimbing Ketua</th>
+                                <th>Pembimbing Anggota</th>
                                 <th>Detail</th>
                             </tr>
                         </thead>
@@ -51,40 +53,53 @@
                                         @if ($value->bidang_ilmu_peminatan == null)
                                             <span class="label label-danger">Belum Menentukan Bidang</span>
                                         @else
-                                            <span class="label label-primary">{{ $value->bidang_ilmu_peminatan }}</span>
+                                            <span class="label label-info">{{ $value->bidang_ilmu_peminatan }}</span>
                                         @endif
                                     </td>
                                     <td>
                                         @if ($value->status_penetapan == 0)
                                             <span class="label label-danger">Belum Menentukan Bidang</span>
                                         @elseif($value->status_penetapan == 1)
-                                            <span class="label label-warning">Belum Menentukan Pembimbing oleh Ketua
-                                                Bidang</span>
+                                            <span class="label label-warning">Belum Menentukan Pembimbing</span>
                                         @elseif($value->status_penetapan == 2)
-                                            <span class="label label-danger">Belum Ditetapkan Pembimbing dan Judul oleh
-                                                Wakil Dekan</span>
+                                            <span class="label label-danger">Belum Menetapkan Pembimbing dan Judul</span>
                                         @elseif($value->status_penetapan == 3)
-                                            <span class="label label-info">Sudah Ditetapkan Pembimbing dan Judul oleh Wakil
-                                                Dekan</span>
+                                            <span class="label label-info">Sudah Ditetapkan Pembimbing dan Judul</span>
                                         @elseif($value->status_penetapan == 4)
+                                            <span class="label label-success">Selesai</span>
                                         @endif
                                     </td>
                                     <td>
-
-                                        @if (($value->status_penetapan == 3) || ($value->status_penetapan == 2))
+                                        @if ($value->pembimbing_I_id == null)
+                                            <span class="label label-danger">Belum Menentukan Pembimbing Ketua</span>
+                                        @else
+                                            <span
+                                                class="label label-info">{{ helper::getDosenByKodeDosen($value->pembimbing_I_id)->NAMA_DOSEN }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($value->pembimbing_II_id == null)
+                                            <span class="label label-danger">Belum Menentukan Pembimbing Anggota</span>
+                                        @else
+                                            <span
+                                                class="label label-info">{{ helper::getDosenByKodeDosen($value->pembimbing_II_id)->NAMA_DOSEN }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($value->status_penetapan == 3 || $value->status_penetapan == 1)
                                             <button class="btn btn-primary" disabled>
-                                                <i class="fa fa-pencil"> Pilih Bidang</i>
+                                                <i class="fa fa-pencil"> Penetapan</i>
                                             </button>
                                         @else
                                             <button class="btn btn-primary" onclick="showModalBidang(this)"
-                                                data-c_npm="{{ $value->C_NPM }}"
-                                                data-bidang-ilmu-peminatan="{{ $value->bidang_ilmu_peminatan }}"
+                                                data-c_npm="{{ $value->C_NPM }}" data-topik="{{ $value->topik }}"
+                                                data-pembimbing-ketua="{{ $value->pembimbing_I_id }}"
+                                                data-pembimbing-anggota="{{ $value->pembimbing_II_id }}"
                                                 data-target="#modalBidang" data-toggle="modal">
-                                                <i class="fa fa-pencil"> Pilih Bidang</i>
+                                                <i class="fa fa-pencil"> Penetapan</i>
                                             </button>
                                         @endif
                                     </td>
-
                                 </tr>
                             @endforeach
                         </tbody>
@@ -104,24 +119,43 @@
                     <h4 class="modal-title" id="modalBidangLabel">Pilih Bidang Ilmu Peminatan</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('post_fakultas_penentuan_bidang') }}" method="POST">
+                    <form action="{{ route('post_wakil_dekan_penetapan_pembimbing_dan_judul') }}" method="POST">
                         @csrf
                         <input type="hidden" name="C_NPM" id="C_NPM">
                         <div class="form-group">
-                            <label for="bidang_ilmu_peminatan">Bidang Ilmu Peminatan</label>
-                            <select name="bidang_ilmu_peminatan" id="bidang_ilmu_peminatan" class="form-control">
-                                <option value="0">Pilih Bidang Ilmu Peminatan</option>
-                                @foreach ($data_bidang_ilmu as $bidang)
-                                    <option value="{{ $bidang->bidang_ilmu }}">{{ $bidang->bidang_ilmu }}</option>
+                            <label for="topik">Topik</label>
+                            <input type="text" class="form-control" name="topik" id="topik">
+                        </div>
+                        <div class="form-group">
+                            <label for="pembimbing_ketua">Pembimbing Ketua</label>
+                            <select class="form-control selectpicker" name="pembimbing_ketua" data-live-search="true">
+                                <option value="">--</option>
+                                @foreach ($listdosen as $key => $value)
+                                    @if ($value->level == '1' || !isset($value->level) || $value->level == '3')
+                                        <option value="{{ $value->C_KODE_DOSEN }}">{{ $value->NAMA_DOSEN }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="pembimbing_anggota">Pembimbing Anggota</label>
+                            <select class="form-control selectpicker" name="pembimbing_anggota" data-live-search="true">
+                                <option value="">--</option>
+                                @foreach ($listdosen as $key => $value)
+                                    @if ($value->level == '2' || !isset($value->level) || $value->level == '3')
+                                        <option value="{{ $value->C_KODE_DOSEN }}">{{ $value->NAMA_DOSEN }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <small class="text-danger">*Penetapan pembimbing dan judul hanya dapat dilakukan sekali, tolong
+                            periksa
+                            data kembali sebelum menyimpan.</small>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
-
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -130,11 +164,23 @@
 
 @section('script')
     <script>
+        $(document).ready(function() {
+            // Inisialisasi Bootstrap Select
+            $('.selectpicker').selectpicker();
+        });
+
         function showModalBidang(button) {
             var c_npm = button.getAttribute('data-c_npm');
-            var bidang_ilmu_peminatan = button.getAttribute('data-bidang-ilmu-peminatan');
+            var topik = button.getAttribute('data-topik');
+            var pembimbing_ketua = button.getAttribute('data-pembimbing-ketua');
+            var pembimbing_anggota = button.getAttribute('data-pembimbing-anggota');
             document.getElementById('C_NPM').value = c_npm;
-            document.getElementById('bidang_ilmu_peminatan').value = bidang_ilmu_peminatan;
+            var selectKetua = document.querySelector('select[name="pembimbing_ketua"]');
+            var selectAnggota = document.querySelector('select[name="pembimbing_anggota"]');
+            document.getElementById('topik').value = topik;
+            selectKetua.value = pembimbing_ketua;
+            selectAnggota.value = pembimbing_anggota;
+            $('.selectpicker').selectpicker('refresh'); // Refresh the selectpicker
         }
     </script>
 @endsection
