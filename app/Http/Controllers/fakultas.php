@@ -1549,4 +1549,152 @@ class fakultas extends Controller
             return redirect::to('fakultas/set_sk/' . $datapost['pendaftaran_id'] . '')->with('status', 'error');
         }
     }
+
+    public function sk_ujian_seminar()
+    {
+        $pendaftaran = mst_pendaftaran::get();
+        $jadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where('mst_pendaftaran.tipe_ujian', '=', 1)
+            ->orderBy('mst_pendaftaran.created_at', 'desc')
+            ->get();
+        return view('tugasakhir.fakultas.sk_ujian_seminar', compact('pendaftaran', "jadwalujian"));
+    }
+
+    public function detail_skujian_seminar($id)
+    {
+        $info = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $id)->first();
+        $data = trt_reg::join("trt_bimbingan", "trt_bimbingan.bimbingan_id", "=", "trt_reg.bimbingan_id")
+            ->join("t_mst_mahasiswa", "t_mst_mahasiswa.C_NPM", "=", "trt_reg.C_NPM")
+            ->join("trt_penguji", "trt_penguji.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+            ->where([
+                "trt_reg.pendaftaran_id" => $id,
+                "trt_penguji.tipe_ujian" => $info->tipe_ujian
+            ])->get();
+        return view('tugasakhir.fakultas.detail_skujian_seminar', compact("info", "data"));
+    }
+
+    public function cetakskpenguji_seminar($pendaftaran_id, $nim)
+    {
+        try {
+            $trtjadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+                ->where("trt_jadwal_ujian.pendaftaran_id", $pendaftaran_id)->first();
+            $trtjadwalujianpermhs = TrtJadwalUjianPerMhs::join("mst_ruangan", "mst_ruangan.id", "trt_jadwal_ujian_per_mhs.ruangan")
+                ->where([
+                    "C_NPM" => $nim,
+                    "jadwal_ujian" => $trtjadwalujian->id
+                ])->first();
+            $ruangan = $trtjadwalujianpermhs->nama_ruangan;
+            $jam_ujian = $trtjadwalujianpermhs->jam_ujian;
+            $tgl_ujian = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%A, %d %B %Y");
+            $tanggal = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%d");
+            $bulan = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%m");
+            $tahun = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%Y");
+            $penguji = TrtPenguji::where([
+                "C_NPM" => $nim,
+                "tipe_ujian" => $trtjadwalujian->tipe_ujian
+            ])->first();
+            $bimbingan = trt_bimbingan::where("C_NPM", $nim)->first();
+            switch ($trtjadwalujian->tipe_ujian) {
+                case "0":
+                    $tipe_ujian = "Proposal";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+                case "1":
+                    $tipe_ujian = "Seminar";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+                case "2":
+                    $tipe_ujian = "Meja";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+            }
+            $tgl_sekarang = helper::tgl_indo_lengkap(date('Y-m-d'));
+
+            return view('tugasakhir.fakultas.cetakskpenguji_seminar', compact("tanggal", "bulan", "tahun", "nim", "penguji", "bimbingan", "tipe_ujian", "tgl_ujian", "waktu", "ruangan", 'tgl_sekarang'));
+        } catch (Exception $e) {
+            return redirect::to('fakultas/sk_ujian_seminar');
+        }
+    }
+
+    public function cetakBeritaAcaraSeminar($pendaftaran_id, $nim)
+    {
+        $trtjadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("trt_jadwal_ujian.pendaftaran_id", $pendaftaran_id)->first();
+        $trtjadwalujianpermhs = TrtJadwalUjianPerMhs::join("mst_ruangan", "mst_ruangan.id", "trt_jadwal_ujian_per_mhs.ruangan")
+            ->where([
+                "C_NPM" => $nim,
+                "jadwal_ujian" => $trtjadwalujian->id
+            ])->first();
+        $trt_bimbingan = trt_bimbingan::where("C_NPM", $nim)->first();
+        $mst_pendaftaran = mst_pendaftaran::find($pendaftaran_id);
+        $trt_penguji = TrtPenguji::where([
+            "C_NPM" => $nim,
+            "tipe_ujian" => $mst_pendaftaran->tipe_ujian
+        ])->first();
+        $ruangan = MstRuangan::find($trtjadwalujianpermhs->ruangan)->nama_ruangan;
+        $tgl_ujian = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%A, %d %B %Y");
+        switch ($mst_pendaftaran->tipe_ujian) {
+            case "0":
+                $tipe_ujian = "Proposal";
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
+            case "2":
+                $tipe_ujian = "Meja";
+                break;
+        }
+        return view("tugasakhir.fakultas.cetak_berita_acara_seminar", compact(
+            "nim",
+            "trt_bimbingan",
+            "trt_penguji",
+            "tipe_ujian",
+            "ruangan",
+            "tgl_ujian"
+        ));
+    }
+
+    public function set_sk_seminar($id)
+    {
+        $info = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $id)->first();
+        $data = trt_reg::join("trt_bimbingan", "trt_bimbingan.bimbingan_id", "=", "trt_reg.bimbingan_id")
+            ->join("t_mst_mahasiswa", "t_mst_mahasiswa.C_NPM", "=", "trt_reg.C_NPM")
+            ->join("trt_penguji", "trt_penguji.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+            ->where([
+                "trt_reg.pendaftaran_id" => $id,
+                "trt_penguji.tipe_ujian" => $info->tipe_ujian
+            ])->get();
+
+        return view('tugasakhir.fakultas.set_sk_seminar', compact('data'));
+    }
+
+    public function add_sk_pembimbing_seminar(Request $request)
+    {
+        $datapost = $request->all();
+        try {
+            $status = TrtPenguji::where('C_NPM', $request->c_npm)->where('tipe_ujian', 1)->update([
+                'nomor_sk' => $request->nomor_sk
+            ]);
+            return redirect::to('fakultas/set_sk_seminar/' . $datapost['pendaftaran_id'] . '')->with('status', 'success');
+        } catch (Exception $exception) {
+            return redirect::to('fakultas/set_sk_seminar/' . $datapost['pendaftaran_id'] . '')->with('status', 'error');
+        }
+    }
 }

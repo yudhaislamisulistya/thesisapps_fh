@@ -16,7 +16,7 @@
             <!-- End breadcrumb -->
 
             <!-- BEGIN DATA TABLE -->
-            <h3 class="page-heading">Daftar Peserta Ujian</h3>
+            <h3 class="page-heading">Daftar Peserta Ujian Seminar</h3>
             <div class="the-box">
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Jadwal Ujian</label>
@@ -60,7 +60,6 @@
                             <th>Penguji I</th>
                             <th>Penguji II</th>
                             <th>Penguji III</th>
-                            <th>Ketua Sidang</th>
                             <th style="text-align: center">Aksi</th>
                         </tr>
                         </thead>
@@ -111,20 +110,12 @@
                                         {{$penguji3->NAMA_DOSEN}}
                                     @endif
                                 </td>
-                                <td>
-                                    @if ($ketuasidang == null)
-                                        {{"-"}}
-                                    @else
-                                        {{$ketuasidang->NAMA_DOSEN}}
-                                    @endif
-                                </td>
-
                                 <td style="width: 240px; text-align: center">
-                                    @if ($penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
+                                    @if ($penguji1 == null && $penguji2 == null && $penguji3 == null)
                                         SK Belum Terbit, Silahkan Set Penguji dan Ketua Sidang
                                     @else
-                                    <a target="_blank"  href="{{ url("$path/cetakskpenguji/$info->pendaftaran_id/$d->C_NPM")}}" class="btn btn-primary"><i class="fa fa-file-text"></i>SK Penguji</a>
-                                    <a target="_blank" href="{{ url("$path/cetak_berita_acara/$info->pendaftaran_id/$d->C_NPM")}}" class="btn btn-info"><i class="fa fa-file-text"></i>Berita Acara</a>
+                                    <a target="_blank"  href="{{ url("$path/cetakskpenguji_seminar/$info->pendaftaran_id/$d->C_NPM")}}" class="btn btn-primary"><i class="fa fa-file-text"></i>SK Penguji</a>
+                                    <a target="_blank" href="{{ url("$path/cetak_berita_acara_seminar/$info->pendaftaran_id/$d->C_NPM")}}" class="btn btn-info"><i class="fa fa-file-text"></i>Berita Acara</a>
                                     @endif
 
                                 </td>

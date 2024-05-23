@@ -669,6 +669,16 @@ class Helper
         return isset($v) ? $v->nomor_sk : '';
     }
 
+    public static function getNomorSkPerMhsFromTrtPengujiSeminar($nim)
+    {
+        $v = DB::table('trt_penguji')
+            ->select("trt_penguji.nomor_sk")
+            ->where('trt_penguji.C_NPM', $nim)
+            ->where('trt_penguji.tipe_ujian', 1)
+            ->first();
+        return isset($v) ? $v->nomor_sk : '';
+    }
+
     public static function getStatusPenilaianPerDosen($nim, $reg_id)
     {
         $data = DB::table('trt_hasil')
@@ -710,22 +720,24 @@ class Helper
         return $data;
     }
 
-    public static function getPendaftaranIdForMahasiswa()
+    public static function getPendaftaranIdForMahasiswa($tipe_ujian)
     {
         $v = DB::table('trt_bimbingan')
             ->select('trt_reg.pendaftaran_id')
             ->join("trt_reg", 'trt_reg.bimbingan_id', '=', 'trt_bimbingan.bimbingan_id')
             ->where('trt_bimbingan.C_NPM', auth()->user()->name)
+            ->where('trt_reg.status', $tipe_ujian)
             ->first();
         return isset($v) ? $v->pendaftaran_id : '';
     }
 
-    public static function getPendaftaranIdForDosen($nim)
+    public static function getPendaftaranIdForDosen($nim, $tipe_ujian)
     {
         $v = DB::table('trt_bimbingan')
             ->select('trt_reg.pendaftaran_id')
             ->join("trt_reg", 'trt_reg.bimbingan_id', '=', 'trt_bimbingan.bimbingan_id')
             ->where('trt_bimbingan.C_NPM', $nim)
+            ->where('trt_reg.status', $tipe_ujian)
             ->first();
         return isset($v) ? $v->pendaftaran_id : '';
     }
@@ -746,6 +758,16 @@ class Helper
             ->select("trt_penguji.nomor_sk")
             ->where('trt_penguji.C_NPM', $nim)
             ->where('trt_penguji.tipe_ujian', 0)
+            ->first();
+        return isset($v) ? $v->nomor_sk : '';
+    }
+
+    public static function getStatusSKUjianSeminarForMahasiswa($nim)
+    {
+        $v = DB::table('trt_penguji')
+            ->select("trt_penguji.nomor_sk")
+            ->where('trt_penguji.C_NPM', $nim)
+            ->where('trt_penguji.tipe_ujian', 1)
             ->first();
         return isset($v) ? $v->nomor_sk : '';
     }

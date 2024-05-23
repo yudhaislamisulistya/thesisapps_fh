@@ -11,12 +11,12 @@
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
                 <li><a href="#fakelink">Home</a></li>
-                <li class="active">Peserta ujian</li>
+                <li class="active">Peserta Ujian Seminar</li>
             </ol>
             <!-- End breadcrumb -->
 
             <!-- BEGIN DATA TABLE -->
-            <h3 class="page-heading">Jadwal Ujian Proposal</h3>
+            <h3 class="page-heading">Jadwal Ujian Seminar</h3>
             <div class="the-box">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="datatable-example">
@@ -34,7 +34,6 @@
                                 <th>Penguji I</th>
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>
-                                <th>Ketua Sidang</th>
                                 <th>SK</th>
                             </tr>
                         </thead>
@@ -106,23 +105,12 @@
                                             @endif
                                         @endif
                                     </td>
-                                    <td>
-                                        @if ($ketuasidang == null)
-                                            {{ '-' }}
-                                        @else
-                                            @if ($ketuasidang->C_KODE_DOSEN == auth()->user()->name)
-                                                <b>{{ $ketuasidang->NAMA_DOSEN }}</b>
-                                            @else
-                                                {{ $ketuasidang->NAMA_DOSEN }}
-                                            @endif
-                                        @endif
-                                    </td>
-                                    @if (helper::getStatusSKUjianProposalForMahasiswa($d->C_NPM) != '')
+                                    @if (helper::getStatusSKUjianSeminarForMahasiswa($d->C_NPM) != '')
                                         <td><a target="_blank"
-                                                href="{{ url('dsn/surat_sk_proposal') }}/{{ helper::getPendaftaranIdForDosen($d->C_NPM, 0) }}/{{ $d->C_NPM }}"><i
+                                                href="{{ url('dsn/surat_sk_seminar') }}/{{ helper::getPendaftaranIdForDosen($d->C_NPM, 1) }}/{{ $d->C_NPM }}"><i
                                                     class="fa fa-paperclip icon-square icon-xs icon-dark"></i></a></td>
                                     @else
-                                        <td><span class="badge badge-danger">SK Ujian Proposal Belum Ada</span></td>
+                                        <td><span class="badge badge-danger">SK Ujian Seminar Belum Ada</span></td>
                                     @endif
                                 </tr>
                             @endforeach

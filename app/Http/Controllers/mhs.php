@@ -1130,4 +1130,75 @@ class mhs extends Controller
             return redirect('/');
         }
     }
+
+    public static function surat_sk_seminar($pendaftaran_id)
+    {
+        try {
+            $trtjadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+                ->where("trt_jadwal_ujian.pendaftaran_id", $pendaftaran_id)->first();
+            $trtjadwalujianpermhs = TrtJadwalUjianPerMhs::join("mst_ruangan", "mst_ruangan.id", "trt_jadwal_ujian_per_mhs.ruangan")
+                ->where([
+                    "C_NPM" => auth()->user()->name,
+                    "jadwal_ujian" => $trtjadwalujian->id
+                ])->first();
+            $ruangan = $trtjadwalujianpermhs->nama_ruangan;
+            $jam_ujian = $trtjadwalujianpermhs->jam_ujian;
+            $tgl_ujian = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%A, %d %B %Y");
+            $tanggal = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%d");
+            $bulan = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%m");
+            $tahun = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%Y");
+            $penguji = TrtPenguji::where([
+                "C_NPM" => auth()->user()->name,
+                "tipe_ujian" => $trtjadwalujian->tipe_ujian
+            ])->first();
+            $bimbingan = trt_bimbingan::where("C_NPM", auth()->user()->name)->first();
+            switch ($trtjadwalujian->tipe_ujian) {
+                case "0":
+                    $tipe_ujian = "Proposal";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+                case "1":
+                    $tipe_ujian = "Seminar";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+                case "2":
+                    $tipe_ujian = "Meja";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+            }
+            $nim = auth()->user()->name;
+            $tgl_sekarang = helper::tgl_indo_lengkap(date('Y-m-d'));
+
+            return view('tugasakhir.mhs.surat_sk_seminar', compact(
+                "nim",
+                "penguji",
+                "bimbingan",
+                "tipe_ujian",
+                "tgl_ujian",
+                "tanggal",
+                "bulan",
+                "tahun",
+                "waktu",
+                "ruangan",
+                'tgl_sekarang'
+            ));
+        } catch (Exception $error) {
+            return redirect('mhs/download');
+        }
+    }
 }

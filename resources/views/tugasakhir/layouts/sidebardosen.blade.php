@@ -63,6 +63,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ url('dsn/jadwal_proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('dsn/jadwal_seminar') }}">Seminar</a></li>
                 <li><a href="{{ url('dsn/jadwal_ujianmeja') }}">Ujian Meja</a></li>
             </ul>
         </li>

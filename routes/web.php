@@ -427,6 +427,14 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get('/fakultas/surat_keputusan_pembimbing', "fakultas@surat_keputusan_pembimbing")->name("surat_keputusan_pembimbing");
     Route::get('/fakultas/set_sk/{id}', 'fakultas@set_sk')->name('set_sk_by_fakultas');
     Route::post('/fakultas/add_sk_pembimbing', 'fakultas@add_sk_pembimbing')->name('add_sk_pembimbing_by_fakultas');
+    Route::get('/fakultas/sk_ujian_seminar', "fakultas@sk_ujian_seminar")->name('get_fakultas_sk_ujian_seminar');
+    Route::get('/fakultas/detail_skujian_seminar/{id}', 'fakultas@detail_skujian_seminar')->name('get_fakultas_detail_skujian_seminar');
+    Route::get('/fakultas/cetakskpenguji_seminar/{pendaftaran_id}/{nim}', 'fakultas@cetakskpenguji_seminar')->name('get_fakultas_cetakskpenguji_seminar');
+    Route::get('/fakultas/cetak_berita_acara_seminar/{pendaftaran_id}/{nim}', 'fakultas@cetakBeritaAcaraSeminar')->name('get_fakultas_cetakBeritaAcaraSeminar');
+    Route::get('/fakultas/set_sk_seminar/{id}', 'fakultas@set_sk_seminar')->name('set_sk_seminar_by_fakultas');
+    Route::post('/fakultas/add_sk_pembimbing_seminar', 'fakultas@add_sk_pembimbing_seminar')->name('add_sk_pembimbing_seminar_by_fakultas');
+
+
 
     // Penentuan Bidang
     Route::get('fakultas/penentuan_bidang', 'fakultas@penentuan_bidang')->name('get_fakultas_penentuan_bidang');
@@ -496,8 +504,6 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get('/fakultas/syarat_ujian', 'fakultas@syarat_ujian')->name('get_fakultas_syarat_ujian');
     Route::post('/fakultas/syaratadd', 'fakultas@syaratadd')->name('post_fakultas_syaratadd');
     Route::get('/fakultas/syaratdel/{id}', 'fakultas@syaratdel')->name('get_fakultas_syaratdel');
-
-
 });
 
 Route::group(['middleware' => 'dosen'], function () {
@@ -530,7 +536,9 @@ Route::group(['middleware' => 'dosen'], function () {
     Route::get("/dsn/detailhasil_ujianmeja/{regid}", "dosen@detailhasil_ujianmeja");
     Route::post("/dsn/detailhasil_ujianmejapost/", "dosen@detailhasil_ujianmejapost");
     Route::get("/dsn/jadwal_proposal/", "dosen@jadwal_proposal");
+    Route::get("/dsn/jadwal_seminar/", "dosen@jadwal_seminar");
     Route::get("/dsn/jadwal_ujianmeja/", "dosen@jadwal_ujianmeja");
+    Route::get('/dsn/surat_sk_seminar/{pendaftaran_id}/{nim}', 'dosen@surat_sk_seminar');
 
     Route::get('/dsn/usul_judul', 'dosen@usul_judul');
     Route::get('/dsn/add_usul_judul', 'dosen@add_usul_judul');
@@ -633,6 +641,7 @@ Route::group(['middleware' => 'mhs'], function () {
     // Catatan
     Route::get('/mhs/surat_sk_pembimbing/{nomor}', 'mhs@surat_sk_pembimbing');
     Route::get('/mhs/surat_sk_proposal/{pendaftaran_id}', 'mhs@surat_sk_proposal');
+    Route::get('/mhs/surat_sk_seminar/{pendaftaran_id}', 'mhs@surat_sk_seminar');
     Route::get('/mhs/surat_sk_ujian_meja/{nomor}', 'mhs@surat_sk_ujian_meja');
 
     // Data Pembimbing

@@ -42,9 +42,18 @@
                         <td width="1%" align="center">2</td>
                         <td>SK Ujian Proposal</td>
                         @if (helper::getStatusSKUjianProposalForMahasiswa(auth()->user()->name) != '')
-                            <td><a target="_blank" href="{{ url('mhs/surat_sk_proposal')}}/{{helper::getPendaftaranIdForMahasiswa()}}"><i class="fa fa-paperclip icon-square icon-xs icon-dark"></i></a></td>
+                            <td><a target="_blank" href="{{ url('mhs/surat_sk_proposal')}}/{{helper::getPendaftaranIdForMahasiswa(0)}}"><i class="fa fa-paperclip icon-square icon-xs icon-dark"></i></a></td>
                         @else
                             <td><span class="badge badge-danger">SK Ujian Proposal Belum Ada</span></td>
+                        @endif
+                    </tr>
+                    <tr class="odd gradeX">
+                        <td width="1%" align="center">2</td>
+                        <td>SK Ujian Seminar</td>
+                        @if (helper::getStatusSKUjianSeminarForMahasiswa(auth()->user()->name) != '')
+                            <td><a target="_blank" href="{{ url('mhs/surat_sk_seminar')}}/{{helper::getPendaftaranIdForMahasiswa(1)}}"><i class="fa fa-paperclip icon-square icon-xs icon-dark"></i></a></td>
+                        @else
+                            <td><span class="badge badge-danger">SK Ujian Seminar Belum Ada</span></td>
                         @endif
                     </tr>
                     <tr class="odd gradeX">

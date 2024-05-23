@@ -33,8 +33,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class dosen extends Controller
 {
@@ -427,6 +427,15 @@ class dosen extends Controller
         return view('tugasakhir.dosen.jadwal_proposal', compact('data'));
     }
     // Akhir Halaman Jadwal Proposal
+
+    // Halaman Jadwal Seminar
+    public function jadwal_seminar()
+    {
+        $kode = auth()->user()->name;
+        $data = DB::select("SELECT * FROM trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa, trt_jadwal_ujian, trt_jadwal_ujian_per_mhs , mst_ruangan WHERE mst_ruangan.id =  trt_jadwal_ujian_per_mhs.ruangan AND trt_bimbingan.C_NPM = trt_jadwal_ujian_per_mhs.C_NPM AND trt_jadwal_ujian.id = trt_jadwal_ujian_per_mhs.jadwal_ujian AND trt_jadwal_ujian.pendaftaran_id = trt_reg.pendaftaran_id AND trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND (trt_penguji.penguji_I_id  = ? OR trt_penguji.penguji_II_id  = ? OR trt_penguji.penguji_III_id  = ? OR trt_penguji.ketua_sidang_id = ? OR trt_bimbingan.pembimbing_I_id = ? OR trt_bimbingan.pembimbing_II_id = ?) AND trt_reg.status = ? ", [$kode, $kode, $kode, $kode, $kode, $kode, 1]);
+        return view('tugasakhir.dosen.jadwal_seminar', compact('data'));
+    }
+    // Akhir Halaman Jadwal Seminar
 
     // Halaman Jadwal Ujian Meja
     public function jadwal_ujianmeja()
@@ -885,5 +894,67 @@ class dosen extends Controller
             ->get();
         $tgl_ujian = Helper::tgl_indo_lengkap(date('Y-m-d'));
         return view('tugasakhir.fakultas.cetakskpembimbing', compact('data_sk', 'tgl_ujian'));
+    }
+
+    public static function surat_sk_seminar($pendaftaran_id, $nim)
+    {
+        try {
+            $trtjadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+                ->where("trt_jadwal_ujian.pendaftaran_id", $pendaftaran_id)->first();
+            $trtjadwalujianpermhs = TrtJadwalUjianPerMhs::join("mst_ruangan", "mst_ruangan.id", "trt_jadwal_ujian_per_mhs.ruangan")
+                ->where([
+                    "C_NPM" => $nim,
+                    "jadwal_ujian" => $trtjadwalujian->id
+                ])->first();
+
+            $ruangan = $trtjadwalujianpermhs->nama_ruangan;
+            $jam_ujian = $trtjadwalujianpermhs->jam_ujian;
+            $tgl_ujian = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%A, %d %B %Y");
+            $tanggal = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%d");
+            $bulan = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%m");
+            $tahun = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%Y");
+            $penguji = TrtPenguji::where([
+                "C_NPM" => $nim,
+                "tipe_ujian" => $trtjadwalujian->tipe_ujian
+            ])->first();
+            $bimbingan = trt_bimbingan::where("C_NPM", $nim)->first();
+            switch ($trtjadwalujian->tipe_ujian) {
+                case "0":
+                    $tipe_ujian = "Proposal";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+                case "1":
+                    $tipe_ujian = "Seminar";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+                case "2":
+                    $tipe_ujian = "Meja";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+            }
+            $nim = $nim;
+            $tgl_sekarang = helper::tgl_indo_lengkap(date('Y-m-d'));
+
+            return view('tugasakhir.dosen.surat_sk_seminar', compact("nim", "penguji", "bimbingan", "tipe_ujian", "tgl_ujian", "waktu", "ruangan", 'tgl_sekarang', 'tanggal', 'bulan', 'tahun'));
+        } catch (Exception $error) {
+            var_dump($error);
+            die();
+            return redirect('dsn/jadwal_seminar');
+        }
     }
 }

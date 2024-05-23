@@ -95,6 +95,19 @@
         </li>
         <li>
             <a href="#fakelink">
+                <i class="fa fa-paperclip icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Surat Keputusan
+            </a>
+            <ul class="submenu">
+                <li><a href="{{ url('fakultas/surat_keputusan_pembimbing') }}">Surat Pembimbing</a></li>
+                <li><a href="{{ route('tampilSKUjianFakultas') }}">SK Ujian Proposal</a></li>
+                <li><a href="{{ url('fakultas/sk_ujian_seminar') }}">SK Ujian Seminar</a></li>
+                <li><a href="{{ url('fakultas/surat_penugasan_ujian_ta') }}">Surat Penugasan Ujian TA</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#fakelink">
                 <i class="fa fa-calendar icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Approve Hasil Ujian
@@ -104,18 +117,7 @@
                 <li><a href="{{ url('fakultas/approve_hasilujian_ta') }}">Ujian Meja</a></li>
             </ul>
         </li>
-        <li>
-            <a href="#fakelink">
-                <i class="fa fa-paperclip icon-sidebar"></i>
-                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                Surat Keputusan
-            </a>
-            <ul class="submenu">
-                <li><a href="{{ url('fakultas/surat_keputusan_pembimbing') }}">Surat Pembimbing</a></li>
-                <li><a href="{{ route('tampilSKUjianFakultas') }}">SK Ujian Proposal</a></li>
-                <li><a href="{{ url('fakultas/surat_penugasan_ujian_ta') }}">Surat Penugasan Ujian TA</a></li>
-            </ul>
-        </li>
+
         <li>
             <a href="#fakelink">
                 <i class="fa fa-table icon-sidebar"></i>

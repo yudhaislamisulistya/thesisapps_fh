@@ -119,7 +119,7 @@
                                     </td>
                                     @if (helper::getStatusSKUjianProposalForMahasiswa($d->C_NPM) != '')
                                         <td><a target="_blank"
-                                                href="{{ url('dsn/surat_sk_proposal') }}/{{ helper::getPendaftaranIdForDosen($d->C_NPM) }}/{{ $d->C_NPM }}"><i
+                                                href="{{ url('dsn/surat_sk_proposal') }}/{{ helper::getPendaftaranIdForDosen($d->C_NPM, 0) }}/{{ $d->C_NPM }}"><i
                                                     class="fa fa-paperclip icon-square icon-xs icon-dark"></i></a></td>
                                     @else
                                         <td><span class="badge badge-danger">SK Ujian Proposal Belum Ada</span></td>
