@@ -43,6 +43,7 @@
                             <div class="col-xs-5">
                                 <select class="form-control bold-border" name="tipe_ujian">
                                     <option value='0'>Proposal</option>
+                                    <option value='1'>Seminar</option>
                                     <option value='2'>Ujian Meja</option>
                                     {{-- <option value='3'>Umum</option> --}}
                                 </select>
@@ -115,6 +116,8 @@
                                         @if ($countname < 3)
                                             @if ($value->tipe_ujian == 0)
                                                 Proposal
+                                            @elseif ($value->tipe_ujian == 1)
+                                                Seminar
                                             @elseif($value->tipe_ujian == 2)
                                                 Ujian Meja
                                             @endif

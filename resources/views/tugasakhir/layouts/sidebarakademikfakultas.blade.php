@@ -34,6 +34,12 @@
         </li>
         <li class="static">MENU AKADEMIK-FAKULTAS</li>
         <li>
+            <a href="{{ url('fakultas/syarat_ujian') }}">
+                <i class="fa fa-file-text icon-sidebar"></i>
+                Persyaratan Ujian
+            </a>
+        </li>
+        <li>
             <a href="{{ url('fakultas/penentuan_bidang') }}">
                 <i class="fa fa-users icon-sidebar"></i>
                 Penentuan Bidang
@@ -65,6 +71,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ route('get_fakultas_persyaratan_proposal') }}">Proposal</a></li>
+                <li><a href="{{ route('get_fakultas_persyaratan_seminarhasil') }}">Seminar</a></li>
                 <li><a href="{{ route('get_fakultas_persyaratan_ujianmeja') }}">Ujian Meja</a></li>
             </ul>
         </li>
@@ -97,16 +104,16 @@
             </ul>
         </li>
         <li>
-            <a href="{{ route('tampilSKUjianFakultas') }}">
+            <a href="#fakelink">
                 <i class="fa fa-paperclip icon-sidebar"></i>
-                SK Ujian
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Surat Keputusan
             </a>
-        </li>
-        <li>
-            <a href="{{ url('fakultas/surat_penugasan_ujian_ta') }}">
-                <i class="fa fa-paperclip icon-sidebar"></i>
-                Surat Penugasan Ujian TA
-            </a>
+            <ul class="submenu">
+                <li><a href="{{ url('fakultas/surat_keputusan_pembimbing') }}">Surat Pembimbing</a></li>
+                <li><a href="{{ route('tampilSKUjianFakultas') }}">SK Ujian Proposal</a></li>
+                <li><a href="{{ url('fakultas/surat_penugasan_ujian_ta') }}">Surat Penugasan Ujian TA</a></li>
+            </ul>
         </li>
         <li>
             <a href="#fakelink">

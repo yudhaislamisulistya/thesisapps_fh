@@ -26,13 +26,15 @@
                             <td width="1%" align="center">{{++$key}}</td>
                             @php
                             $status = '';
-                                if ($value->tipe_ujian == 0)
+                                if ($value->tipe_ujian == 0){
                                     $status = '<span class="label label-success">Proposal</span>';
-                                else if($value->tipe_ujian == 2){
+                                }else if($value->tipe_ujian == 1){
+                                    $status = '<span class="label label-info">Seminar</span>';
+                                }else if($value->tipe_ujian == 2){
                                     $status = '<span class="label label-warning">Ujian Meja</span>';
                                 }
                             @endphp
-                            
+
                             <td><?= $status ?></td>
                             <td><a href="{{ url('mhs/detail_ujian')}}/{{$value->C_NPM}}/{{$value->tipe_ujian}}"><i class="fa fa-paperclip icon-square icon-xs icon-dark"></i></a></td>
                         </tr>

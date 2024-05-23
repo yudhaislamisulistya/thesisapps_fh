@@ -274,9 +274,9 @@
                         </ul>
                         <button class="btn btn-block btn-primary btn-square"></button>
                         <?php
-                        
+
                         }
-                        
+
                         ?>
                     </div><!-- /.the-box no-border -->
                 </div>
@@ -287,11 +287,15 @@
         <div class="alert alert-warning alert-bold-border fade in alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <p><strong>Welcome! {{helper::getNamaMhs(auth()->user()->name)}}</strong></p>
-            
+
                 @if (helper::getStatusBimbinganByNim(auth()->user()->name) == 0)
                 <p class="text-mute visible-lg-inlined">Informasi bimbingan anda saat ini ialah <a class="alert-link"
                     href="#fakelink">
                     <h4 class="visible-lg-inline">Persiapan Ujian Proposal</h4>
+                @elseif (helper::getStatusBimbinganByNim(auth()->user()->name) == 1)
+                <p class="text-mute visible-lg-inlined">Informasi bimbingan anda saat ini ialah <a class="alert-link"
+                    href="#fakelink">
+                    <h4 class="visible-lg-inline">Persiapan Ujian Seminar</h4>
                 @elseif(helper::getStatusBimbinganByNim(auth()->user()->name) == 2)
                 <p class="text-muted visible-lg-inline">Informasi bimbingan anda saat ini ialah <a class="alert-link"
                     href="#fakelink">
@@ -350,9 +354,9 @@
                         </ul>
                         <button class="btn btn-block btn-primary btn-square"></button>
                         <?php
-                        
+
                         }
-                        
+
                         ?>
                     </div><!-- /.the-box no-border -->
                 </div>

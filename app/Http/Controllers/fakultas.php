@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Model\mst_sk_pembimbing;
 use App\Model\mst_sk_penugasan;
+use App\Model\mst_syarat_ujian;
 use App\Model\mst_tmp_usulan;
 use App\Model\t_mst_mahasiswa;
 use App\Model\trt_bimbingan;
@@ -408,7 +409,7 @@ class fakultas extends Controller
             ->where('mst_pendaftaran.tipe_ujian', '=', 0)
             ->orderBy('mst_pendaftaran.created_at', 'desc')
             ->get();
-        return view('tugasakhir.prodi.sk_ujian', compact('pendaftaran', "jadwalujian"));
+        return view('tugasakhir.fakultas.sk_ujian', compact('pendaftaran', "jadwalujian"));
     }
 
     // Menampilkan Halaman Penentuan Bidang
@@ -731,23 +732,31 @@ class fakultas extends Controller
 
     public function konfirmasi_persyaratan_ujian_by_nim($status, $nim)
     {
-        $data = TrtSyaratUjian::where([
-            "C_NPM" => $nim
-        ])->update([
-            "status" => $status
-        ]);
-        return redirect()->back();
+        try {
+            $data = TrtSyaratUjian::where([
+                "C_NPM" => $nim
+            ])->update([
+                "status" => $status
+            ]);
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil mengkonfirmasi persyaratan"]));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "gagal mengkonfirmasi persyaratan"]));
+        }
     }
 
     public function konfirmasi_persyaratan_ujian($status, $id, $nim)
     {
-        TrtSyaratUjian::where([
-            "syarat_ujian_id" => $id,
-            "C_NPM" => $nim
-        ])->update([
-            "status" => $status
-        ]);
-        return redirect()->back();
+        try {
+            TrtSyaratUjian::where([
+                "syarat_ujian_id" => $id,
+                "C_NPM" => $nim
+            ])->update([
+                "status" => $status
+            ]);
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil mengkonfirmasi persyaratan"]));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "gagal mengkonfirmasi persyaratan"]));
+        }
     }
 
     // Tampil Catatan Pada Syarat Ujian
@@ -1363,5 +1372,172 @@ class fakultas extends Controller
             "bulan",
             "tahun"
         ));
+    }
+
+    public function syarat_ujian()
+    {
+        $data0 = DB::table('mst_syarat_ujian')
+            ->select('*')
+            ->where('tipe_ujian', 0)
+            ->get();
+        $data1 = DB::table('mst_syarat_ujian')
+            ->select('*')
+            ->where('tipe_ujian', 1)
+            ->get();
+        $data2 = DB::table('mst_syarat_ujian')
+            ->select('*')
+            ->where('tipe_ujian', 2)
+            ->get();
+        return view('tugasakhir.fakultas.syarat_ujian', compact('data0', 'data1', 'data2'));
+    }
+
+    public function syaratadd(Request $request)
+    {
+        try {
+            $datapost = $request->all();
+            mst_syarat_ujian::create($datapost);
+            return redirect::to('fakultas/syarat_ujian')->with((['status' => "berhasil", 'message' => "berhasil menambahkan data syarat"]));
+        } catch (\Throwable $th) {
+            return redirect::to('fakultas/syarat_ujian')->with((['status' => "gagal", 'message' => "gagal menambahkan data syarat"]));
+        }
+    }
+
+    public function syaratdel($id)
+    {
+        try {
+            DB::table('mst_syarat_ujian')
+                ->where('syarat_ujian_id', $id)
+                ->delete();
+            return redirect::to('fakultas/syarat_ujian')->with((['status' => "berhasil", 'message' => "berhasil menghapus data syarat"]));
+        } catch (\Throwable $th) {
+            return redirect::to('fakultas/syarat_ujian')->with((['status' => "gagal", 'message' => "gagal menghapus data syarat"]));
+        }
+    }
+
+    public function persyaratan_seminarhasil()
+    {
+        $data = TrtPengajuanDokumen::join("t_mst_mahasiswa", "trt_pengajuan_dokumen.C_NPM", "=", "t_mst_mahasiswa.C_NPM")->where("type", 1)->get(["NAMA_MAHASISWA", "t_mst_mahasiswa.C_NPM"]);
+        return view("tugasakhir.fakultas.persyaratan_seminarhasil", compact("data"));
+    }
+
+    public function detail_persyaratan_seminarhasil($id)
+    {
+        $mhs = t_mst_mahasiswa::where("C_NPM", $id)->first();
+        $data = TrtSyaratUjian::join("mst_syarat_ujian", "trt_syarat_ujian.syarat_ujian_id", "=", "mst_syarat_ujian.syarat_ujian_id")->where(["tipe_ujian" => 1, "C_NPM" => $id])->get();
+        return view("tugasakhir.fakultas.detail_persyaratan_seminarhasil", compact("data", "mhs"));
+    }
+
+    public function detail_persyaratan_seminarhasil_catatan($id, $nim)
+    {
+        $data = DB::table('trt_syarat_ujian')
+            ->select("*")
+            ->where("id", $id)
+            ->where("C_NPM", $nim)
+            ->get();
+        return view('tugasakhir.fakultas.detail_persyaratan_seminarhasil_catatan', compact('data', 'nim'));
+    }
+
+    public function detail_persyaratan_seminarhasil_catatan_post(Request $request)
+    {
+        try {
+            TrtSyaratUjian::where("id", $request->id)
+                ->where('C_NPM', $request->C_NPM)
+                ->update([
+                    "catatan" => $request->catatan
+                ]);
+            return redirect::to('fakultas/detail_persyaratan_seminarhasil/' . $request->C_NPM)->with('status', 'success');
+        } catch (Exception $exception) {
+            return redirect::to('fakultas/detail_persyaratan_seminarhasil/' . $request->C_NPM)->with('status', 'error');
+        }
+    }
+
+    public function surat_keputusan_pembimbing()
+    {
+        if (Auth::user()->name == "akademikfakultasfh") {
+            $data = DB::table('t_mst_mahasiswa')
+                ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
+                ->select('t_mst_mahasiswa.NAMA_MAHASISWA', 't_mst_dosen.NAMA_DOSEN')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->get();
+
+            $penetapan_pengusulan = DB::table('trt_bimbingan')
+                ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->select('*')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->where('status_sk', '<>', 1)
+                ->get();
+
+            $riwayat_usulan = DB::table('trt_sk')
+                ->select('nomor', 'tgl_surat')
+                ->distinct('nomor')
+                ->orderBy('trt_sk.sk_id', 'DESC')
+                ->get();
+
+            $data_sk = DB::table('mst_sk_pembimbing')
+                ->join('trt_bimbingan', 'mst_sk_pembimbing.bimbingan_id', '=', 'trt_bimbingan.bimbingan_id')
+                ->select('*')
+                ->where('trt_bimbingan.C_NPM', 'LIKE', '040%')
+                ->orderBy('mst_sk_pembimbing.sk_pembimbing_id', 'DESC')
+                ->get();
+        } else {
+            $data = DB::table('t_mst_mahasiswa')
+                ->join('trt_bimbingan', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->join('t_mst_dosen', 'C_KODE_DOSEN', '=', 'trt_bimbingan.pembimbing_I_id')
+                ->select('t_mst_mahasiswa.NAMA_MAHASISWA', 't_mst_dosen.NAMA_DOSEN')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '131%')
+                ->get();
+
+            $penetapan_pengusulan = DB::table('trt_bimbingan')
+                ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+                ->select('*')
+                ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '131%')
+                ->where('status_sk', '<>', 1)
+                ->get();
+
+            $riwayat_usulan = DB::table('trt_sk')
+                ->select('nomor', 'tgl_surat')
+                ->distinct('nomor')
+                ->orderBy('trt_sk.sk_id', 'DESC')
+                ->get();
+
+            $data_sk = DB::table('mst_sk_pembimbing')
+                ->join('trt_bimbingan', 'mst_sk_pembimbing.bimbingan_id', '=', 'trt_bimbingan.bimbingan_id')
+                ->select('*')
+                ->where('trt_bimbingan.C_NPM', 'LIKE', '131%')
+                ->orderBy('mst_sk_pembimbing.sk_pembimbing_id', 'DESC')
+                ->get();
+        }
+
+        return view('tugasakhir.fakultas.surat_keputusan_pembimbing', compact('riwayat_usulan', 'penetapan_pengusulan', 'data', 'data_sk'));
+    }
+
+    public function set_sk($id)
+    {
+        $info = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $id)->first();
+        $data = trt_reg::join("trt_bimbingan", "trt_bimbingan.bimbingan_id", "=", "trt_reg.bimbingan_id")
+            ->join("t_mst_mahasiswa", "t_mst_mahasiswa.C_NPM", "=", "trt_reg.C_NPM")
+            ->join("trt_penguji", "trt_penguji.C_NPM", "=", "t_mst_mahasiswa.C_NPM")
+            ->where([
+                "trt_reg.pendaftaran_id" => $id,
+                "trt_penguji.tipe_ujian" => $info->tipe_ujian
+            ])->get();
+
+
+        return view('tugasakhir.fakultas.set_sk', compact('data'));
+    }
+
+    public function add_sk_pembimbing(Request $request)
+    {
+        $datapost = $request->all();
+        try {
+            $status = TrtPenguji::where('C_NPM', $request->c_npm)->where('tipe_ujian', 0)->update([
+                'nomor_sk' => $request->nomor_sk
+            ]);
+            return redirect::to('fakultas/set_sk/' . $datapost['pendaftaran_id'] . '')->with('status', 'success');
+        } catch (Exception $exception) {
+            return redirect::to('fakultas/set_sk/' . $datapost['pendaftaran_id'] . '')->with('status', 'error');
+        }
     }
 }

@@ -211,6 +211,16 @@ class mhs extends Controller
     }
     // Akhir Berita Acara Proposal
 
+    // Halaman Berita Cara Seminar Hasil
+    public function beritaacara_seminarhasil($nim)
+    {
+
+        $data = DB::select("SELECT * FROM trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa WHERE trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND trt_penguji.C_NPM = ? AND trt_reg.status = ?", [$nim, 1]);
+
+        return view('tugasakhir.mhs.beritaacara_seminarhasil', compact("data"));
+    }
+    // Akhir Berita Acara Seminar Hasil
+
     // Halaman Berita Cara Ujian
     public function beritaacara_ujian($nim)
     {
@@ -576,6 +586,11 @@ class mhs extends Controller
                     trt_bimbingan::where('C_NPM', auth()->user()->name)->update([
                         'status_bimbingan' => $request->tipe_ujian,
                         'status_tolak_meja' => 0,
+                    ]);
+                } else if ($request->tipe_ujian == 1) {
+                    trt_bimbingan::where('C_NPM', auth()->user()->name)->update([
+                        'status_bimbingan' => $request->tipe_ujian,
+                        'status_tolak_proposal' => 0,
                     ]);
                 } else if ($request->tipe_ujian == 0) {
                     trt_bimbingan::where('C_NPM', auth()->user()->name)->update([

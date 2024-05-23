@@ -27,7 +27,7 @@
 								</div><!-- /.col-sm-6 -->
 							</div><!-- /.row -->
 						</div>
-						
+
 						<div class="the-box toolbar no-border no-margin">
 							<div class="btn-toolbar" role="toolbar">
 								<div class="btn-group">
@@ -39,7 +39,7 @@
 
 							</div><!-- /.btn-toolbar -->
 						</div><!-- /.the-box -->
-						
+
 						<div class="the-box no-margin">
 							<form method="post" action="{{url('mhs/pesanpost')}}" enctype="multipart/form-data">
 								{{ csrf_field() }}
@@ -104,7 +104,7 @@
 									<div class="col-sm-8">
 										<div class="form-group">
 											<label>Perihal Pesan</label>
-											<input type="text" class="form-control input-lg" placeholder="perihal_Pesan" name="perihal_pesan" required>
+											<input type="text" class="form-control input-lg" placeholder="Perihal Pesan" name="perihal_pesan" required>
 										</div><!-- /.input-group -->
 										<div class="form-group">
 											<textarea class="summernote-sm" name="isi_pesan">Assalamualaikum, </textarea>
@@ -118,7 +118,7 @@
 						</div><!-- /.the-box -->
 					</div><!-- /.mail-apps-wrap -->
 					<!-- END MAIL APPS NEW MAIL -->
-					
+
 				</div><!-- /.container-fluid -->
 			</div><!-- /.page-content -->
 		</div><!-- /.wrapper -->

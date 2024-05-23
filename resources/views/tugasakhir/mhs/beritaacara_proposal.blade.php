@@ -16,7 +16,7 @@
             <!-- End breadcrumb -->
 
             <!-- BEGIN DATA TABLE -->
-            <h3 class="page-heading">Berita Acara</h3>
+            <h3 class="page-heading">Berita Acara Proposal</h3>
             <div class="the-box">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="datatable-example">
@@ -78,7 +78,7 @@
                                         {{$ketuasidang->NAMA_DOSEN}}
                                     @endif
                                 </td>
-                                
+
                                 <td style="width: 240px; text-align: center">
                                     @if ((helper::getRuanganByNim($d->C_NPM) == null) || (helper::getRuanganByNim($d->C_NPM) == '') && $penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
                                         Berita Acara Belum Terbit
