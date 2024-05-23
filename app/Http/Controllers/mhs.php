@@ -1240,4 +1240,70 @@ class mhs extends Controller
             "tgl_ujian"
         ));
     }
+
+    public function request_surat_lokasi_penelitian()
+    {
+        try {
+            $C_NPM = auth()->user()->name;
+            $data_bimbingan = DB::table('trt_bimbingan')
+                ->select('trt_bimbingan.*')
+                ->where('trt_bimbingan.C_NPM', $C_NPM)
+                ->first();
+            $status_bimbingan = $data_bimbingan->status_bimbingan;
+            $judul = $data_bimbingan->judul;
+            $pembimbing_ketua = helper::getDeskripsi($data_bimbingan->pembimbing_I_id);
+            $pembimbing_anggota = helper::getDeskripsi($data_bimbingan->pembimbing_II_id);
+            $program_studi = helper::getProgramStudiByNim($C_NPM);
+            $nama = helper::getNamaMhs($C_NPM);
+
+            $data_lokasi_penelitian = DB::table('mst_lokasi_penelitian')
+                ->select('*')
+                ->where('nim_pemohon', $C_NPM)
+                ->get();
+
+            return view('tugasakhir.mhs.request_surat_lokasi_penelitian', compact('C_NPM', 'status_bimbingan', 'judul', 'pembimbing_ketua', 'pembimbing_anggota', 'program_studi', 'nama', 'data_lokasi_penelitian'));
+        } catch (Exception $error) {
+            return redirect()->back();
+        }
+    }
+
+    public function post_request_surat_lokasi_penelitian(Request $request)
+    {
+        try {
+            DB::table('mst_lokasi_penelitian')->insert([
+                'nomor_surat' => $request->nomor_surat,
+                'tanggal_permohonan' => now(),
+                'nama_pemohon' => $request->nama_pemohon,
+                'nim_pemohon' => $request->nim_pemohon,
+                'program_studi' => $request->program_studi,
+                'judul_penelitian' => $request->judul_penelitian,
+                'lokasi_penelitian' => strtoupper($request->lokasi_penelitian),
+                'kota' => strtoupper($request->kota),
+                'provinsi' => strtoupper($request->provinsi),
+                'tanggal_mulai' => $request->tanggal_mulai,
+                'tanggal_selesai' => $request->tanggal_selesai,
+                'dosen_pembimbing_ketua' => $request->dosen_pembimbing_ketua,
+                'dosen_pembimbing_anggota' => $request->dosen_pembimbing_anggota,
+                'kontak_pemohon' => $request->kontak_pemohon,
+                'email_pemohon' => strtolower($request->email_pemohon),
+                'note' => $request->note,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil mengajukan surat lokasi penelitian"]));
+        } catch (Exception $error) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "gagal mengajukan surat lokasi penelitian"]));
+        }
+    }
+
+    public function delete_request_surat_lokasi_penelitian($id)
+    {
+        try {
+            DB::table('mst_lokasi_penelitian')->where('id', $id)->delete();
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil menghapus surat lokasi penelitian"]));
+        } catch (Exception $error) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "gagal menghapus surat lokasi penelitian"]));
+        }
+    }
 }

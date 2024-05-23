@@ -46,30 +46,30 @@
                                 </div>
                             </div>
                             <br><br>
-                            {{-- <div class="form-group">
-                        <label class="col-lg-2 control-label">Bidang Ilmu Peminatan</label>
-                        <div class="col-lg-5">
-                            <select class="form-control" name="bidang_ilmu_peminatan" id="bidang_ilmu_peminatan">
-                                @foreach ($data as $key => $value)
-                                <option value="{{$value->bidangilmu_id}}">{{$value->bidang_ilmu}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Bidang Ilmu Topik</label>
-                        <div class="col-lg-5">
-                            <select name='bidang_ilmu[]' data-placeholder="Pilih Scope..."
-                                class="form-control chosen-select" multiple tabindex="4" required>
-                                <option value="" disabled>&nbsp;</option>
-                                @foreach ($data as $key => $value)
-                                <option value="{{$value->bidangilmu_id}}">{{$value->bidang_ilmu}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <br><br> --}}
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Bidang Ilmu Peminatan</label>
+                                <div class="col-lg-5">
+                                    <select class="form-control" name="bidang_ilmu_peminatan" id="bidang_ilmu_peminatan">
+                                        @foreach ($data as $key => $value)
+                                            <option value="{{ $value->bidangilmu_id }}">{{ $value->bidang_ilmu }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Bidang Ilmu Topik</label>
+                                <div class="col-lg-5">
+                                    <select name='bidang_ilmu[]' data-placeholder="Pilih Scope..."
+                                        class="form-control chosen-select" multiple tabindex="4" required>
+                                        <option value="" disabled>&nbsp;</option>
+                                        @foreach ($data as $key => $value)
+                                            <option value="{{ $value->bidangilmu_id }}">{{ $value->bidang_ilmu }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br><br>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Kerangka Pikir</label>
                                 <div class="col-lg-5">
@@ -122,16 +122,10 @@
                         </div>
                         <br><br>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Bidang Ilmu Topik</label>
+                            <label class="col-lg-2 control-label">Bidang Ilmu Peminatan</label>
                             <div class="col-xs-5">
-                                @foreach ($bidangilmuid as $key => $value)
-                                    @php
-                                        $bidangilmu = new \App\Model\mst_bidangilmu();
-                                    @endphp
-                                    <div class="form-control bold-border">{{ ++$key }}
-                                        {{ $bidangilmu->where('bidangilmu_id', $value->bidang_ilmu)->first()->bidang_ilmu }}
-                                    </div>
-                                @endforeach
+                                <div class="form-control bold-border">
+                                    {{ $topik->bidang_ilmu_peminatan }}</div>
                             </div>
                         </div>
                     </fieldset>
@@ -420,26 +414,26 @@
             console.log(index);
             console.log(id);
             axios.get(`https://thesis-dev.fikom.app/fh/mhs/usulan_tmp/pembimbing/getstatus/${index}/${id}`).then(
-            res => {
-                if (index === "0") {
-                    status.map(s => {
-                        if (s.value === res.data) {
-                            status0.classList = s.class;
-                            status0.style.display = "initial";
-                            status0.innerHTML = "<b>" + s.text + "</b>";
-                        }
-                    });
-                }
-                if (index === "1") {
-                    status.map(s => {
-                        if (s.value === res.data) {
-                            status1.classList = s.class;
-                            status1.style.display = "initial";
-                            status1.innerHTML = "<b>" + s.text + "</b>";
-                        }
-                    });
-                }
-            }).catch(() => {
+                res => {
+                    if (index === "0") {
+                        status.map(s => {
+                            if (s.value === res.data) {
+                                status0.classList = s.class;
+                                status0.style.display = "initial";
+                                status0.innerHTML = "<b>" + s.text + "</b>";
+                            }
+                        });
+                    }
+                    if (index === "1") {
+                        status.map(s => {
+                            if (s.value === res.data) {
+                                status1.classList = s.class;
+                                status1.style.display = "initial";
+                                status1.innerHTML = "<b>" + s.text + "</b>";
+                            }
+                        });
+                    }
+                }).catch(() => {
                 if (index === "0") {
                     status0.style.display = "none";
                 }

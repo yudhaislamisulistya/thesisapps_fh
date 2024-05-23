@@ -680,4 +680,9 @@ Route::group(['middleware' => 'mhs'], function () {
 
     // Data Penguji
     Route::get('/mhs/data_penguji', 'mhs@data_penguji');
+
+    // Request Surat Lokasi Penelitian
+    Route::get('/mhs/request_surat_lokasi_penelitian', 'mhs@request_surat_lokasi_penelitian');
+    Route::post('/mhs/request_surat_lokasi_penelitian', 'mhs@post_request_surat_lokasi_penelitian');
+    Route::get('/mhs/request_surat_lokasi_penelitian/delete/{id}', 'mhs@delete_request_surat_lokasi_penelitian');
 });

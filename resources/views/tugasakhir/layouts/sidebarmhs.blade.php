@@ -118,6 +118,13 @@
                 Data Penguji
             </a>
         </li>
+        {{-- Request Surat Lokasi Peneliitian --}}
+        <li>
+            <a href="{{url('mhs/request_surat_lokasi_penelitian')}}">
+                <i class="fa fa-eye icon-sidebar"></i>
+                Request Surat Lokasi Penelitian
+            </a>
+        </li>
     </ul>
 </div><!-- /.sidebar-left -->
 <!-- END SIDEBAR LEFT -->
