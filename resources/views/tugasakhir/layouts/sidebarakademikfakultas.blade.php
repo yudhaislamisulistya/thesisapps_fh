@@ -81,8 +81,19 @@
                 Jadwal Ujian Per Mahasiswa
             </a>
             <ul class="submenu">
-                <li><a href="{{ url('fakultas/jadwalpermhs/proposal')}}">Proposal</a></li>
-                <li><a href="{{ url('fakultas/jadwalpermhs/ujianmeja')}}">Ujian Meja</a></li>
+                <li><a href="{{ url('fakultas/jadwalpermhs/proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('fakultas/jadwalpermhs/ujianmeja') }}">Ujian Meja</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#fakelink">
+                <i class="fa fa-calendar icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Approve Hasil Ujian
+            </a>
+            <ul class="submenu">
+                <li><a href="{{ url('fakultas/approve_hasilujian_proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('fakultas/approve_hasilujian_ta') }}">Ujian Meja</a></li>
             </ul>
         </li>
         <li>

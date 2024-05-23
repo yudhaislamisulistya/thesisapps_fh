@@ -235,6 +235,7 @@ Route::group(['middleware' => 'kaprodi'], function () {
     Route::get("/prodi/approve_hasilujian_proposal_all_post", "Prodi@approve_hasilujian_proposal_all_post");
     Route::get("/prodi/approve_hasilujian_ta_all_post", "Prodi@approve_hasilujian_ta_all_post");
 
+    // Hasil Ujian TA
     Route::get("/prodi/approve_hasilujian_ta/", "Prodi@approve_hasilujian_ta");
     Route::get("/prodi/detail_hasilujian_ta/{id}", "Prodi@detail_hasilujian_ta");
     Route::get("/prodi/approve_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "Prodi@approve_hasilujian_ta_post");
@@ -468,6 +469,20 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get('/fakultas/detail_jadwalpermhs/{pendaftaran_id}', 'fakultas@detailJadwalPermhs')->name('get_fakultas_detailJadwalPermhs');
     Route::get('/fakultas/set_jadwalpermhs/{pendaftaran_id}/{nim}', 'fakultas@set_jadwalujianpermhs');
     Route::post('/fakultas/set_jadwalpermhs/{pendaftaran_id}', 'fakultas@set_jadwalujianpermhspost');
+
+    // Aprove Hasil Ujian
+    Route::get("/fakultas/approve_hasilujian_proposal/", "fakultas@approve_hasilujian_proposal");
+    Route::get("/fakultas/detail_hasilujian_proposal/{id}", "fakultas@detail_hasilujian_proposal");
+    Route::get("/fakultas/approve_hasilujian_proposal_post/{id}/{nim}/{pendaftaran_id}", "fakultas@approve_hasilujian_proposal_post");
+    Route::get("/fakultas/tolak_hasilujian_proposal_post/{id}/{nim}/{pendaftaran_id}", "fakultas@tolak_hasilujian_proposal_post");
+    Route::get("/fakultas/lembaran_hasilujian_proposal/{id}/{nim}/{regid}", "fakultas@lembaran_hasilujian_proposal");
+    Route::get("/fakultas/approve_hasilujian_proposal_all_post", "fakultas@approve_hasilujian_proposal_all_post");
+    Route::get("/fakultas/approve_hasilujian_ta_all_post", "fakultas@approve_hasilujian_ta_all_post");
+    Route::get("/fakultas/approve_hasilujian_ta/", "fakultas@approve_hasilujian_ta");
+    Route::get("/fakultas/detail_hasilujian_ta/{id}", "fakultas@detail_hasilujian_ta");
+    Route::get("/fakultas/approve_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "fakultas@approve_hasilujian_ta_post");
+    Route::get("/fakultas/tolak_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "fakultas@tolak_hasilujian_ta_post");
+    Route::get("/fakultas/lembaran_hasilujian_ta/{id}/{nim}/{regid}", "fakultas@lembaran_hasilujian_ta");
     //
 });
 

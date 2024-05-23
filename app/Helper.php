@@ -678,9 +678,25 @@ class Helper
             ->first();
         $status = "";
         if ($data == null || $data == '') {
-            $status = '<i class="fa fa-times-circle text-danger"></i>';
+            $status = "<i class='fa fa-times-circle text-danger'></i>";
         } else {
-            $status = '<i class="fa fa-check-circle text-success"></i>';
+            $status = "<i class='fa fa-check-circle text-success'></i>";
+        }
+        return $status;
+    }
+
+    public static function getPenilaianPerDosen($nim, $reg_id)
+    {
+        $data = DB::table('trt_hasil')
+            ->select('*')
+            ->where('trt_hasil.nidn', $nim)
+            ->where('trt_hasil.reg_id', $reg_id)
+            ->first();
+        $status = "";
+        if ($data == null || $data == '') {
+            $status = "Belum Dinilai";
+        } else {
+            $status = "Sudah Dinilai";
         }
         return $status;
     }

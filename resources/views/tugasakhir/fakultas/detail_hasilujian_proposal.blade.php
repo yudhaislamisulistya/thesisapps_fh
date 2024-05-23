@@ -10,6 +10,12 @@
                 <li><a href="#fakelink">Home</a></li>
                 <li class="active">Jadwal Ujian Per Mahasiswa</li>
             </ol>
+            @if (Session::get('status') == 'berhasil')
+                <div class="alert alert-success" role="alert"><strong>Berhasil! </strong><?= Session::get('message') ?>
+                </div>
+            @elseif(Session::get('status') == 'gagal')
+                <div class="alert alert-danger" role="alert"><strong>Gagal! </strong><?= Session::get('message') ?></div>
+            @endif
             <div class="the-box">
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Tanggal Ujian</label>
@@ -56,6 +62,7 @@
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>
                                 <th>Ketua Sidang</th>
+                                <th>Approve</th>
                                 <th>Hasil</th>
                             </tr>
                         </thead>
@@ -113,11 +120,48 @@
                                         @if ($penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
                                             Silahkan Set Penguji dan Ketua Sidang
                                         @else
-                                            @if (helper::getPenilaianPerDosen($d->penguji_I_id, $d->reg_id) === "Belum Dinilai" || helper::getPenilaianPerDosen($d->penguji_II_id, $d->reg_id) === "Belum Dinilai" || helper::getPenilaianPerDosen($d->penguji_III_id, $d->reg_id) === "Belum Dinilai" || helper::getPenilaianPerDosen($d->ketua_sidang_id, $d->reg_id) === "Belum Dinilai")
-                                                Penilaian Belum Selesai
+                                            @if (helper::getStatusBimbinganByNim($d->C_NPM) == 0)
+                                                @if (helper::getJumlahTrtHasil($d->reg_id) == 5)
+                                                    @if (helper::getStatusTolakBimbinganProposalByNim($d->C_NPM) == 0)
+                                                        <button onclick="showModal(this)" data-target="#modalPrimary"
+                                                            data-toggle="modal"
+                                                            data-href="{{ url('/fakultas/approve_hasilujian_proposal_post/') }}/{{ $d->bimbingan_id }}/{{ $d->C_NPM }}/{{ $d->pendaftaran_id }}"
+                                                            class="btn btn-primary visible-lg-inline">Terima
+                                                        </button>
+                                                        <button onclick="showModal(this)" data-target="#modalDanger"
+                                                            data-toggle="modal"
+                                                            data-href="{{ url('/fakultas/tolak_hasilujian_proposal_post/') }}/{{ $d->bimbingan_id }}/{{ $d->C_NPM }}/{{ $d->pendaftaran_id }}"
+                                                            class="btn btn-danger visible-lg-inline">Tolak
+                                                        </button>
+                                                    @else
+                                                        <button class="btn btn-primary disabled">Anda Ditolak
+                                                        </button>
+                                                    @endif
+                                                @else
+                                                    <button onclick="showModal(this)" data-target="#modalPrimary"
+                                                        data-toggle="modal" data-href=""
+                                                        class="btn btn-primary disabled visible-lg-inline">Terima
+                                                    </button>
+                                                    <button onclick="showModal(this)" data-target="#modalPrimary"
+                                                        data-toggle="modal" data-href=""
+                                                        class="btn btn-danger visible-lg-inline disabled">Tolak
+                                                    </button>
+                                                @endif
                                             @else
-                                                <a href="{{ url('fakultas/lembaran_hasilujian_proposal/') }}/{{ $d->pendaftaran_id }}/{{ $d->C_NPM }}/{{ $d->reg_id }}"
+                                                <button class="btn btn-secondary" disabled>Telah diterima
+                                                </button>
+                                            @endif
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
+                                            Silahkan Set Penguji dan Ketua Sidang
+                                        @else
+                                            @if (helper::getJumlahTrtHasil($d->reg_id) == 5)
+                                                <a href="{{ url('fakultas/lembaran_hasilujian_proposal') }}/{{ $d->pendaftaran_id }}/{{ $d->C_NPM }}/{{ $d->reg_id }}"
                                                     class="btn btn-info" target="_blank"><i class="fa fa-paperclip"></i></a>
+                                            @else
+                                                <span>Penilaian Belum Lengkap</span>
                                             @endif
                                         @endif
                                     </td>
@@ -169,7 +213,7 @@
     Tolak
 @endsection
 @section('modalDangerBody')
-    Apakah Anda yakin ingin menolak pengajuan dokumen?
+    Apakah Anda yakin ingin menolak mahasiswa ini ?
 @endsection
 @section('modalDangerFooter')
     <button onclick="goOn(this)" class="btn btn-default">Tolak</button>

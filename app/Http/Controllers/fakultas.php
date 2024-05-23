@@ -1128,4 +1128,240 @@ class fakultas extends Controller
 
         return redirect()->to("/fakultas/detail_jadwalpermhs/$pendaftaran_id")->with((['status' => "berhasil", 'message' => "Berhasil menetapkan jadwal ujian"]));
     }
+
+    public function approve_hasilujian_proposal()
+    {
+        if (Auth::user()->name == "akademikfakultasfh") {
+            $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 0)
+                ->where('mst_pendaftaran.status_prodi', 1)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        } else {
+            $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 0)
+                ->where('mst_pendaftaran.status_prodi', 2)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        }
+        return view('tugasakhir.fakultas.approve_hasilujian_proposal', compact('data'));
+    }
+
+    public function detail_hasilujian_proposal($id)
+    {
+        $info = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $id)->first();
+        $data = DB::select("SELECT * FROM mst_pendaftaran,trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa WHERE mst_pendaftaran.pendaftaran_id = trt_reg.pendaftaran_id AND trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND trt_reg.pendaftaran_id = ? AND trt_reg.status = ?", [$id, $info->tipe_ujian]);
+
+        return view('tugasakhir.fakultas.detail_hasilujian_proposal', compact("data", "info"));
+    }
+
+    public function approve_hasilujian_proposal_post($id, $nim, $pendaftaran_id)
+    {
+        try {
+            DB::table('trt_bimbingan')
+                ->where([
+                    "bimbingan_id" => $id,
+                    "C_NPM" => $nim
+                ])
+                ->update(['status_bimbingan' => 1]);
+            return redirect('fakultas/detail_hasilujian_proposal/' . $pendaftaran_id)->with((['status' => "berhasil", 'message' => "berhasil menyetujui hasil ujian"]));
+        } catch (\Throwable $th) {
+            return redirect('fakultas/detail_hasilujian_proposal/' . $pendaftaran_id)->with((['status' => "gagal", 'message' => "gagal menyetujui hasil ujian"]));
+        }
+    }
+
+    public function tolak_hasilujian_proposal_post($id, $nim, $pendaftaran_id)
+    {
+        DB::table('trt_bimbingan')
+            ->where([
+                "bimbingan_id" => $id,
+                "C_NPM" => $nim
+            ])
+            ->update([
+                'status_tolak_proposal' => 1,
+            ]);
+
+        DB::table('trt_reg')
+            ->where([
+                "bimbingan_id" => $id,
+                "status" => 0
+            ])
+            ->delete();
+
+        return redirect('fakultas/detail_hasilujian_proposal/' . $pendaftaran_id);
+    }
+
+    public function approve_hasilujian_proposal_all_post()
+    {
+        $data = DB::table('trt_bimbingan')
+            ->join("trt_reg", "trt_reg.bimbingan_id", "=", "trt_bimbingan.bimbingan_id")
+            ->select("trt_reg.reg_id", "trt_bimbingan.bimbingan_id")
+            ->where("trt_bimbingan.status_bimbingan", 0)
+            ->get();
+        $data_bimbingan_id = array();
+        foreach ($data as $key => $value) {
+            if (Helper::getJumlahTrtHasil($value->reg_id) == 5) {
+                array_push($data_bimbingan_id, $value->bimbingan_id);
+            }
+        }
+
+        try {
+            DB::table("trt_bimbingan")
+                ->whereIn("bimbingan_id", $data_bimbingan_id)
+                ->update(["status_bimbingan" => 1]);
+
+            return redirect()->back()->with(['status' => 'success', 'total' => count($data_bimbingan_id)]);
+        } catch (\Exception $th) {
+            return redirect()->back()->with(['status' => 'error', 'total' => count($data_bimbingan_id)]);
+        }
+    }
+
+    public function approve_hasilujian_ta_all_post()
+    {
+        $data = DB::table('trt_bimbingan')
+            ->join("trt_reg", "trt_reg.bimbingan_id", "=", "trt_bimbingan.bimbingan_id")
+            ->select("trt_reg.reg_id", "trt_bimbingan.bimbingan_id")
+            ->where("trt_bimbingan.status_bimbingan", 2)
+            ->get();
+        $data_bimbingan_id = array();
+        foreach ($data as $key => $value) {
+            if (Helper::getJumlahTrtHasil($value->reg_id) == 6) {
+                array_push($data_bimbingan_id, $value->bimbingan_id);
+            }
+        }
+
+        try {
+            DB::table("trt_bimbingan")
+                ->whereIn("bimbingan_id", $data_bimbingan_id)
+                ->update(["status_bimbingan" => 3]);
+
+            return redirect()->back()->with(['status' => 'success', 'total' => count($data_bimbingan_id)]);
+        } catch (\Exception $th) {
+            return redirect()->back()->with(['status' => 'error', 'total' => count($data_bimbingan_id)]);
+        }
+    }
+
+    public function approve_hasilujian_ta()
+    {
+        if (Auth::user()->name == "akademikfakultasfh") {
+            $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 2)
+                ->where('mst_pendaftaran.status_prodi', 1)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        } else {
+            $data = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+                ->where('tipe_ujian', 2)
+                ->where('mst_pendaftaran.status_prodi', 2)
+                ->orwhere('tipe_ujian', 3)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        }
+        return view('tugasakhir.fakultas.approve_hasilujian_ta', compact('data'));
+    }
+
+    public function detail_hasilujian_ta($id)
+    {
+        $info = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("mst_pendaftaran.pendaftaran_id", $id)->first();
+        $data = DB::select("SELECT * FROM mst_pendaftaran,trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa WHERE mst_pendaftaran.pendaftaran_id = trt_reg.pendaftaran_id AND trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND trt_reg.pendaftaran_id = ? AND trt_reg.status = ?", [$id, $info->tipe_ujian]);
+
+        return view('tugasakhir.fakultas.detail_hasilujian_ta', compact("data", "info"));
+    }
+
+    public function approve_hasilujian_ta_post($id, $nim, $pendaftaran_id)
+    {
+        DB::table('trt_bimbingan')
+            ->where([
+                "bimbingan_id" => $id,
+                "C_NPM" => $nim
+            ])
+            ->update(['status_bimbingan' => 3]);
+        return redirect('fakultas/detail_hasilujian_ta/' . $pendaftaran_id);
+    }
+
+    public function tolak_hasilujian_ta_post($id, $nim, $pendaftaran_id)
+    {
+        DB::table('trt_bimbingan')
+            ->where([
+                "bimbingan_id" => $id,
+                "C_NPM" => $nim
+            ])
+            ->update([
+                'status_tolak_meja' => 1,
+            ]);
+
+        DB::table('trt_reg')
+            ->where([
+                "bimbingan_id" => $id,
+                "status" => 2
+            ])
+            ->delete();
+        return redirect('fakultas/detail_hasilujian_ta/' . $pendaftaran_id);
+    }
+
+    public function lembaran_hasilujian_ta($pendaftaran_id, $nim, $reg_id)
+    {
+        $trtjadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("trt_jadwal_ujian.pendaftaran_id", $pendaftaran_id)->first();
+        $trtjadwalujianpermhs = TrtJadwalUjianPerMhs::join("mst_ruangan", "mst_ruangan.id", "trt_jadwal_ujian_per_mhs.ruangan")
+            ->where([
+                "C_NPM" => $nim,
+                "jadwal_ujian" => $trtjadwalujian->id
+            ])->first();
+        $trt_bimbingan = trt_bimbingan::where("C_NPM", $nim)->first();
+        $mst_pendaftaran = mst_pendaftaran::find($pendaftaran_id);
+        $trt_penguji = TrtPenguji::where([
+            "C_NPM" => $nim,
+            "tipe_ujian" => $mst_pendaftaran->tipe_ujian
+        ])->first();
+
+        $ruangan = MstRuangan::find($trtjadwalujianpermhs->ruangan)->nama_ruangan;
+        $tgl_ujian = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%A, %d %B %Y");
+        $tanggal = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%d");
+        $bulan = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%m");
+        $tahun = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%Y");
+        switch ($mst_pendaftaran->tipe_ujian) {
+            case "0":
+                $tipe_ujian = "Proposal";
+                break;
+            case "2":
+                $tipe_ujian = "Meja";
+                break;
+        }
+
+        $reg_id = $reg_id;
+
+        $data_hasil = trt_hasil::where('reg_id', $reg_id)->get();
+        $data_dosen_selesai = DB::table('trt_penguji')
+            ->select('*')
+            ->where('trt_penguji.C_NPM', $nim)
+            ->where('trt_penguji.tipe_ujian', 2)
+            ->first();
+
+        $data_dosen_pembimbing = DB::table('trt_bimbingan')
+            ->select("*")
+            ->where("trt_bimbingan.C_NPM", $nim)
+            ->first();
+
+        return view("tugasakhir.fakultas.lembaran_hasilujian_ta", compact(
+            "nim",
+            "trt_bimbingan",
+            "trt_penguji",
+            "tipe_ujian",
+            "ruangan",
+            "tgl_ujian",
+            "data_hasil",
+            "reg_id",
+            "data_dosen_selesai",
+            "data_dosen_pembimbing",
+            "tanggal",
+            "bulan",
+            "tahun"
+        ));
+    }
 }
