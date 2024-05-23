@@ -114,6 +114,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ url('fakultas/approve_hasilujian_proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('fakultas/approve_hasilujian_seminar') }}">Seminar</a></li>
                 <li><a href="{{ url('fakultas/approve_hasilujian_ta') }}">Ujian Meja</a></li>
             </ul>
         </li>

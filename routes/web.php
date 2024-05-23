@@ -224,16 +224,20 @@ Route::group(['middleware' => 'kaprodi'], function () {
 
     Route::post("/prodi/ubah_password/", "Prodi@ubah_password_post");
 
-    // Hasil Ujian
+    // Hasil Ujian Proposal
     Route::get("/prodi/approve_hasilujian_proposal/", "Prodi@approve_hasilujian_proposal");
     Route::get("/prodi/detail_hasilujian_proposal/{id}", "Prodi@detail_hasilujian_proposal");
     Route::get("/prodi/approve_hasilujian_proposal_post/{id}/{nim}/{pendaftaran_id}", "Prodi@approve_hasilujian_proposal_post");
     Route::get("/prodi/tolak_hasilujian_proposal_post/{id}/{nim}/{pendaftaran_id}", "Prodi@tolak_hasilujian_proposal_post");
     Route::get("/prodi/lembaran_hasilujian_proposal/{id}/{nim}/{regid}", "Prodi@lembaran_hasilujian_proposal");
 
-    // Approve Semua Hasil Ujian
-    Route::get("/prodi/approve_hasilujian_proposal_all_post", "Prodi@approve_hasilujian_proposal_all_post");
-    Route::get("/prodi/approve_hasilujian_ta_all_post", "Prodi@approve_hasilujian_ta_all_post");
+    // Hasil Ujian Seminar
+    Route::get("/prodi/approve_hasilujian_seminar/", "Prodi@approve_hasilujian_seminar");
+    Route::get("/prodi/detail_hasilujian_seminar/{id}", "Prodi@detail_hasilujian_seminar");
+    Route::get("/prodi/approve_hasilujian_seminar_post/{id}/{nim}/{pendaftaran_id}", "Prodi@approve_hasilujian_seminar_post");
+    Route::get("/prodi/tolak_hasilujian_seminar_post/{id}/{nim}/{pendaftaran_id}", "Prodi@tolak_hasilujian_seminar_post");
+    Route::get("/prodi/lembaran_hasilujian_seminar/{id}/{nim}/{regid}", "Prodi@lembaran_hasilujian_seminar");
+
 
     // Hasil Ujian TA
     Route::get("/prodi/approve_hasilujian_ta/", "Prodi@approve_hasilujian_ta");
@@ -241,6 +245,10 @@ Route::group(['middleware' => 'kaprodi'], function () {
     Route::get("/prodi/approve_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "Prodi@approve_hasilujian_ta_post");
     Route::get("/prodi/tolak_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "Prodi@tolak_hasilujian_ta_post");
     Route::get("/prodi/lembaran_hasilujian_ta/{id}/{nim}/{regid}", "Prodi@lembaran_hasilujian_ta");
+
+    // Approve Semua Hasil Ujian
+    Route::get("/prodi/approve_hasilujian_proposal_all_post", "Prodi@approve_hasilujian_proposal_all_post");
+    Route::get("/prodi/approve_hasilujian_ta_all_post", "Prodi@approve_hasilujian_ta_all_post");
 
     Route::get("/prodi/make_user_all", "Prodi@make_user_all");
 
@@ -499,6 +507,11 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get("/fakultas/approve_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "fakultas@approve_hasilujian_ta_post");
     Route::get("/fakultas/tolak_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "fakultas@tolak_hasilujian_ta_post");
     Route::get("/fakultas/lembaran_hasilujian_ta/{id}/{nim}/{regid}", "fakultas@lembaran_hasilujian_ta");
+    Route::get("/fakultas/approve_hasilujian_seminar/", "fakultas@approve_hasilujian_seminar");
+    Route::get("/fakultas/detail_hasilujian_seminar/{id}", "fakultas@detail_hasilujian_seminar");
+    Route::get("/fakultas/approve_hasilujian_seminar_post/{id}/{nim}/{pendaftaran_id}", "fakultas@approve_hasilujian_seminar_post");
+    Route::get("/fakultas/tolak_hasilujian_seminar_post/{id}/{nim}/{pendaftaran_id}", "fakultas@tolak_hasilujian_seminar_post");
+    Route::get("/fakultas/lembaran_hasilujian_seminar/{id}/{nim}/{regid}", "fakultas@lembaran_hasilujian_seminar");
 
     // Persyaratan Ujian
     Route::get('/fakultas/syarat_ujian', 'fakultas@syarat_ujian')->name('get_fakultas_syarat_ujian');
@@ -532,6 +545,9 @@ Route::group(['middleware' => 'dosen'], function () {
     Route::get("/dsn/hasil_proposal/", "dosen@hasil_proposal");
     Route::get("/dsn/detailhasil_proposal/{regid}", "dosen@detailhasil_proposal");
     Route::post("/dsn/detailhasil_proposalpost/", "dosen@detailhasil_proposalpost");
+    Route::get("/dsn/hasil_seminar/", "dosen@hasil_seminar");
+    Route::get("/dsn/detailhasil_seminar/{regid}", "dosen@detailhasil_seminar");
+    Route::post("/dsn/detailhasil_seminarpost/", "dosen@detailhasil_seminarpost");
     Route::get("/dsn/hasil_ujianmeja/", "dosen@hasil_ujianmeja");
     Route::get("/dsn/detailhasil_ujianmeja/{regid}", "dosen@detailhasil_ujianmeja");
     Route::post("/dsn/detailhasil_ujianmejapost/", "dosen@detailhasil_ujianmejapost");

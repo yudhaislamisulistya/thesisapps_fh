@@ -836,6 +836,15 @@ class Helper
         return isset($v) ? $v->status_tolak_proposal : '';
     }
 
+    public static function getStatusTolakBimbinganSeminarByNim($nim)
+    {
+        $v = DB::table('trt_bimbingan')
+            ->select("trt_bimbingan.status_tolak_seminar")
+            ->where('trt_bimbingan.C_NPM', $nim)
+            ->first();
+        return isset($v) ? $v->status_tolak_seminar : '';
+    }
+
     public static function getStatusTolakBimbinganMejaByNim($nim)
     {
         $v = DB::table('trt_bimbingan')

@@ -341,6 +341,85 @@ class dosen extends Controller
     // Hasil Kirim Detail Hasil Proposal
 
     // Halaman Hasili Ujian Proposal
+    public function hasil_seminar()
+    {
+        $kode = auth()->user()->name;
+        $data = DB::select("SELECT * FROM trt_reg, trt_bimbingan, trt_penguji, t_mst_mahasiswa WHERE trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND trt_bimbingan.C_NPM = t_mst_mahasiswa.C_NPM AND trt_penguji.tipe_ujian = trt_reg.status AND  trt_penguji.C_NPM = trt_bimbingan.C_NPM AND (trt_penguji.penguji_I_id  = ? OR trt_penguji.penguji_II_id  = ? OR trt_penguji.penguji_III_id  = ? OR trt_penguji.ketua_sidang_id = ? OR trt_bimbingan.pembimbing_I_id = ? OR trt_bimbingan.pembimbing_II_id = ?) AND trt_reg.status = ?", [$kode, $kode, $kode, $kode, $kode, $kode, 1]);
+
+        return view('tugasakhir.dosen.hasil_seminar', compact('data'));
+    }
+    // Akhir Halaman Hasil Ujian seminar
+
+    // Detail Halaman Hasil Ujian
+    public function detailhasil_seminar($regid)
+    {
+        $data_hasil = trt_hasil::where('reg_id', $regid)->where('nidn', auth()->user()->name)->first();
+        $nilai = array();
+        if ($data_hasil != null) {
+            $data = DB::select('SELECT * FROM trt_reg, trt_bimbingan, trt_hasil, t_mst_mahasiswa WHERE trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND t_mst_mahasiswa.C_NPM = trt_bimbingan.C_NPM AND trt_reg.reg_id = trt_hasil.reg_id AND trt_reg.reg_id = ? AND trt_hasil.nidn = ?', [$regid, auth()->user()->name]);
+
+            $nilai = [
+                "nilai_1" => $data[0]->nilai_1,
+                "nilai_2" => $data[0]->nilai_2,
+                "nilai_3" => $data[0]->nilai_3,
+                "nilai_4" => $data[0]->nilai_4,
+                "nilai_5" => $data[0]->nilai_5,
+                "saran" => $data[0]->saran,
+            ];
+        } else {
+            $data = DB::select('SELECT * FROM trt_reg, trt_bimbingan, t_mst_mahasiswa WHERE trt_reg.bimbingan_id = trt_bimbingan.bimbingan_id AND t_mst_mahasiswa.C_NPM = trt_bimbingan.C_NPM AND trt_reg.reg_id = ?', [$regid]);
+            $nilai = [
+                "nilai_1" => null,
+                "nilai_2" => null,
+                "nilai_3" => null,
+                "nilai_4" => null,
+                "nilai_5" => null,
+                "saran" => null,
+            ];
+        }
+
+
+
+        return view('tugasakhir.dosen.detailhasil_seminar', compact('data', 'nilai'));
+    }
+    // Akhir Detail Halaman Hasil Ujian
+
+    // Kirim Detail Hasil seminar
+    public function detailhasil_seminarpost(Request $request)
+    {
+        try {
+            $data_hasil = trt_hasil::where('reg_id', $request->reg_id)->where('nidn', auth()->user()->name)->first();
+            if ($data_hasil != null) {
+                trt_hasil::where('reg_id', $request->reg_id)->where('nidn', auth()->user()->name)->update([
+                    'reg_id' => $request->reg_id,
+                    'nidn' => auth()->user()->name,
+                    'nilai_1' => $request->nilai_1,
+                    'nilai_2' => $request->nilai_2,
+                    'nilai_3' => $request->nilai_3,
+                    'nilai_4' => $request->nilai_4,
+                    'nilai_5' => $request->nilai_5,
+                    'saran' => $request->saran,
+                ]);
+            } else {
+                trt_hasil::create([
+                    'reg_id' => $request->reg_id,
+                    'nidn' => auth()->user()->name,
+                    'nilai_1' => $request->nilai_1,
+                    'nilai_2' => $request->nilai_2,
+                    'nilai_3' => $request->nilai_3,
+                    'nilai_4' => $request->nilai_4,
+                    'nilai_5' => $request->nilai_5,
+                    'saran' => $request->saran,
+                ]);
+            }
+            return redirect::to('dsn/hasil_seminar')->with((['status' => "berhasil", 'message' => "Data Berhasil dinilai"]));
+        } catch (\Throwable $th) {
+            return redirect::to('dsn/hasil_seminar')->with((['status' => "gagal", 'message' => "Data Gagal dinilai"]));
+        }
+    }
+    // Hasil Kirim Detail Hasil seminar
+
+    // Halaman Hasili Ujian Proposal
     public function hasil_ujianmeja()
     {
         $kode = auth()->user()->name;

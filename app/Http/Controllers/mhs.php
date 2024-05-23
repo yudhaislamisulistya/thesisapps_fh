@@ -636,6 +636,7 @@ class mhs extends Controller
                             'penguji_I_id' => $data_penguji_proposal->penguji_I_id,
                             'penguji_II_id' => $data_penguji_proposal->penguji_II_id,
                             'penguji_III_id' => $data_penguji_proposal->penguji_III_id,
+                            'ketua_sidang_id' => $data_penguji_proposal->ketua_sidang_id,
                         ]);
                     }
                 }
