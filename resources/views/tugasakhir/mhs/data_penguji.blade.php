@@ -38,6 +38,8 @@
                                     <td>
                                         @if ($value->tipe_ujian == 'Proposal')
                                             <span class="label label-success">{{ $value->tipe_ujian }}</span>
+                                        @elseif ($value->tipe_ujian == 'Seminar')
+                                            <span class="label label-info">{{ $value->tipe_ujian }}</span>
                                         @elseif ($value->tipe_ujian == 'Ujian Meja')
                                             <span class="label label-warning">{{ $value->tipe_ujian }}</span>
                                         @endif

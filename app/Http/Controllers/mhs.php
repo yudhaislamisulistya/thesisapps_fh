@@ -182,6 +182,9 @@ class mhs extends Controller
             case "0":
                 $tipe_ujian = "Proposal";
                 break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
             case "2":
                 $tipe_ujian = "Meja";
                 break;
@@ -810,6 +813,9 @@ class mhs extends Controller
             case "0":
                 $tipe_ujian = "Proposal";
                 break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
             case "2":
                 $tipe_ujian = "Meja";
                 break;
@@ -865,6 +871,9 @@ class mhs extends Controller
         switch ($mst_pendaftaran->tipe_ujian) {
             case "0":
                 $tipe_ujian = "Proposal";
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
                 break;
             case "2":
                 $tipe_ujian = "Meja";
@@ -996,6 +1005,15 @@ class mhs extends Controller
                         $waktu = $jam_ujian;
                     }
                     break;
+                case "1":
+                    $tipe_ujian = "Seminar";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
                 case "2":
                     $tipe_ujian = "Meja";
                     $count_jam_ujian = strlen($jam_ujian);
@@ -1099,7 +1117,7 @@ class mhs extends Controller
                     if ($dosen) {
                         $dosen->status = $dosenId == $penguji->ketua_sidang_id ? 'Ketua Sidang' : ($dosenId == $penguji->penguji_I_id ? 'Penguji I' : ($dosenId == $penguji->penguji_II_id ? 'Penguji II' : 'Penguji III'));
 
-                        $dosen->tipe_ujian = $penguji->tipe_ujian == 0 ? 'Proposal' : ($penguji->tipe_ujian == 2 ? 'Ujian Meja' : 'Tipe Ujian Tidak Diketahui');
+                        $dosen->tipe_ujian = $penguji->tipe_ujian == 0 ? 'Proposal' : ($penguji->tipe_ujian == 1 ? 'Seminar' : ($penguji->tipe_ujian == 2 ? 'Ujian Meja' : 'Tipe Ujian Tidak Diketahui'));
 
                         $dataDetailPenguji[] = $dosen;
                     }

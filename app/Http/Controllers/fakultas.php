@@ -78,6 +78,9 @@ class fakultas extends Controller
             case "0":
                 $tipe_ujian = "Proposal";
                 break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
             case "2":
                 $tipe_ujian = "Meja";
                 break;
@@ -152,6 +155,9 @@ class fakultas extends Controller
         switch ($mst_pendaftaran->tipe_ujian) {
             case "0":
                 $tipe_ujian = "Proposal";
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
                 break;
             case "2":
                 $tipe_ujian = "Meja";
@@ -1337,6 +1343,9 @@ class fakultas extends Controller
         switch ($mst_pendaftaran->tipe_ujian) {
             case "0":
                 $tipe_ujian = "Proposal";
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
                 break;
             case "2":
                 $tipe_ujian = "Meja";

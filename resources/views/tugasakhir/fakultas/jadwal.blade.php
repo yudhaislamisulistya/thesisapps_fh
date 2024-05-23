@@ -240,6 +240,8 @@
                                     @php
                                         if ($d->tipe_ujian == 0):
                                             $tipe = 'Proposal';
+                                        elseif ($d->tipe_ujian == 1):
+                                            $tipe = 'Seminar';
                                         elseif ($d->tipe_ujian == 2):
                                             $tipe = 'Ujian Meja';
                                         endif;

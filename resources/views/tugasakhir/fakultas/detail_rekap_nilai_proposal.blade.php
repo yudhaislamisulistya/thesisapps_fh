@@ -33,6 +33,8 @@
                         @php
                             if ($info->tipe_ujian == 0):
                                 $tipe = 'Proposal';
+                            elseif ($info->tipe_ujian == 1):
+                                $tipe = 'Seminar';
                             elseif ($info->tipe_ujian == 2):
                                 $tipe = 'Ujian Meja';
                             endif;

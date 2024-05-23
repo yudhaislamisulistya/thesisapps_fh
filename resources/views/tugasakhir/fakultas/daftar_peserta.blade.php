@@ -40,6 +40,8 @@
                         @php
                             if ($info->tipe_ujian == 0):
                                 $tipe = 'Proposal';
+                            elseif ($info->tipe_ujian == 1):
+                                $tipe = 'Seminar';
                             elseif ($info->tipe_ujian == 2):
                                 $tipe = 'Ujian Meja';
                             endif;
@@ -61,7 +63,7 @@
                                 <th>Penguji I</th>
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>
-                                <th>Ketua Sidang</th>
+                                {{-- <th>Ketua Sidang</th> --}}
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -102,13 +104,13 @@
                                             {{ $penguji3->NAMA_DOSEN }}
                                         @endif
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         @if ($ketuasidang == null)
                                             {{ '-' }}
                                         @else
                                             {{ $ketuasidang->NAMA_DOSEN }}
                                         @endif
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a class="btn btn-danger" onclick="showModal(this)" data-target="#modalDanger"
                                             data-toggle="modal"

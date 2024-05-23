@@ -89,6 +89,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ url('fakultas/jadwalpermhs/proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('fakultas/jadwalpermhs/seminarhasil') }}">Seminar Hasil</a></li>
                 <li><a href="{{ url('fakultas/jadwalpermhs/ujianmeja') }}">Ujian Meja</a></li>
             </ul>
         </li>

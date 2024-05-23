@@ -96,6 +96,9 @@ class dosen extends Controller
             case "0":
                 $tipe_ujian = "Proposal";
                 break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
             case "2":
                 $tipe_ujian = "Meja";
                 break;
@@ -172,6 +175,9 @@ class dosen extends Controller
         switch ($mst_pendaftaran->tipe_ujian) {
             case "0":
                 $tipe_ujian = "Proposal";
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
                 break;
             case "2":
                 $tipe_ujian = "Meja";
@@ -784,6 +790,15 @@ class dosen extends Controller
             switch ($trtjadwalujian->tipe_ujian) {
                 case "0":
                     $tipe_ujian = "Proposal";
+                    $count_jam_ujian = strlen($jam_ujian);
+                    if ($count_jam_ujian == 5) {
+                        $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                    } else {
+                        $waktu = $jam_ujian;
+                    }
+                    break;
+                case "1":
+                    $tipe_ujian = "Seminar";
                     $count_jam_ujian = strlen($jam_ujian);
                     if ($count_jam_ujian == 5) {
                         $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";

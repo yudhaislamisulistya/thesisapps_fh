@@ -117,6 +117,9 @@ class prodi extends Controller
             case "0":
                 $tipe_ujian = "Proposal";
                 break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
             case "2":
                 $tipe_ujian = "Meja";
                 break;
@@ -195,6 +198,9 @@ class prodi extends Controller
             case "0":
                 $tipe_ujian = "Proposal";
                 break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
             case "2":
                 $tipe_ujian = "Meja";
                 break;
@@ -253,7 +259,7 @@ class prodi extends Controller
             ->where('pembimbing_I_id', $id)
             ->get();
 
-            
+
 
         $data_bimbingan2 = DB::table('trt_bimbingan')
             ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
@@ -345,7 +351,7 @@ class prodi extends Controller
             ->orwhere('C_NPM', 'LIKE', '0402015%')
             ->orwhere('C_NPM', 'LIKE', '0402016%')
             ->get();
-        
+
         foreach ($data as $value) {
             $datapost['name'] = $value->C_NPM;
             $datapost['email'] = $value->C_NPM;
@@ -651,7 +657,7 @@ class prodi extends Controller
         $perihal = $datapost['perihal'];
         $tgl = $datapost['tgl'];
         $tgl = substr($tgl, 6, 4) . "-" . substr($tgl, 3, 2) . "-" . substr($tgl, 0, 2);
-        
+
         $data = $datapost['data'];
         $datax = DB::table('trt_bimbingan')
             ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
@@ -725,6 +731,15 @@ class prodi extends Controller
         switch ($trtjadwalujian->tipe_ujian) {
             case "0":
                 $tipe_ujian = "Proposal";
+                $count_jam_ujian = strlen($jam_ujian);
+                if ($count_jam_ujian == 5) {
+                    $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
+                } else {
+                    $waktu = $jam_ujian;
+                }
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
                 $count_jam_ujian = strlen($jam_ujian);
                 if ($count_jam_ujian == 5) {
                     $waktu = $jam_ujian . "-" . sprintf('%02d', substr($jam_ujian, 0, 2) + 2) . ":30";
@@ -1515,6 +1530,9 @@ class prodi extends Controller
         switch ($mst_pendaftaran->tipe_ujian) {
             case "0":
                 $tipe_ujian = "Proposal";
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
                 break;
             case "2":
                 $tipe_ujian = "Meja";
