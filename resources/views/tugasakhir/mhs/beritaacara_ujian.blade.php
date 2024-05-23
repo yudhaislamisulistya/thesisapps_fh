@@ -83,7 +83,7 @@
                                     @if ((helper::getRuanganUjianTAByNim($d->C_NPM) == null) || (helper::getRuanganUjianTAByNim($d->C_NPM) == '') && $penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
                                         Berita Acara Belum Terbit
                                     @else
-                                    <a href="{{ url("mhs/cetak_beritaacara_proposal/$d->pendaftaran_id/$d->C_NPM")}}" class="btn btn-info"><i class="fa fa-file-text"></i>Berita Acara</a>
+                                    <a href="{{ url("mhs/cetak_beritaacara_ujian/$d->pendaftaran_id/$d->C_NPM")}}" class="btn btn-info"><i class="fa fa-file-text"></i>Berita Acara</a>
                                     @endif
                                 </td>
                             </tr>

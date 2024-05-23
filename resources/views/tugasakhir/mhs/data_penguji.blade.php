@@ -23,40 +23,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dataDetailPenguji as $key => $value)
-                                <tr class="odd gradeX">
-                                    <td width="1%" align="center">{{ ++$key }}</td>
-                                    <td>{{ $value->C_KODE_DOSEN }}</td>
-                                    <td>{{ $value->NAMA_DOSEN }}</td>
-                                    <td>
-                                        @if ($value->JENIS_KELAMIN == '')
-                                            <span>Belum diisi</span>
-                                        @else
-                                            {{ $value->JENIS_KELAMIN }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($value->tipe_ujian == 'Proposal')
-                                            <span class="label label-success">{{ $value->tipe_ujian }}</span>
-                                        @elseif ($value->tipe_ujian == 'Seminar')
-                                            <span class="label label-info">{{ $value->tipe_ujian }}</span>
-                                        @elseif ($value->tipe_ujian == 'Ujian Meja')
-                                            <span class="label label-warning">{{ $value->tipe_ujian }}</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($value->status == 'Ketua Sidang')
-                                            <span class="label label-success">{{ $value->status }}</span>
-                                        @elseif($value->status == 'Penguji I')
-                                            <span class="label label-primary">{{ $value->status }}</span>
-                                        @elseif($value->status == 'Penguji II')
-                                            <span class="label label-danger">{{ $value->status }}</span>
-                                        @elseif($value->status == 'Penguji III')
-                                            <span class="label label-warning">{{ $value->status }}</span>
-                                        @endif
-                                    </td>
-                                </tr>
+                            @php
+                                $rowNumber = 1;
+                            @endphp
+
+                            @foreach ($dataDetailPenguji as $value)
+                                @if ($value->status !== 'Ketua Sidang')
+                                    <tr class="odd gradeX">
+                                        <td width="1%" align="center">{{ $rowNumber++ }}</td>
+                                        <td>{{ $value->C_KODE_DOSEN }}</td>
+                                        <td>{{ $value->NAMA_DOSEN }}</td>
+                                        <td>
+                                            @if ($value->JENIS_KELAMIN == '')
+                                                <span>Belum diisi</span>
+                                            @else
+                                                {{ $value->JENIS_KELAMIN }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($value->tipe_ujian == 'Proposal')
+                                                <span class="label label-success">{{ $value->tipe_ujian }}</span>
+                                            @elseif ($value->tipe_ujian == 'Seminar')
+                                                <span class="label label-info">{{ $value->tipe_ujian }}</span>
+                                            @elseif ($value->tipe_ujian == 'Ujian Meja')
+                                                <span class="label label-warning">{{ $value->tipe_ujian }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($value->status == 'Penguji I')
+                                                <span class="label label-primary">{{ $value->status }}</span>
+                                            @elseif ($value->status == 'Penguji II')
+                                                <span class="label label-danger">{{ $value->status }}</span>
+                                            @elseif ($value->status == 'Penguji III')
+                                                <span class="label label-warning">{{ $value->status }}</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
+
                         </tbody>
                     </table>
                 </div><!-- /.table-responsive -->

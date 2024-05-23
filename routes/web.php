@@ -632,7 +632,7 @@ Route::group(['middleware' => 'mhs'], function () {
     Route::get('/mhs/beritaacara_ujian/{nim}', 'mhs@beritaacara_ujian');
     Route::get('/mhs/cetak_beritaacara_proposal/{pendaftaran_id}/{nim}', 'mhs@cetak_beritaacara_proposal');
     Route::get('/mhs/cetak_beritaacara_seminar/{pendaftaran_id}/{nim}', 'mhs@cetakBeritaAcaraSeminar')->name('get_fakultas_cetakBeritaAcaraSeminar');
-
+    Route::get('/mhs/cetak_beritaacara_ujian/{pendaftaran_id}/{nim}', 'mhs@cetak_beritaacara_proposal');
 
     Route::post('/mhs/pengajuan_topik', 'mhs@pengajuan_topikpost');
     Route::post('/mhs/registrasi', 'mhs@registrasi');
