@@ -420,6 +420,11 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get("/fakultas/detail_rekap_nilai_proposal/{id}", "fakultas@detail_rekap_nilai_proposal");
     Route::get("/fakultas/lembaran_hasilujian_proposal/{id}/{nim}/{regid}", "fakultas@lembaran_hasilujian_proposal");
 
+    // Rekap Nilai Hasil Seminar
+    Route::get("/fakultas/rekap_nilai_seminar/", "fakultas@rekap_nilai_seminar");
+    Route::get("/fakultas/detail_rekap_nilai_seminar/{id}", "fakultas@detail_rekap_nilai_seminar");
+    Route::get("/fakultas/lembaran_hasilujian_seminar/{id}/{nim}/{regid}", "fakultas@lembaran_hasilujian_seminar");
+
     // Rekap Nilai Ujian TA
     Route::get("/fakultas/rekap_nilai_ujian_ta/", "fakultas@rekap_nilai_ujian_ta");
     Route::get("/fakultas/detail_rekap_nilai_ujian_ta/{id}", "fakultas@detail_rekap_nilai_ujian_ta");

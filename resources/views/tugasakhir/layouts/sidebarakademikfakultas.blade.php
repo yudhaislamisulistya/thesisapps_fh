@@ -118,7 +118,6 @@
                 <li><a href="{{ url('fakultas/approve_hasilujian_ta') }}">Ujian Meja</a></li>
             </ul>
         </li>
-
         <li>
             <a href="#fakelink">
                 <i class="fa fa-table icon-sidebar"></i>
@@ -127,6 +126,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ url('fakultas/rekap_nilai_proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('fakultas/rekap_nilai_seminar') }}">Seminar</a></li>
                 <li><a href="{{ url('fakultas/rekap_nilai_ujian_ta') }}">Ujian Meja</a></li>
             </ul>
         </li>
