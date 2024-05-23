@@ -41,11 +41,11 @@ ini_set('max_execution_time', 300); //300 seconds = 5 minutes
                         <h4><b>Keterangan Dosen:</b></h4>
                         <div class="row">
                             <div class="col-sm-1" style="width: 70px;display: inline-block">P1</div>
-                            <div class="col-sm-12" style="width: 200px;display: inline-block">: Pembimbing Utama</div>
+                            <div class="col-sm-12" style="width: 200px;display: inline-block">: Pembimbing Ketua</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-1" style="width: 70px;display: inline-block">P2</div>
-                            <div class="col-sm-12" style="width: 300px;display: inline-block">: Pembimbing Pendamping</div>
+                            <div class="col-sm-12" style="width: 300px;display: inline-block">: Pembimbing Anggota</div>
                         </div>
                     </div>
                 </div>

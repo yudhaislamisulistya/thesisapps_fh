@@ -50,10 +50,10 @@
 											<label>Penerima</label>
 											<select data-placeholder="Select people..." class="form-control chosen-select" multiple tabindex="4" name="penerima_id[]" required>
 												@foreach ($data as $key => $value)
-												    <option value="{{$value->pembimbing_I_id}}">Pembimbing Utama - {{helper::getDeskripsi($value->pembimbing_I_id)}}</option>
+												    <option value="{{$value->pembimbing_I_id}}">Pembimbing Ketua - {{helper::getDeskripsi($value->pembimbing_I_id)}}</option>
 												@endforeach
                                                 @foreach ($data as $key => $value)
-                                                    <option value="{{$value->pembimbing_II_id}}">Pembimbing Pendamping - {{helper::getDeskripsi($value->pembimbing_II_id)}}</option>
+                                                    <option value="{{$value->pembimbing_II_id}}">Pembimbing Anggota - {{helper::getDeskripsi($value->pembimbing_II_id)}}</option>
 												@endforeach
 												@foreach (helper::getPengujiByNim(auth()->user()->name) as $key => $value)
                                                     @if ($key == 0)

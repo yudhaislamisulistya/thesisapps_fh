@@ -12,7 +12,7 @@
         @csrf
         <table>
             <tr>
-                <td><label>Dosen Pembimbing Utama</label></td>
+                <td><label>Dosen Pembimbing Ketua</label></td>
                 <td>
                     <select name="dosen_1">
                         @foreach($dosen as $d)
@@ -22,7 +22,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label>Dosen Pembimbing Pendamping</label></td>
+                <td><label>Dosen Pembimbing Anggota</label></td>
                 <td>
                     <select name="dosen_2">
                         @foreach ($dosen as $d)

@@ -15,6 +15,7 @@ use App\Model\trt_bimbingan;
 use App\Model\trt_hasil;
 use App\Model\trt_reg;
 use App\Model\trt_sk;
+use App\Model\trt_sk_ujian_ta;
 use App\MstRuangan;
 use App\TrtJadwalUjian;
 use App\TrtJadwalUjianPerMhs;
@@ -217,23 +218,41 @@ class fakultas extends Controller
 
     public function usulan_timujianta($id)
     {
-        $datax = DB::table('mst_pendaftaran')
-            ->select('*')
-            ->whereIn('mst_pendaftaran.pendaftaran_id', $id)
-            ->get();
-        $a = 0;
-        foreach ($datax as $key => $value) {
-            $simpan['pendaftaran_id'] = $datax[$a]->pendaftaran_id;
-            // $simpan['nomor'] = $nomor;
-            // $simpan['perihal'] = $perihal;
-            // $simpan['tgl_surat'] = $tgl;
-            DB::table('mst_pendaftaran')
-                ->where('pendaftaran_id', $datax[$a]->pendaftaran_id)
-                ->update(['status_sk' => '1']);
-            $a++;
+        try {
+            // Mengambil data dari tabel 'mst_pendaftaran' berdasarkan 'pendaftaran_id'
+            $datax = DB::table('mst_pendaftaran')
+                ->select('*')
+                ->where('mst_pendaftaran.pendaftaran_id', $id)
+                ->get();
+
+            $dataSkUjianTa = DB::table('trt_sk_ujian_ta')
+                ->select('*')
+                ->where('pendaftaran_id', $id)
+                ->first();
+
+            $dataJadwalUjian = DB::table('trt_jadwal_ujian')
+                ->select('*')
+                ->where('pendaftaran_id', $id)
+                ->first();
+
+            $nomor = $dataSkUjianTa->nomor;
+            $perihal = $dataSkUjianTa->perihal;
+            $tgl = $dataSkUjianTa->tgl_surat;
+            $tgl_ujian = Helper::tgl_indo_lengkap($dataJadwalUjian->tgl_ujian);
+
+            // Iterasi melalui data yang diambil
+            foreach ($datax as $key => $value) {
+                DB::table('mst_pendaftaran')
+                    ->where('pendaftaran_id', $value->pendaftaran_id)
+                    ->update(['status_sk' => '1']);
+            }
+
+            return view('tugasakhir.fakultas.surat_usulantimujian', compact('nomor', 'perihal', 'tgl', 'datax', 'tgl_ujian'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi Kesalahan: ' . $th->getMessage());
         }
-        return view('tugasakhir.prodi.surat_usulantimujian', compact('datax'));
     }
+
 
     // Menampilkan Daftar atau List SK Penugasan TIM Ujian TA
 
@@ -733,7 +752,7 @@ class fakultas extends Controller
     {
         $mhs = t_mst_mahasiswa::where("C_NPM", $id)->first();
         $data = TrtSyaratUjian::join("mst_syarat_ujian", "trt_syarat_ujian.syarat_ujian_id", "=", "mst_syarat_ujian.syarat_ujian_id")->where(["tipe_ujian" => 2, "C_NPM" => $id])->get();
-        return view("tugasakhir.prodi.detail_persyaratan_ujianmeja", compact("data", "mhs"));
+        return view("tugasakhir.fakultas.detail_persyaratan_ujianmeja", compact("data", "mhs"));
     }
 
     public function konfirmasi_persyaratan_ujian_by_nim($status, $nim)
@@ -785,9 +804,9 @@ class fakultas extends Controller
                 ->update([
                     "catatan" => $request->catatan
                 ]);
-            return redirect::to('akademikprodi/detail_persyaratan_proposal/' . $request->C_NPM)->with('status', 'success');
+            return redirect::to('fakultas/detail_persyaratan_proposal/' . $request->C_NPM)->with('status', 'success');
         } catch (Exception $exception) {
-            return redirect::to('akademikprodi/detail_persyaratan_proposal/' . $request->C_NPM)->with('status', 'error');
+            return redirect::to('fakultas/detail_persyaratan_proposal/' . $request->C_NPM)->with('status', 'error');
         }
     }
 
@@ -811,9 +830,9 @@ class fakultas extends Controller
                 ->update([
                     "catatan" => $request->catatan
                 ]);
-            return redirect::to('akademikprodi/detail_persyaratan_ujianmeja/' . $request->C_NPM)->with('status', 'success');
+            return redirect::to('fakultas/detail_persyaratan_ujianmeja/' . $request->C_NPM)->with('status', 'success');
         } catch (Exception $exception) {
-            return redirect::to('akademikprodi/detail_persyaratan_ujianmeja/' . $request->C_NPM)->with('status', 'error');
+            return redirect::to('fakultas/detail_persyaratan_ujianmeja/' . $request->C_NPM)->with('status', 'error');
         }
     }
 
@@ -835,7 +854,7 @@ class fakultas extends Controller
                 $to = "persyaratan_ujianmeja";
                 break;
         }
-        return redirect("/akademikprodi/$to");
+        return redirect("/fakultas/$to");
     }
 
     public function jadwal()
@@ -1863,4 +1882,121 @@ class fakultas extends Controller
         return view('tugasakhir.fakultas.detail_rekap_nilai_seminar', compact("data", "info"));
     }
     // Akhir Approve Hasil Ujian TA
+
+    public function sk_ujian_ta()
+    {
+        if (Auth::user()->name == 'akademikfakultasfh') {
+            $pendaftaran = mst_pendaftaran::where('status_prodi', 1)
+                ->get();
+            $jadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+                ->where('tipe_ujian', '=', 2)
+                ->where('status_sk', '=', 0)
+                ->where('mst_pendaftaran.status_prodi', '=', 1)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        } else {
+            $pendaftaran = mst_pendaftaran::where('status_prodi', 2)
+                ->get();
+            $jadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+                ->where('tipe_ujian', '=', 2)
+                ->where('status_sk', '=', 0)
+                ->where('mst_pendaftaran.status_prodi', '=', 2)
+                ->orderBy('mst_pendaftaran.created_at', 'desc')
+                ->get();
+        }
+        return view('tugasakhir.fakultas.sk_ujian_ta', compact('pendaftaran', "jadwalujian"));
+    }
+
+    function riwayat_sk_pengusulan_tim_ujian_ta()
+    {
+        $data = DB::select('SELECT DISTINCT nomor, tgl_surat FROM trt_sk_ujian_ta');
+
+        return view('tugasakhir.fakultas.riwayat_sk_pengusulan_tim_ujian_ta', compact('data'));
+    }
+
+    public function sk_pengusulan_tim_ujian_tapost(Request $request)
+    {
+        $datapost = $request->all();
+        if (isset($datapost["data"])) {
+            $data = $datapost['data'];
+
+            $datax = DB::table('mst_pendaftaran')
+                ->select('*')
+                ->whereIn('mst_pendaftaran.pendaftaran_id', $data)
+                ->get();
+
+            return view('tugasakhir.fakultas.sk_pengusulan_tim_ujian_ta', compact('datax', 'data'));
+        }
+        return redirect()->back();
+    }
+
+    function detail_riwayat_sk_pengusulan_tim_ujian_ta($nomor)
+    {
+        $data = DB::table("trt_sk_ujian_ta")
+            ->select("*")
+            ->join('trt_reg', 'trt_reg.pendaftaran_id', '=', 'trt_sk_ujian_ta.pendaftaran_id')
+            ->join('trt_bimbingan', 'trt_bimbingan.bimbingan_id', '=', 'trt_reg.bimbingan_id')
+            ->where('trt_sk_ujian_ta.nomor', '=', str_replace("$", "/", $nomor))
+            ->get();
+
+        return view('tugasakhir.fakultas.detail_riwayat_sk_pengusulan_tim_ujian_ta', compact('data'));
+    }
+
+    public function cetak_riwayat_sk_pengusulan_tim_ujian_ta($nomor)
+    {
+        $nomor = str_replace("$", "/", $nomor);
+
+        $data = DB::table("trt_sk_ujian_ta")
+            ->select("*")
+            ->join('trt_reg', 'trt_reg.pendaftaran_id', '=', 'trt_sk_ujian_ta.pendaftaran_id')
+            ->join('trt_bimbingan', 'trt_bimbingan.bimbingan_id', '=', 'trt_reg.bimbingan_id')
+            ->where('trt_sk_ujian_ta.nomor', '=', $nomor)
+            ->get();
+
+
+
+        $perihal = $data[0]->perihal;
+        $tgl_ujian = $data[0]->tgl_surat;
+        $data = $data[0]->pendaftaran_id;
+        $tgl_ujian = helper::tgl_indo_lengkap($tgl_ujian);
+
+
+        $datax = DB::table('mst_pendaftaran')
+            ->select('*')
+            ->where('mst_pendaftaran.pendaftaran_id', '=', $data)
+            ->get();
+
+        return view('tugasakhir.fakultas.surat_usulantimujian', compact('nomor', 'perihal', 'datax', 'tgl_ujian'));
+    }
+
+    public function surat_pengusulan_ujian_ta(Request $request)
+    {
+        $datapost = $request->all();
+        $nomor = $datapost['nomor'];
+        $perihal = $datapost['perihal'];
+        $tgl = $datapost['tgl'];
+        $tgl = substr($tgl, 6, 4) . "-" . substr($tgl, 3, 2) . "-" . substr($tgl, 0, 2);
+        $data = $datapost['data'];
+        $datax = DB::table('mst_pendaftaran')
+            ->select('*')
+            ->whereIn('mst_pendaftaran.pendaftaran_id', $data)
+            ->get();
+        $a = 0;
+        foreach ($datax as $key => $value) {
+            $simpan['pendaftaran_id'] = $datax[$a]->pendaftaran_id;
+            $simpan['nomor'] = $nomor;
+            $simpan['perihal'] = $perihal;
+            $simpan['tgl_surat'] = $tgl;
+            trt_sk_ujian_ta::create($simpan);
+
+            DB::table('mst_pendaftaran')
+                ->where('pendaftaran_id', $datax[$a]->pendaftaran_id)
+                ->update(['status_sk' => '1']);
+            $a++;
+        }
+
+        $tgl_ujian = helper::tgl_indo_lengkap($tgl);
+
+        return view('tugasakhir.fakultas.surat_usulantimujian', compact('nomor', 'perihal', 'tgl', 'datax', 'tgl_ujian'));
+    }
 }

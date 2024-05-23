@@ -25,8 +25,8 @@
                             <th>No</th>
                             <th>Nim</th>
                             <th>Nama Mahasiswa</th>
-                            <th>Pembimbing Utama</th>
-                            <th>Pembimbing Pendamping</th>
+                            <th>Pembimbing Ketua</th>
+                            <th>Pembimbing Anggota</th>
                             <th>Penguji I</th>
                             <th>Penguji II</th>
                             <th>Penguji III</th>
@@ -80,10 +80,10 @@
                                 </td> --}}
 
                                 <td style="width: 240px; text-align: center">
-                                    @if ((helper::getRuanganByNim($d->C_NPM) == null) || (helper::getRuanganByNim($d->C_NPM) == '') && $penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
+                                    @if ((helper::getRuanganByNim($d->C_NPM) == null) || (helper::getRuanganByNim($d->C_NPM) == '') && $penguji1 == null && $penguji2 == null && $penguji3 == null)
                                         Berita Acara Belum Terbit
                                     @else
-                                    <a href="{{ url("mhs/cetak_beritaacara_proposal/$d->pendaftaran_id/$d->C_NPM")}}" class="btn btn-info" target="_blank"><i class="fa fa-file-text"></i>Berita Acara</a>
+                                    <a href="{{ url("mhs/cetak_beritaacara_seminar/$d->pendaftaran_id/$d->C_NPM")}}" class="btn btn-info" target="_blank"><i class="fa fa-file-text"></i>Berita Acara</a>
                                     @endif
                                 </td>
                             </tr>

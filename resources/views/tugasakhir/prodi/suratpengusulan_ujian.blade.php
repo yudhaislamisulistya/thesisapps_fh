@@ -57,7 +57,7 @@
         </style>
         <script>
             function prints() {
-              
+
                 document.getElementById('btnPrint').style.display = "none";
                 window.print();
                 window.onafterprint = show();
@@ -98,7 +98,7 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
                     <td>:</td>
                     <td></td>
                 </tr>
-                <tr> 
+                <tr>
                     <td>Lampiran</td>
                     <td>:</td>
                     <td>1 Lembar</td>
@@ -128,7 +128,7 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
             <th>Tim Penguji</th>
             <th>Waktu & Tempat</th>
         </tr>
-       
+
         @foreach ($data as $key => $value)
             <tr>
             <td>{{++$key}}</td>
@@ -145,9 +145,9 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
             <td>
                 Ketua Sidang : {{$ketua_sidang->NAMA_DOSEN}}<br>
                 <hr color="black">
-                Pembimbing Utama : {{$pembimbing1->NAMA_DOSEN}}<br>
+                Pembimbing Ketua : {{$pembimbing1->NAMA_DOSEN}}<br>
                 <hr color="black">
-                Pembimbing Pendamping : {{$pembimbing2->NAMA_DOSEN}}<br>
+                Pembimbing Anggota : {{$pembimbing2->NAMA_DOSEN}}<br>
                 <hr color="black">
                 Penguji I : {{$penguji1->NAMA_DOSEN}}<br>
                 <hr color="black">
@@ -162,7 +162,7 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
 </center>
         <br><br>
         <div class="legalitor">
-            Makassar, 
+            Makassar,
         </div>
         <br><br><br><br><br>
         <div class="legalitor">

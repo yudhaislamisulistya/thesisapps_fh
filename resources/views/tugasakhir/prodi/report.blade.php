@@ -51,7 +51,7 @@
         </style>
         <script>
             function prints() {
-              
+
                 document.getElementById('btnPrint').style.display = "none";
                 window.print();
                 window.onafterprint = show();
@@ -96,12 +96,12 @@
             <tr>
                 <th>{{$pembimbing_1->nama}}</th>
                 <th>{{$pembimbing_1->pangkat}} / {{$pembimbing_1->golongan}}</th>
-                <th>Pembimbing Utama</th>
+                <th>Pembimbing Ketua</th>
             </tr>
             <tr>
                 <th>{{$pembimbing_2->nama}}</th>
                 <th>{{$pembimbing_2->pangkat}} / {{$pembimbing_2->golongan}}</th>
-                <th>Pembimbing Pendamping</th>
+                <th>Pembimbing Anggota</th>
             </tr>
         </table>
         <br>

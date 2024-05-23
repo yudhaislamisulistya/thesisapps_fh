@@ -57,7 +57,7 @@
         </style>
         <script>
             function prints() {
-              
+
                 document.getElementById('btnPrint').style.display = "none";
                 window.print();
                 window.onafterprint = show();
@@ -157,11 +157,11 @@
         <tr>
             <th>No</th>
             <th>Stambuk/ Nama Mahasiswa</th>
-            <th>Pembimbing Utama</th>
-            <th>Pembimbing Pendamping</th>
+            <th>Pembimbing Ketua</th>
+            <th>Pembimbing Anggota</th>
             <th>Judul Penelitian</th>
         </tr>
-        
+
         <tr>
             <td></td>
             <td></td>

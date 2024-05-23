@@ -225,7 +225,7 @@
                                     <tr>
                                         <td>1</td>
                                         @if ($data[0]->tipe_ujian == 0)
-                                            <td>Pembimbing Utama & Ketua Sidang</td>
+                                            <td>Pembimbing Ketua & Ketua Sidang</td>
                                         @else
                                             <td>Ketua Sidang</td>
                                         @endif
@@ -379,7 +379,7 @@
                                     @else
                                         <tr>
                                             <td>5</td>
-                                            <td>Pembimbing Utama</td>
+                                            <td>Pembimbing Ketua</td>
                                             <td>
                                                 @if ($pembimbing1 == null)
                                                     {{ '-' }}
@@ -421,7 +421,7 @@
                                         @else
                                             <td>6</td>
                                         @endif
-                                        <td>Pembimbing Pendamping</td>
+                                        <td>Pembimbing Anggota</td>
                                         <td>
                                             @if ($pembimbing2 == null)
                                                 {{ '-' }}

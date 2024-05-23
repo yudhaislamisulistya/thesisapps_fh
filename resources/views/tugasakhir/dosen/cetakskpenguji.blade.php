@@ -57,7 +57,7 @@
         </style>
         <script>
             function prints() {
-              
+
                 document.getElementById('btnPrint').style.display = "none";
                 window.print();
                 window.onafterprint = show();
@@ -104,12 +104,12 @@
         <div>
             <table>
                 <tr>
-                    <td width="150px">Pembimbing Utama</td>
+                    <td width="150px">Pembimbing Ketua</td>
                     <td>:</td>
                     <td>{{\App\Dosen::where("C_KODE_DOSEN",$bimbingan->pembimbing_I_id)->first()->NAMA_DOSEN}}</td>
                 </tr>
                 <tr>
-                    <td>Pembimbing Pendamping</td>
+                    <td>Pembimbing Anggota</td>
                     <td>:</td>
                     <td>{{\App\Dosen::where("C_KODE_DOSEN",$bimbingan->pembimbing_II_id)->first()->NAMA_DOSEN}}</td>
                 </tr>
@@ -208,7 +208,7 @@
         <div class="legalitor">
             @if (helper::getProgramStudiByNim($nim) == "Ilmu Hukum")
                 <b><u>Tasrif Hasanuddin, S.T., M.Cs.</u></b><br>
-                <b>NIDN : 0910126901</b><br>  
+                <b>NIDN : 0910126901</b><br>
             @else
                 <b><u>Ir. Herman, S.Kom.,M.Cs., MTA.</u></b><br>
                 <b>NIDN : 0913038506</b><br>

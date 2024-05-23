@@ -25,8 +25,8 @@
                             <th>No</th>
                             <th>Nim</th>
                             <th>Nama Mahasiswa</th>
-                            <th>Pembimbing Utama</th>
-                            <th>Pembimbing Pendamping</th>
+                            <th>Pembimbing Ketua</th>
+                            <th>Pembimbing Anggota</th>
                             <th>Penguji I</th>
                             <th>Penguji II</th>
                             <th>Penguji III</th>
@@ -49,7 +49,7 @@
                                     $ketuasidang = \App\Dosen::where("C_KODE_DOSEN",$d->ketua_sidang_id)->first();
                                 @endphp
                                 <td>
-                                    
+
                                     @if ($pembimbing1->C_KODE_DOSEN == auth()->user()->name)
                                             <b>{{$pembimbing1->NAMA_DOSEN}}</b>
                                         @else
@@ -108,7 +108,7 @@
                                     @endif
                                 </td>
                                 <td style="width: 240px; text-align: center">
-                                    
+
                                     @if ($penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
                                         Belum Bisa Beri Nilai
                                     @else
@@ -117,7 +117,7 @@
                                     @else
                                         <a href="{{ url("dsn/detailhasil_proposal/$d->reg_id")}}" class="btn btn-info"><i class="fa fa-file-text"></i>Penilaian</a>
                                     @endif
-                                    
+
                                     @endif
                                 </td>
                             </tr>

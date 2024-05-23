@@ -61,12 +61,12 @@
                         class="btn btn-warning btn-perspective" style="margin-left: auto">Selesai</button>
                     @else
                     <button onclick="showModal(this)" data-target="#modalPrimary" data-toggle="modal"
-                        data-href="{{ url("prodi/konfirmasi_persyaratan_ujian_by_nim/1")}}/{{$data[0]['C_NPM']}}"
+                        data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian_by_nim/1")}}/{{$data[0]['C_NPM']}}"
                         class="btn btn-primary btn-perspective">Terima Semua</button>
                     <button onclick="showModal(this)" data-target="#modalDanger" data-toggle="modal"
-                        data-href="{{ url("prodi/konfirmasi_persyaratan_ujian_by_nim/0")}}/{{$data[0]['C_NPM']}}"
+                        data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian_by_nim/0")}}/{{$data[0]['C_NPM']}}"
                         class="btn btn-danger btn-perspective">Tolak Semua</button>
-                    <button data-href="{{url("/prodi/selesai_konfirmasi/$mhs->C_NPM/2")}}" onclick="showModal(this)"
+                    <button data-href="{{url("fakultas/selesai_konfirmasi/$mhs->C_NPM/2")}}" onclick="showModal(this)"
                         data-target="#modalWarning" data-toggle="modal" class="btn btn-warning btn-perspective"
                         style="margin-left: auto">Selesai</button>
                     @endif
@@ -126,24 +126,24 @@
                                 @else
                                 @if($value->status == 2)
                                 <button onclick="showModal(this)" data-target="#modalPrimary" data-toggle="modal"
-                                    data-href="{{ url("prodi/konfirmasi_persyaratan_ujian/1/$value->syarat_ujian_id/$value->C_NPM")}}"
+                                    data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian/1/$value->syarat_ujian_id/$value->C_NPM")}}"
                                     class="btn btn-default">Terima</button>
                                 <button onclick="showModal(this)" data-target="#modalDanger" data-toggle="modal"
-                                    data-href="{{ url("prodi/konfirmasi_persyaratan_ujian/0/$value->syarat_ujian_id/$value->C_NPM")}}"
+                                    data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian/0/$value->syarat_ujian_id/$value->C_NPM")}}"
                                     class="btn btn-default">Tolak</button>
                                 @elseif($value->status == 1)
                                 <button onclick="showModal(this)" data-target="#modalPrimary" data-toggle="modal"
-                                    data-href="{{ url("prodi/konfirmasi_persyaratan_ujian/1/$value->syarat_ujian_id/$value->C_NPM")}}"
+                                    data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian/1/$value->syarat_ujian_id/$value->C_NPM")}}"
                                     class="btn btn-primary">Terima</button>
                                 <button onclick="showModal(this)" data-target="#modalDanger" data-toggle="modal"
-                                    data-href="{{ url("prodi/konfirmasi_persyaratan_ujian/0/$value->syarat_ujian_id/$value->C_NPM")}}"
+                                    data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian/0/$value->syarat_ujian_id/$value->C_NPM")}}"
                                     class="btn btn-default">Tolak</button>
                                 @elseif($value->status == 0)
                                 <button onclick="showModal(this)" data-target="#modalPrimary" data-toggle="modal"
-                                    data-href="{{ url("prodi/konfirmasi_persyaratan_ujian/1/$value->syarat_ujian_id/$value->C_NPM")}}"
+                                    data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian/1/$value->syarat_ujian_id/$value->C_NPM")}}"
                                     class="btn btn-default">Terima</button>
                                 <button onclick="showModal(this)" data-target="#modalDanger" data-toggle="modal"
-                                    data-href="{{ url("prodi/konfirmasi_persyaratan_ujian/0/$value->syarat_ujian_id/$value->C_NPM")}}"
+                                    data-href="{{ url("fakultas/konfirmasi_persyaratan_ujian/0/$value->syarat_ujian_id/$value->C_NPM")}}"
                                     class="btn btn-danger">Tolak</button>
                                 @endif
                                 @endif

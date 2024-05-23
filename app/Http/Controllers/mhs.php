@@ -832,9 +832,9 @@ class mhs extends Controller
         } else if ($status == 4) {
             $status_dosen = "Penguji III";
         } else if ($status == 5) {
-            $status_dosen = "Pembimbing Utama";
+            $status_dosen = "Pembimbing Ketua";
         } else if ($status == 6) {
-            $status_dosen = "Pembimbing Pendamping";
+            $status_dosen = "Pembimbing Anggota";
         }
 
 
@@ -891,9 +891,9 @@ class mhs extends Controller
         } else if ($status == 4) {
             $status_dosen = "Penguji III";
         } else if ($status == 5) {
-            $status_dosen = "Pembimbing Utama";
+            $status_dosen = "Pembimbing Ketua";
         } else if ($status == 6) {
-            $status_dosen = "Pembimbing Pendamping";
+            $status_dosen = "Pembimbing Anggota";
         }
 
 
@@ -1072,9 +1072,9 @@ class mhs extends Controller
             // dataDetailPembimbing add status = Pembimbing I / Pembimbing II
             foreach ($dataDetailPembimbing as $key => $value) {
                 if ($dataPembimbing[0]->pembimbing_I_id == $value->C_KODE_DOSEN) {
-                    $dataDetailPembimbing[$key]->status = "Pembimbing Utama";
+                    $dataDetailPembimbing[$key]->status = "Pembimbing Ketua";
                 } else {
-                    $dataDetailPembimbing[$key]->status = "Pembimbing Pendamping";
+                    $dataDetailPembimbing[$key]->status = "Pembimbing Anggota";
                 }
             }
             // return json
@@ -1201,5 +1201,43 @@ class mhs extends Controller
         } catch (Exception $error) {
             return redirect('mhs/download');
         }
+    }
+
+    public function cetakBeritaAcaraSeminar($pendaftaran_id, $nim)
+    {
+        $trtjadwalujian = TrtJadwalUjian::join("mst_pendaftaran", "mst_pendaftaran.pendaftaran_id", "=", "trt_jadwal_ujian.pendaftaran_id")
+            ->where("trt_jadwal_ujian.pendaftaran_id", $pendaftaran_id)->first();
+        $trtjadwalujianpermhs = TrtJadwalUjianPerMhs::join("mst_ruangan", "mst_ruangan.id", "trt_jadwal_ujian_per_mhs.ruangan")
+            ->where([
+                "C_NPM" => $nim,
+                "jadwal_ujian" => $trtjadwalujian->id
+            ])->first();
+        $trt_bimbingan = trt_bimbingan::where("C_NPM", $nim)->first();
+        $mst_pendaftaran = mst_pendaftaran::find($pendaftaran_id);
+        $trt_penguji = TrtPenguji::where([
+            "C_NPM" => $nim,
+            "tipe_ujian" => $mst_pendaftaran->tipe_ujian
+        ])->first();
+        $ruangan = MstRuangan::find($trtjadwalujianpermhs->ruangan)->nama_ruangan;
+        $tgl_ujian = Carbon::parse($trtjadwalujian->tgl_ujian)->formatLocalized("%A, %d %B %Y");
+        switch ($mst_pendaftaran->tipe_ujian) {
+            case "0":
+                $tipe_ujian = "Proposal";
+                break;
+            case "1":
+                $tipe_ujian = "Seminar";
+                break;
+            case "2":
+                $tipe_ujian = "Meja";
+                break;
+        }
+        return view("tugasakhir.fakultas.cetak_berita_acara_seminar", compact(
+            "nim",
+            "trt_bimbingan",
+            "trt_penguji",
+            "tipe_ujian",
+            "ruangan",
+            "tgl_ujian"
+        ));
     }
 }

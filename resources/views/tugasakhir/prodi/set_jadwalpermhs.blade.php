@@ -53,14 +53,14 @@
                             $ketua_sidang = \App\Dosen::where("C_KODE_DOSEN",$info->ketua_sidang_id)->first();
                         @endphp
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Pembimbing Utama</label>
+                            <label class="col-lg-2 control-label">Pembimbing Ketua</label>
                             <div class="col-xs-5">
                                 <div class="form-control bold-border" disabled>{{$pembimbing1->NAMA_DOSEN}}</div>
                             </div><!-- /.col-xs-5 -->
                         </div>
                         <br><br>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Pembimbing Pendamping</label>
+                            <label class="col-lg-2 control-label">Pembimbing Anggota</label>
                             <div class="col-xs-5">
                                 <div class="form-control bold-border" disabled>{{$pembimbing2->NAMA_DOSEN}}</div>
                             </div><!-- /.col-xs-5 -->
@@ -158,7 +158,7 @@
             var jam_ujian = $('select[name="jam_ujian"]').val();
             console.log(ruangan);
             console.log(jam_ujian);
-            
+
 
         if (ruangan == "" || jam_ujian == "") {
                 console.log("Ini Bagian Satu");
@@ -167,7 +167,7 @@
             } else {
                 $('#status').html("");
                 $("#tombol_dua").removeAttr("disabled");
-            }      
+            }
         });
         let modal, modalId, modalFooter, link, form, formaction;
         const showPostModal = e => {

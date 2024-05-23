@@ -40,8 +40,8 @@
                                     <th>No SK Pembimbing</th>
                                     <th>NIM</th>
                                     <th>Nama Mahasiswa</th>
-                                    <th>Pembimbing Utama</th>
-                                    <th>Pembimbing Pendamping</th>
+                                    <th>Pembimbing Ketua</th>
+                                    <th>Pembimbing Anggota</th>
                                     <th>Status</th>
                                     <th>SK</th>
                                 </tr>

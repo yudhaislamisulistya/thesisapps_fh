@@ -68,7 +68,7 @@
     </style>
     <script>
         function prints() {
-              
+
             document.getElementById('btnPrint').style.display = "none";
             window.print();
             window.onafterprint = show();
@@ -124,24 +124,14 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
     <div>
         <table>
             <tr>
-                <td width="150px">Pembimbing Utama</td>
+                <td width="150px">Pembimbing Ketua</td>
                 <td>:</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$data_sk[0]->pembimbing_I_id)->first()->NAMA_DOSEN}}</td>
             </tr>
             <tr>
-                <td>Pembimbing Pendamping</td>
+                <td>Pembimbing Anggota</td>
                 <td>:</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$data_sk[0]->pembimbing_II_id)->first()->NAMA_DOSEN}}</td>
-            </tr>
-        </table>
-    </div>
-    <br>
-    <div>
-        <table>
-            <tr>
-                <td width="150px">Ketua Sidang</td>
-                <td>:</td>
-                <td>{{\App\Dosen::where("C_KODE_DOSEN",$data_sk[0]->ketua_sidang_id)->first()->NAMA_DOSEN}}</td>
             </tr>
         </table>
     </div>
@@ -236,7 +226,7 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
     </p>
 
     <div class="legalitor">
-        Makassar, {{helper::tgl_indo_lengkap(Illuminate\Support\Carbon::parse(substr($data_sk[0]->created_at, 0,10))->formatLocalized("%Y-%m-%d"))}} 
+        Makassar, {{helper::tgl_indo_lengkap(Illuminate\Support\Carbon::parse(substr($data_sk[0]->created_at, 0,10))->formatLocalized("%Y-%m-%d"))}}
         <br>
         Dekan
     </div>

@@ -29,8 +29,8 @@
                             <th>Bidang Ilmu</th>
                             <th>Kerangka Pikir</th>
                             <th>Note</th>
-                            <th>Pembimbing Utama</th>
-                            <th>Pembimbing Pendamping</th>
+                            <th>Pembimbing Ketua</th>
+                            <th>Pembimbing Anggota</th>
                             <th>Pilihan</th>
                         </tr>
                         </thead>
@@ -56,7 +56,7 @@
                                 </td>
                                 <td><button class="btn btn-primary" onclick="showModal(this)" data-target="#modalInfo" data-toggle="modal" data-href="{{asset('dokumen/'.$value->kerangka)}}"><i class="fa fa-paperclip"></i></button></td>
                                 <td>
-                                    <a class="btn btn-info" href="{{url('dsn/detail_note')}}/{{$value->topik_id}}"><i class="fa fa-newspaper-o"></i></a>    
+                                    <a class="btn btn-info" href="{{url('dsn/detail_note')}}/{{$value->topik_id}}"><i class="fa fa-newspaper-o"></i></a>
                                 </td>
                                 <td>
                                     @if ($pembimbingI != null)
@@ -75,7 +75,7 @@
                                             </span>
                                         @endif
                                     @else
-                                            Pembimbing Utama Belum dipilih
+                                            Pembimbing Ketua Belum dipilih
                                     @endif
                                 </td>
                                 <td>
@@ -94,8 +94,8 @@
                                                 Menunggu...
                                             </span>
                                         @endif
-                                    @else  
-                                        Pembimbing Pendamping Belum Dipilih
+                                    @else
+                                        Pembimbing Anggota Belum Dipilih
                                     @endif
                                 </td>
                                 <td>

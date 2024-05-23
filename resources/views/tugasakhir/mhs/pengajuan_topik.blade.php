@@ -159,7 +159,7 @@
                         <fieldset>
                             <br><br>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label">Pembimbing Utama</label>
+                                <label class="col-lg-2 control-label">Pembimbing Ketua</label>
                                 <div class="col-xs-5">
                                     <select class="form-control bold-border" name="pembimbing_I_id"
                                         onchange="initStatusPembimbing(this)" index="0" disabled>
@@ -182,7 +182,7 @@
                             </div>
                             <br><br>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label">Pembimbing Pendamping</label>
+                                <label class="col-lg-2 control-label">Pembimbing Anggota</label>
                                 <div class="col-xs-5">
                                     <select class="form-control bold-border" name="pembimbing_II_id"
                                         onchange="initStatusPembimbing(this)" index="1" disabled>
@@ -217,7 +217,7 @@
                     @endphp
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Pembimbing Utama</label>
+                            <label class="col-lg-2 control-label">Pembimbing Ketua</label>
                             <div class="col-xs-5">
                                 <div class="form-control bold-border">{{ $pembimbing1 }}</div>
                             </div>
@@ -225,7 +225,7 @@
                         </div>
                         <br><br>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Pembimbing Pendamping</label>
+                            <label class="col-lg-2 control-label">Pembimbing Anggota</label>
                             <div class="col-xs-5">
                                 <div class="form-control bold-border">{{ $pembimbing2 }}</div>
                             </div>

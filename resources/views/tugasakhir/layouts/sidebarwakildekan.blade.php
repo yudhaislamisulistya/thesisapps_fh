@@ -59,7 +59,7 @@
         <li>
             <a href="{{ url('wakildekan/sk_ujian_ta') }}">
                 <i class="fa fa-paperclip icon-sidebar"></i>
-                SK Ujian Meja
+                SK Ujian TA
             </a>
         </li>
         <li>

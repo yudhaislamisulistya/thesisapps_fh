@@ -35,8 +35,8 @@
                                     <th><input type="checkbox" onClick="toggle(this)"></th>
                                     <th>NIM</th>
                                     <th>Nama Mahasiswa</th>
-                                    <th>Pembimbing Utama</th>
-                                    <th>Pembimbing Pendamping</th>
+                                    <th>Pembimbing Ketua</th>
+                                    <th>Pembimbing Anggota</th>
                                     <th>Set Pembimbing</th>
                                     <th>Aksi</th>
                                 </tr>

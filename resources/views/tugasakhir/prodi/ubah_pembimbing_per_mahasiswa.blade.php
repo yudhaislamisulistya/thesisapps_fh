@@ -24,7 +24,7 @@
                 <fieldset>
                     <input type="hidden" name="nim" value="{{$data_mahasiswa->C_NPM}}">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">Pembimbing Utama</label>
+                        <label class="col-lg-2 control-label">Pembimbing Ketua</label>
                         <div class="col-xs-5">
                             <select id="pembimbing1" class="form-control bold-border" name="pembimbing_I_id"
                                 onchange="initStatusPembimbing(this)" index="0">
@@ -45,7 +45,7 @@
                     </div>
                     <br><br>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">Pembimbing Pendamping</label>
+                        <label class="col-lg-2 control-label">Pembimbing Anggota</label>
                         <div class="col-xs-5">
                             <select id="pembimbing2" class="form-control bold-border" name="pembimbing_II_id"
                                 onchange="initStatusPembimbing(this)" index="1">

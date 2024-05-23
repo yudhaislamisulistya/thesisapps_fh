@@ -184,14 +184,14 @@
             </tr>
             <tr>
                 <td class="tg-baqh">2.</td>
-                <td class="tg-0lax">Pembimbing Utama</td>
+                <td class="tg-0lax">Pembimbing Ketua</td>
                 <td class="tg-0lax">{{\App\Dosen::where("C_KODE_DOSEN",$data_dosen_pembimbing->pembimbing_I_id)->first()->NAMA_DOSEN}}</td>
                 <td class="tg-baqh">{{helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_I_id, $reg_id)->nilai_1 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_I_id, $reg_id)->nilai_2 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_I_id, $reg_id)->nilai_3 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_I_id, $reg_id)->nilai_4 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_I_id, $reg_id)->nilai_5}}</td>
                 <td class="tg-baqh"></td>
             </tr>
             <tr>
                 <td class="tg-baqh">3.</td>
-                <td class="tg-0lax">Pembimbing Pendamping</td>
+                <td class="tg-0lax">Pembimbing Anggota</td>
                 <td class="tg-0lax">{{\App\Dosen::where("C_KODE_DOSEN",$data_dosen_pembimbing->pembimbing_II_id)->first()->NAMA_DOSEN}}</td>
                 <td class="tg-baqh">{{helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_II_id, $reg_id)->nilai_1 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_II_id, $reg_id)->nilai_2 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_II_id, $reg_id)->nilai_3 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_II_id, $reg_id)->nilai_4 + helper::getNilaiKetuaSidangByDosen($data_dosen_pembimbing->pembimbing_II_id, $reg_id)->nilai_5}}</td>
                 <td class="tg-baqh"></td>
@@ -240,7 +240,7 @@
                     }else if($nilai_huruf >= 71 && $nilai_huruf < 76){
                         $status_huruf = "B";
                     }else{
-                        
+
                     }
                 @endphp
                 <td class="tg-lqy6" colspan="3">Nilai Huruf :</td>
@@ -1069,7 +1069,7 @@
     <div class="legalitor">
         Makassar, {{Illuminate\Support\Carbon::parse(substr($data_dosen_selesai->created_at,0,10))->formatLocalized("%d %B %Y")}}
         <br>
-        <b>Pembimbing Utama</b>
+        <b>Pembimbing Ketua</b>
     </div>
     <br><br><br><br>
     <div class="legalitor">

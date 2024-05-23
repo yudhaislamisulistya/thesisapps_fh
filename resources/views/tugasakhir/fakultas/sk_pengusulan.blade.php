@@ -53,8 +53,8 @@
                                         <th>No</th>
                                         <th>Nim</th>
                                         <th>Nama</th>
-                                        <th>Pembimbing Utama</th>
-                                        <th>Pembimbing Pendamping</th>
+                                        <th>Pembimbing Ketua</th>
+                                        <th>Pembimbing Anggota</th>
                                     </tr>
                                     </thead>
                                     <tbody>

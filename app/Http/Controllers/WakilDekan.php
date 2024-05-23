@@ -70,7 +70,7 @@ class WakilDekan extends Controller
     public function approve_sk_ujian_ta($id)
     {
         try {
-            DB::update('update mst_sk_penugasan set status = 1 where sk_penugasan_id = ?', [$id]);
+            DB::update('update mst_sk_penugasan set status = 2 where sk_penugasan_id = ?', [$id]);
             return redirect::to('wakildekan/sk_ujian_ta')->with('status', 'success');
         } catch (Exception $exception) {
             return redirect::to('wakildekan/sk_ujian_ta')->with('status', 'error');

@@ -58,6 +58,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ url('fakultas/sk_ujian_ta') }}">
+                <i class="fa fa-file-text icon-sidebar"></i>
+                Surat Usulan Tim Ujian TA
+            </a>
+        </li>
+        <li>
             <a href="{{ url('fakultas/sk_pembimbing') }}">
                 <i class="fa fa-paperclip icon-sidebar"></i>
                 SK Pembimbing

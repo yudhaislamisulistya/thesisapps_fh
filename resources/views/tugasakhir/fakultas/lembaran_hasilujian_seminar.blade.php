@@ -176,7 +176,7 @@
             </tr>
             <tr>
                 <td class="tg-baqh">2.</td>
-                <td class="tg-0lax">Pembimbing Utama</td>
+                <td class="tg-0lax">Pembimbing Ketua</td>
                 <td class="tg-0lax">
                     {{ \App\Dosen::where('C_KODE_DOSEN', $data_dosen_pembimbing->pembimbing_I_id)->first()->NAMA_DOSEN }}
                 </td>
@@ -187,7 +187,7 @@
             </tr>
             <tr>
                 <td class="tg-baqh">3.</td>
-                <td class="tg-0lax">Pembimbing Pendamping</td>
+                <td class="tg-0lax">Pembimbing Anggota</td>
                 <td class="tg-0lax">
                     {{ \App\Dosen::where('C_KODE_DOSEN', $data_dosen_pembimbing->pembimbing_II_id)->first()->NAMA_DOSEN }}
                 </td>
@@ -1245,7 +1245,7 @@
 
 
         <br>
-        <b>Pembimbing Utama</b>
+        <b>Pembimbing Ketua</b>
     </div>
     <br><br><br><br>
     <br>

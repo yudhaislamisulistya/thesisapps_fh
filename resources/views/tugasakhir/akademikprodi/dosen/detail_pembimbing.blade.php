@@ -63,8 +63,8 @@
                                 <thead>
                                 <tr>
                                     <th>Tahapan Mahasiswa Bimbingan</th>
-                                    <th>Pembimbing Utama : Pembimbing Utama</th>
-                                    <th>Pembimbing Pendamping : Pembimbing Pendamping</th>
+                                    <th>Pembimbing Ketua : Pembimbing Ketua</th>
+                                    <th>Pembimbing Anggota : Pembimbing Anggota</th>
                                 </tr>
                                 </thead>
                                 <tbody>

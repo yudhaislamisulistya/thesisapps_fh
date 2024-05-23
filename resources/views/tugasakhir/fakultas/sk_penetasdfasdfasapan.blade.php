@@ -32,8 +32,8 @@
                                     <th>Nama</th>
                                     <th>No SK</th>
                                     <th>Tanggal Penetapan</th>
-                                    <th>Pembimbing Utama</th>
-                                    <th>Pembimbing Pendamping</th>
+                                    <th>Pembimbing Ketua</th>
+                                    <th>Pembimbing Anggota</th>
                                     <th>Cetak SK</th>
                                 </tr>
                                 </thead>

@@ -29,8 +29,8 @@
                                 <th>Ruangan</th>
                                 <th>Jam</th>
                                 <th>Waktu Ujian</th>
-                                <th>Pembimbing Utama</th>
-                                <th>Pembimbing Pendamping</th>
+                                <th>Pembimbing Ketua</th>
+                                <th>Pembimbing Anggota</th>
                                 <th>Penguji I</th>
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>

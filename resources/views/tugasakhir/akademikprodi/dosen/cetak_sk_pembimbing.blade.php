@@ -57,7 +57,7 @@
         </style>
         <script>
             function prints() {
-              
+
                 document.getElementById('btnPrint').style.display = "none";
                 window.print();
                 window.onafterprint = show();
@@ -134,7 +134,7 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
     </div>
     <br>
     <p align="justify">
-        Sebagai Pembimbing Utama untuk Tugas Akhir Mahasiswa :
+        Sebagai Pembimbing Ketua untuk Tugas Akhir Mahasiswa :
     </p>
     <div>
         <table>
@@ -273,7 +273,7 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
         </div>
         <br>
         <p align="justify">
-        Sebagai Pembimbing Pendamping untuk Tugas Akhir Mahasiswa :
+        Sebagai Pembimbing Anggota untuk Tugas Akhir Mahasiswa :
         </p>
         <div>
             <table>
@@ -344,8 +344,8 @@ website: fh.umi.ac.id, email: fikom@umi.ac.id
         2. Rektor UMI <br>
         3. Ketua Program Studi TI FH UMI</i>
         </p>
-        
-        
+
+
     </table>
     </body>
 </html>

@@ -123,12 +123,12 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
     <div>
         <table>
             <tr>
-                <td width="150px">Pembimbing Utama</td>
+                <td width="150px">Pembimbing Ketua</td>
                 <td>:</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$bimbingan->pembimbing_I_id)->first()->NAMA_DOSEN}}</td>
             </tr>
             <tr>
-                <td>Pembimbing Pendamping</td>
+                <td>Pembimbing Anggota</td>
                 <td>:</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$bimbingan->pembimbing_II_id)->first()->NAMA_DOSEN}}</td>
             </tr>

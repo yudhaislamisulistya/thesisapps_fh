@@ -28,8 +28,8 @@
                             <th>Topik Usulan</th>
                             <th>Bidang Ilmu</th>
                             <th>Kerangka Pikir</th>
-                            <th>Pembimbing Utama</th>
-                            <th>Pembimbing Pendamping</th>
+                            <th>Pembimbing Ketua</th>
+                            <th>Pembimbing Anggota</th>
                             <th>Pilihan</th>
                         </tr>
                     </thead>

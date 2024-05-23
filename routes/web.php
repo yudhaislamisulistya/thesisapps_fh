@@ -522,6 +522,14 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get('/fakultas/syarat_ujian', 'fakultas@syarat_ujian')->name('get_fakultas_syarat_ujian');
     Route::post('/fakultas/syaratadd', 'fakultas@syaratadd')->name('post_fakultas_syaratadd');
     Route::get('/fakultas/syaratdel/{id}', 'fakultas@syaratdel')->name('get_fakultas_syaratdel');
+
+    // Surat Usulan Ujian Tugas Akhir
+    Route::get('/fakultas/sk_ujian_ta', 'fakultas@sk_ujian_ta');
+    Route::get('/fakultas/riwayat_sk_pengusulan_tim_ujian_ta', 'fakultas@riwayat_sk_pengusulan_tim_ujian_ta');
+    Route::post('/fakultas/sk_pengusulan_tim_ujian_ta', 'fakultas@sk_pengusulan_tim_ujian_tapost');
+    Route::get('/fakultas/detail_riwayat_sk_pengusulan_tim_ujian_ta/{nomor}', 'fakultas@detail_riwayat_sk_pengusulan_tim_ujian_ta');
+    Route::get('/fakultas/cetak_riwayat_sk_pengusulan_tim_ujian_ta/{nomor}', 'fakultas@cetak_riwayat_sk_pengusulan_tim_ujian_ta');
+    Route::post('/fakultas/surat_pengusulan_ujian_ta', 'fakultas@surat_pengusulan_ujian_ta');
 });
 
 Route::group(['middleware' => 'dosen'], function () {
@@ -623,6 +631,8 @@ Route::group(['middleware' => 'mhs'], function () {
     Route::get('/mhs/beritaacara_seminarhasil/{nim}', 'mhs@beritaacara_seminarhasil');
     Route::get('/mhs/beritaacara_ujian/{nim}', 'mhs@beritaacara_ujian');
     Route::get('/mhs/cetak_beritaacara_proposal/{pendaftaran_id}/{nim}', 'mhs@cetak_beritaacara_proposal');
+    Route::get('/mhs/cetak_beritaacara_seminar/{pendaftaran_id}/{nim}', 'mhs@cetakBeritaAcaraSeminar')->name('get_fakultas_cetakBeritaAcaraSeminar');
+
 
     Route::post('/mhs/pengajuan_topik', 'mhs@pengajuan_topikpost');
     Route::post('/mhs/registrasi', 'mhs@registrasi');

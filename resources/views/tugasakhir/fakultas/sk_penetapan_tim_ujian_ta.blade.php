@@ -25,8 +25,8 @@
                         <th>No</th>
                         <th>NIM</th>
                         <th>Nama Mahasiswa</th>
-                        <th>Pembimbing Utama</th>
-                        <th>Pembimbing Pendamping</th>
+                        <th>Pembimbing Ketua</th>
+                        <th>Pembimbing Anggota</th>
                         <th>Judul</th>
                         <th>Nomor SK Penugasan</th>
                         <th>Action</th>
@@ -59,7 +59,7 @@
         <!-- END DATA TABLE -->
 
         <!-- BEGIN DATA TABLE -->
-        
+
         <!-- END DATA TABLE -->
     </div><!-- /.container-fluid -->
 @endsection

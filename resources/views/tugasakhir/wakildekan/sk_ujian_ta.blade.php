@@ -38,8 +38,8 @@
                             <th>No SK Pembimbing</th>
                             <th>NIM</th>
                             <th>Nama Mahasiswa</th>
-                            <th>Pembimbing Utama</th>
-                            <th>Pembimbing Pendamping</th>
+                            <th>Pembimbing Ketua</th>
+                            <th>Pembimbing Anggota</th>
                             <th>Approve</th>
                         </tr>
                         </thead>
@@ -58,7 +58,7 @@
                                     @else
                                         <a href="" class="btn btn-secondary fa fa-paperclip btn-perspective disabled">Telah di Approve</a>
                                     @endif
-                                    
+
                                 </td>
                             </tr>
                         @endforeach

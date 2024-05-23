@@ -145,13 +145,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Pembimbing Utama</th>
+                                <th>Pembimbing Ketua</th>
                                 <td>
                                     {{isset($datax->pembimbing1->pembimbing_I_id) ? helper::getDeskripsi($datax->pembimbing1->pembimbing_I_id) :'' }}
                                 </td>
                             </tr>
                             <tr>
-                                <th>Pembimbing Pendamping</th>
+                                <th>Pembimbing Anggota</th>
                                 <td>
                                     {{isset($datax->pembimbing1->pembimbing_II_id) ? helper::getDeskripsi($datax->pembimbing1->pembimbing_II_id) : '' }}
                                 </td>

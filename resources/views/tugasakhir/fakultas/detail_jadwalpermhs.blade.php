@@ -57,8 +57,8 @@
                                 <th>No</th>
                                 <th>Nim</th>
                                 <th>Nama Mahasiswa</th>
-                                <th>Pembimbing Utama</th>
-                                <th>Pembimbing Pendamping</th>
+                                <th>Pembimbing Ketua</th>
+                                <th>Pembimbing Anggota</th>
                                 <th>Penguji I</th>
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>

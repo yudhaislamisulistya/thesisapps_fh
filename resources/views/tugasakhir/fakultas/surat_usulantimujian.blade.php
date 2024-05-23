@@ -163,8 +163,6 @@
                             $ketua_sidang = \App\Dosen::where('C_KODE_DOSEN', $value->ketua_sidang_id)->first();
                         @endphp
                         <td style="font-size: 12px">
-                            Ketua Sidang : {{ $ketua_sidang->NAMA_DOSEN }}<br>
-                            <hr color="black">
                             Pembimbing Ketua : {{ $pembimbing1->NAMA_DOSEN }}<br>
                             <hr color="black">
                             Pembimbing Anggota : {{ $pembimbing2->NAMA_DOSEN }}<br>

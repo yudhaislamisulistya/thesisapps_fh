@@ -30,7 +30,7 @@
                             <td>{{$value->NAMA_DOSEN}}</td>
                             <td>{{$value->JENIS_KELAMIN}}</td>
                             <td>
-                                @if($value->status == "Pembimbing Utama")
+                                @if($value->status == "Pembimbing Ketua")
                                     <span class="label label-success">{{$value->status}}</span>
                                 @else
                                     <span class="label label-warning">{{$value->status}}</span>

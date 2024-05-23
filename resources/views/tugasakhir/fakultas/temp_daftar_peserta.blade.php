@@ -53,8 +53,8 @@
                                     <th>Nim</th>
                                     <th>Nama Mahasiswa</th>
                                     <th>Topik</th>
-                                    <th>Pembimbing Utama</th>
-                                    <th>Pembimbing Pendamping</th>
+                                    <th>Pembimbing Ketua</th>
+                                    <th>Pembimbing Anggota</th>
                                     <th>Pindah Periode</th>
                                     <th>Aksi</th>
                                 </tr>

@@ -39,8 +39,8 @@
                             <th>No SK Pembimbing</th>
                             <th>NIM</th>
                             <th>Nama Mahasiswa</th>
-                            <th>Pembimbing Utama</th>
-                            <th>Pembimbing Pendamping</th>
+                            <th>Pembimbing Ketua</th>
+                            <th>Pembimbing Anggota</th>
                             <th>Status</th>
                             <th>SK</th>
                         </tr>
@@ -60,7 +60,7 @@
                                     @elseif(helper::getStatusFromSkPenugasan($value->sk_penugasan_id) == 1)
                                     <a href="#" class="btn btn-sm btn-info">Approve Wakil Dekan</a>
                                     @elseif(helper::getStatusFromSkPenugasan($value->sk_penugasan_id) == 2)
-                                    <a href="#" class="btn btn-sm btn-success">Approve Dekan</a>
+                                    <a href="#" class="btn btn-sm btn-success">Approve Wakil Dekan</a>
                                     @endif
                                 </td>
                                 <td>
@@ -90,7 +90,7 @@
                         <th>Tanggal</th>
                         <th>Jumlah Peserta</th>
                         <th>Detail</th>
-                        <th>Sk</th>
+                        <th>SK</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -100,12 +100,12 @@
                         <td>{{$value->nomor}}</td>
                         <td>{{$value->tgl_surat}}</td>
                         <td>{{$value->jml_peserta}}</td>
-                        
+
                         <td>
-                            <button class="btn btn-primary fa fa-paperclip btn-perspective" name="pendaftaran_id" value="{{$value->pendaftaran_id}}" type="submit"></button>
+                            <button class="btn btn-primary fa fa-paperclip btn-perspective" name="pendaftaran_id" value="{{$value->pendaftaran_id}}" type="submit"> Set SK</button>
                         </td>
                         <td>
-                            <a class="btn btn-info fa fa-envelope btn-perspective" href="{{'/fakultas/usulan_timujianta'}}/{{$value->pendaftaran_id}}"></a>
+                            <a class="btn btn-info fa fa-envelope btn-perspective" href="{{'/fakultas/usulan_timujianta'}}/{{$value->pendaftaran_id}}"> Cetak SK</a>
                         </td>
                         <td>
                            <?= helper::getStatusSuratUsulanTIMUjianTa($value->pendaftaran_id, $value->nomor) ?>
