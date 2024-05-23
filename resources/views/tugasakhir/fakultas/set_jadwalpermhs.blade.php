@@ -81,18 +81,18 @@
                         </div>
                         <br><br>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Peenguji III</label>
+                            <label class="col-lg-2 control-label">Penguji III</label>
                             <div class="col-xs-5">
                                 <div class="form-control bold-border" disabled>{{$penguji3->NAMA_DOSEN}}</div>
                             </div><!-- /.col-xs-5 -->
                         </div>
-                        <br><br>
+                        {{-- <br><br>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Ketua Sidang</label>
                             <div class="col-xs-5">
                                 <div class="form-control bold-border" disabled>{{$ketua_sidang->NAMA_DOSEN}}</div>
                             </div><!-- /.col-xs-5 -->
-                        </div>
+                        </div> --}}
                         <br><br>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Ruangan Ujian</label>

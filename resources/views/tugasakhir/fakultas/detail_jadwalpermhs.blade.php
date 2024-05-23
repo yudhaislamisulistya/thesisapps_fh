@@ -62,7 +62,7 @@
                                 <th>Penguji I</th>
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>
-                                <th>Ketua Sidang</th>
+                                {{-- <th>Ketua Sidang</th> --}}
                                 <th>Pengaturan</th>
                             </tr>
                         </thead>
@@ -103,16 +103,16 @@
                                             {{ $penguji3->NAMA_DOSEN }}
                                         @endif
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         @if ($ketuasidang == null)
                                             {{ '-' }}
                                         @else
                                             {{ $ketuasidang->NAMA_DOSEN }}
                                         @endif
-                                    </td>
+                                    </td> --}}
                                     <td>
-                                        @if ($penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
-                                            Silahkan Set Penguji dan Ketua Sidang
+                                        @if ($penguji1 == null && $penguji2 == null && $penguji3 == null)
+                                            Silahkan Set Penguji
                                         @else
                                             <a
                                                 href="{{ url("fakultas/set_jadwalpermhs/$info->pendaftaran_id/$d->C_NPM") }}"><i
