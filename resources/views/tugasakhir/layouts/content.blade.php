@@ -291,18 +291,19 @@
                 @if (helper::getStatusBimbinganByNim(auth()->user()->name) == 0)
                 <p class="text-mute visible-lg-inlined">Informasi bimbingan anda saat ini ialah <a class="alert-link"
                     href="#fakelink">
-                    <h4 class="visible-lg-inline">Persiapan Ujian Proposal</h4>
+                    <h4 class="visible-lg-inline"> Persiapan Ujian Proposal</h4>
                 @elseif (helper::getStatusBimbinganByNim(auth()->user()->name) == 1)
                 <p class="text-mute visible-lg-inlined">Informasi bimbingan anda saat ini ialah <a class="alert-link"
                     href="#fakelink">
-                    <h4 class="visible-lg-inline">Persiapan Ujian Seminar</h4>
+                    <h4 class="visible-lg-inline"> Persiapan Ujian Seminar</h4>
                 @elseif(helper::getStatusBimbinganByNim(auth()->user()->name) == 2)
                 <p class="text-muted visible-lg-inline">Informasi bimbingan anda saat ini ialah <a class="alert-link"
                     href="#fakelink">
-                    <h4 class="visible-lg-inline">Persiapan Ujian Meja</h4>
+                    <h4 class="visible-lg-inline"> Persiapan Ujian Meja</h4>
                 @elseif(helper::getStatusBimbinganByNim(auth()->user()->name) == 3)
                 <p class="text-muted visible-lg-inline">Selamat Anda Telah Menyelesaikan Bimbingan dan dinyatakan sebagai<a class="alert-link"
-                    href="#fakelink"><h4 class="visible-lg-inline">Lulusan</h4>
+                    href="#fakelink">
+                    <h4 class="visible-lg-inline"> Lulusan</h4>
                 @else
                     <p class="text-muted visible-lg-inline">Anda belum sampai ke tahap bimbingan<a class="alert-link"
                     href="#fakelink">

@@ -30,7 +30,6 @@
                             <th>Penguji I</th>
                             <th>Penguji II</th>
                             <th>Penguji III</th>
-                            <th>Ketua Sidang</th>
                             <th style="text-align: center">Aksi</th>
                         </tr>
                         </thead>
@@ -96,20 +95,9 @@
                                         @endif
                                     @endif
                                 </td>
-                                <td>
-                                    @if ($ketuasidang == null)
-                                        {{"-"}}
-                                    @else
-                                        @if ($ketuasidang->C_KODE_DOSEN == auth()->user()->name)
-                                            <b>{{$ketuasidang->NAMA_DOSEN}}</b>
-                                        @else
-                                            {{$ketuasidang->NAMA_DOSEN}}
-                                        @endif
-                                    @endif
-                                </td>
                                 <td style="width: 240px; text-align: center">
 
-                                    @if ($penguji1 == null && $penguji2 == null && $penguji3 == null && $ketuasidang == null)
+                                    @if ($penguji1 == null && $penguji2 == null && $penguji3 == null)
                                         Belum Bisa Beri Nilai
                                     @else
                                     @if (helper::getStatusBimbinganByNim($d->C_NPM) == 3)
