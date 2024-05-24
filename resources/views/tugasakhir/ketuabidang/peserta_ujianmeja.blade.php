@@ -39,7 +39,7 @@
                                 <td>{{$value->kuota}}</td>
                                 <td>{{$value->jml_peserta}}</td>
                                 {{-- <td>{{$value->status == 0 ? "<td>{{$d->status == 0 ? "Belum terlaksana" : "Terlaksana"}}</td>" : "Terlaksana"}}</td> --}}
-                                <td><a href="{{ url('prodi/daftar_peserta/'.$value->pendaftaran_id)}}"><i class="fa fa-copy icon-square icon-xs icon-primary"></i></a></td>
+                                <td><a href="{{ url('ketuabidang/daftar_peserta/'.$value->pendaftaran_id)}}"><i class="fa fa-copy icon-square icon-xs icon-primary"></i></a></td>
                             </tr>
                         @endforeach
                         </tbody>

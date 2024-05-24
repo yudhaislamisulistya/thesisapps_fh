@@ -320,13 +320,17 @@ class mhs extends Controller
     }
     public function pengajuan_topikdel($id)
     {
-        $data = DB::table("trt_topik")->select("*")->where('topik_id', $id)->get();
-        $path = public_path("dokumen/" . $data[0]->kerangka);
-        if (strpos($path, ".")) {
-            unlink($path);
+        try {
+            $data = DB::table("trt_topik")->select("*")->where('topik_id', $id)->get();
+            $path = public_path("dokumen/" . $data[0]->kerangka);
+            if (strpos($path, ".")) {
+                unlink($path);
+            }
+            trt_topik::where('topik_id', $id)->delete();
+            return redirect()->back()->with((["status" => "berhasil", "message" => "Topik Berhasil Dihapus"]));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with((["status" => "gagal", "message" => "Topik Gagal Dihapus"]));
         }
-        trt_topik::where('topik_id', $id)->delete();
-        return redirect::to('mhs/pengajuan_topik');
     }
 
 

@@ -17,6 +17,12 @@
 
             <!-- BEGIN DATA TABLE -->
             <h3 class="page-heading">Daftar Peserta Ujian</h3>
+            @if (Session::get('status') == 'berhasil')
+                <div class="alert alert-success" role="alert"><strong>Berhasil! </strong><?= Session::get('message') ?>
+                </div>
+            @elseif(Session::get('status') == 'gagal')
+                <div class="alert alert-danger" role="alert"><strong>Gagal! </strong><?= Session::get('message') ?></div>
+            @endif
             <div class="the-box">
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Jadwal Ujian</label>
@@ -63,7 +69,6 @@
                                 <th>Penguji I</th>
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>
-                                <th>Ketua Sidang</th>
                                 <th>Set Penguji</th>
                             </tr>
                         </thead>
@@ -102,13 +107,6 @@
                                             {{ '-' }}
                                         @else
                                             {{ $penguji3->NAMA_DOSEN }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($ketuasidang == null)
-                                            {{ '-' }}
-                                        @else
-                                            {{ $ketuasidang->NAMA_DOSEN }}
                                         @endif
                                     </td>
                                     <style>

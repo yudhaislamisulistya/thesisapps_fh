@@ -141,7 +141,7 @@
                                 </select>
                             </div><!-- /.col-xs-5 -->
                         </div>
-                        <br><br>
+                        {{-- <br><br>
                         @if ($info->tipe_ujian == 0)
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Ketua Sidang</label>
@@ -174,7 +174,7 @@
                                     </select>
                                 </div><!-- /.col-xs-5 -->
                             </div>
-                        @endif
+                        @endif --}}
                         <br><br>
                         <small>
                             *Penetapan penguji hanya dapat dilakukan sekali, pastikan data yang diinputkan sudah benar.

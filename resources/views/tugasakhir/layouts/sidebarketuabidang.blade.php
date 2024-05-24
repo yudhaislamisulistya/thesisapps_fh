@@ -51,6 +51,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ route('get_ketua_bidang_peserta_proposal') }}">Proposal</a></li>
+                <li><a href="{{ route('get_ketua_bidang_peserta_seminar') }}">Seminar</a></li>
                 <li><a href="{{ route('get_ketua_bidang_peserta_ujianmeja') }}">Ujian Meja</a></li>
             </ul>
         </li>
@@ -62,7 +63,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ url('ketuabidang/jadwalpermhs/proposal') }}">Proposal</a></li>
-                <li><a href="{{ url('ketuabidang/jadwalpermhs/seminarhasil') }}">Proposal</a></li>
+                <li><a href="{{ url('ketuabidang/jadwalpermhs/seminarhasil') }}">Seminar</a></li>
                 <li><a href="{{ url('ketuabidang/jadwalpermhs/ujianmeja') }}">Ujian Meja</a></li>
             </ul>
         </li>

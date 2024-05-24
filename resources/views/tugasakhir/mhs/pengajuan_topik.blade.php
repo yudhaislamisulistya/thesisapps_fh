@@ -45,13 +45,13 @@
                                     <input type="text" class="form-control bold-border" name="topik" required />
                                 </div>
                             </div>
-                            <br><br>
+                            {{-- <br><br>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Bidang Ilmu Peminatan</label>
                                 <div class="col-lg-5">
                                     <select class="form-control" name="bidang_ilmu_peminatan" id="bidang_ilmu_peminatan">
                                         @foreach ($data as $key => $value)
-                                            <option value="{{ $value->bidangilmu_id }}">{{ $value->bidang_ilmu }}</option>
+                                            <option value="{{ $value->bidang_ilmu }}">{{ $value->bidang_ilmu }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -64,11 +64,11 @@
                                         class="form-control chosen-select" multiple tabindex="4" required>
                                         <option value="" disabled>&nbsp;</option>
                                         @foreach ($data as $key => $value)
-                                            <option value="{{ $value->bidangilmu_id }}">{{ $value->bidang_ilmu }}</option>
+                                            <option value="{{ $value->bidang_ilmu }}">{{ $value->bidang_ilmu }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <br><br>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Kerangka Pikir</label>
@@ -146,6 +146,10 @@
                     @if ($statusKonfirmasiTopikPenelitian == 1 || $statusKonfirmasiTopikPenelitian == 2)
                         <div class="alert alert-success" role="alert">
                             Pembimbing Sudah di tetapkan
+                        </div>
+                    @elseif($statusKonfirmasiTopikPenelitian == 0)
+                        <div class="alert alert-danger" role="alert">
+                            Pembimbing Belum di tentukan oleh Ketua Bidang dan di tetapkan oleh Wakil Dekan
                         </div>
                     @endif
                     <form method="post" action="{{ url('mhs/usulan_tmp') }}" enctype="multipart/form-data">
@@ -256,6 +260,7 @@
                                 <th>No</th>
                                 <th>Tanggal</th>
                                 <th>Judul</th>
+                                <th>Bidang Ilmu</th>
                                 <th>Note</th>
                                 <th>Kerangka Pikir</th>
                                 <th>Status</th>
@@ -268,6 +273,13 @@
                                     <td width="1%" align="center">{{ ++$key }}</td>
                                     <td>{{ $value->created_at }}</td>
                                     <td>{{ $value->topik }}</td>
+                                    <td>
+                                        @if ($value->bidang_ilmu_peminatan == null)
+                                            <span class="label label-danger">Bidang Ilmu Belum di Tentukan</span>
+                                        @else
+                                            <span class="label label-primary">{{ $value->bidang_ilmu_peminatan }}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a class="btn btn-info"
                                             href="{{ url('mhs/detail_note') }}/{{ $value->topik_id }}"><i

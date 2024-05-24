@@ -141,7 +141,7 @@
                             </div><!-- /.col-xs-5 -->
                         </div>
                         <br><br>
-                        @if ($info->tipe_ujian == 0)
+                        {{-- @if ($info->tipe_ujian == 0)
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Ketua Sidang</label>
                                 <div class="col-xs-5">
@@ -174,7 +174,7 @@
                                 </div><!-- /.col-xs-5 -->
                             </div>
                         @endif
-                        <br><br>
+                        <br><br> --}}
                         <div class="form-group">
                             <div class="col-xs-7" align="right">
                                 <button id="tombol_satu" class="btn btn-danger btn-perspective" type="button"

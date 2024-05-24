@@ -34,8 +34,14 @@
         </li>
         <li class="static">MENU WAKIL DEKAN</li>
         <li>
+            <a href="{{ url('wakildekan/topik') }}">
+                <i class="fa fa-files-o icon-sidebar"></i>
+                Topik Penelitian
+            </a>
+        </li>
+        <li>
             <a href="{{ route('get_wakil_dekan_penetapan_pembimbing_dan_judul') }}">
-                <i class="fa fa-stack-overflow icon-sidebar"></i>
+                <i class="fa fa-flask icon-sidebar"></i>
                 Penetapan Pembimbing dan Judul
             </a>
         </li>
@@ -53,6 +59,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ route('get_wakil_dekan_peserta_proposal') }}">Proposal</a></li>
+                <li><a href="{{ route('get_wakil_dekan_peserta_seminar') }}">Seminar</a></li>
                 <li><a href="{{ route('get_wakil_dekan_peserta_ujianmeja') }}">Ujian Meja</a></li>
             </ul>
         </li>
@@ -62,12 +69,7 @@
                 SK Ujian TA
             </a>
         </li>
-        <li>
-            <a href="{{ url('wakildekan/topik') }}">
-                <i class="fa fa-files-o icon-sidebar"></i>
-                Topik Penelitian
-            </a>
-        </li>
+
         <li>
             <a href="{{ url('wakildekan/request_surat_lokasi_penelitian') }}">
                 <i class="fa fa-eye icon-sidebar"></i>

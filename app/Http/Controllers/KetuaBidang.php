@@ -100,6 +100,17 @@ class KetuaBidang extends Controller
         return view('tugasakhir.ketuabidang.peserta_proposal', compact('pendaftaran'));
     }
 
+    public function peserta_seminarhasil()
+    {
+        $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")
+            ->where('tipe_ujian', 1)
+            ->where('mst_pendaftaran.status_prodi', 1)
+            ->orwhere('tipe_ujian', 3)
+            ->orderBy('mst_pendaftaran.created_at', 'desc')
+            ->get();
+        return view('tugasakhir.ketuabidang.peserta_seminarhasil', compact('pendaftaran'));
+    }
+
     public function peserta_ujianmeja()
     {
         $pendaftaran = mst_pendaftaran::join("trt_jadwal_ujian", "trt_jadwal_ujian.pendaftaran_id", "=", "mst_pendaftaran.pendaftaran_id")

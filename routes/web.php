@@ -134,6 +134,7 @@ Route::group(['middleware' => 'ketua_bidang'], function () {
         });
         // Set Penguji
         Route::get('peserta_proposal', 'KetuaBidang@peserta_proposal')->name('get_ketua_bidang_peserta_proposal');
+        Route::get('peserta_seminarhasil', 'KetuaBidang@peserta_seminarhasil')->name('get_ketua_bidang_peserta_seminar');
         Route::get('peserta_ujianmeja', 'KetuaBidang@peserta_ujianmeja')->name('get_ketua_bidang_peserta_ujianmeja');
         Route::get('daftar_peserta/{id}', 'KetuaBidang@daftar_peserta')->name('get_ketua_bidang_daftar_peserta');
         Route::get('set_penguji/{pendaftaran_id}/{nim}/{tipe_ujian}', 'KetuaBidang@set_penguji')->name('set_penguji');
@@ -392,6 +393,7 @@ Route::group(['middleware' => 'wakil_dekan'], function () {
 
     // Menetapkan Penguji
     Route::get('/wakildekan/peserta_proposal', 'WakilDekan@peserta_proposal')->name('get_wakil_dekan_peserta_proposal');
+    Route::get('/wakildekan/peserta_seminarhasil', 'WakilDekan@peserta_seminarhasil')->name('get_wakil_dekan_peserta_seminar');
     Route::get('/wakildekan/peserta_ujianmeja', 'WakilDekan@peserta_ujianmeja')->name('get_wakil_dekan_peserta_ujianmeja');
     Route::get('/wakildekan/daftar_peserta/{id}', 'WakilDekan@daftar_peserta')->name('get_wakil_dekan_daftar_peserta');
     Route::get('/wakildekan/set_penguji/{pendaftaran_id}/{nim}/{tipe_ujian}', 'WakilDekan@set_penguji')->name('set_penguji_by_wakil_dekan');
