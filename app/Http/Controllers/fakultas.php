@@ -1999,4 +1999,35 @@ class fakultas extends Controller
 
         return view('tugasakhir.fakultas.surat_usulantimujian', compact('nomor', 'perihal', 'tgl', 'datax', 'tgl_ujian'));
     }
+
+    public function request_surat_lokasi_penelitian()
+    {
+        try {
+            $data_lokasi_penelitian = DB::table('mst_lokasi_penelitian')
+                ->select('*')
+                ->get();
+
+            return view('tugasakhir.fakultas.request_surat_lokasi_penelitian', compact('data_lokasi_penelitian'));
+        } catch (Exception $error) {
+            return redirect()->back();
+        }
+    }
+
+    public function request_surat_lokasi_penelitian_update(Request $request)
+    {
+        $datapost = $request->all();
+        try {
+            DB::table('mst_lokasi_penelitian')
+                ->where('id', $datapost['id'])
+                ->update([
+                    'nomor_surat' => $datapost['nomor_sk'],
+                    'tanggal' => $datapost['tanggal'],
+                    'status' => 1
+                ]);
+
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "Berhasil set sk"]));
+        } catch (Exception $error) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "Gagal set sk"]));
+        }
+    }
 }

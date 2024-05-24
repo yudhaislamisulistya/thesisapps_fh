@@ -68,6 +68,12 @@
                 Topik Penelitian
             </a>
         </li>
+        <li>
+            <a href="{{ url('wakildekan/request_surat_lokasi_penelitian') }}">
+                <i class="fa fa-eye icon-sidebar"></i>
+                Request Surat Lokasi Penelitian
+            </a>
+        </li>
     </ul>
 </div><!-- /.sidebar-left -->
 <!-- END SIDEBAR LEFT -->

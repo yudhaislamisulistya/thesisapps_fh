@@ -296,4 +296,33 @@ class WakilDekan extends Controller
             return redirect()->to("/wakildekan/daftar_peserta/$pendaftaran_id")->with(["status" => "gagal", "message" => "Data gagal disimpan"]);
         }
     }
+
+    public function request_surat_lokasi_penelitian()
+    {
+        try {
+            $data_lokasi_penelitian = DB::table('mst_lokasi_penelitian')
+                ->select('*')
+                ->get();
+
+            return view('tugasakhir.wakildekan.request_surat_lokasi_penelitian', compact('data_lokasi_penelitian'));
+        } catch (Exception $error) {
+            return redirect()->back();
+        }
+    }
+
+    public function request_surat_lokasi_penelitian_update(Request $request)
+    {
+        $datapost = $request->all();
+        try {
+            DB::table('mst_lokasi_penelitian')
+                ->where('id', $datapost['id'])
+                ->update([
+                    'status' => 2
+                ]);
+
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "Berhasil set sk"]));
+        } catch (Exception $error) {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "Gagal set sk"]));
+        }
+    }
 }

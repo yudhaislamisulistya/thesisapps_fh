@@ -136,6 +136,12 @@
                 <li><a href="{{ url('fakultas/rekap_nilai_ujian_ta') }}">Ujian Meja</a></li>
             </ul>
         </li>
+        <li>
+            <a href="{{ url('fakultas/request_surat_lokasi_penelitian') }}">
+                <i class="fa fa-eye icon-sidebar"></i>
+                Request Surat Lokasi Penelitian
+            </a>
+        </li>
     </ul>
 </div><!-- /.sidebar-left -->
 <!-- END SIDEBAR LEFT -->

@@ -396,6 +396,10 @@ Route::group(['middleware' => 'wakil_dekan'], function () {
     Route::get('/wakildekan/daftar_peserta/{id}', 'WakilDekan@daftar_peserta')->name('get_wakil_dekan_daftar_peserta');
     Route::get('/wakildekan/set_penguji/{pendaftaran_id}/{nim}/{tipe_ujian}', 'WakilDekan@set_penguji')->name('set_penguji_by_wakil_dekan');
     Route::post('/wakildekan/set_penguji/{pendaftaran_id}', 'WakilDekan@set_pengujipost')->name('set_penguji_by_wakil_dekan_post');
+
+    // Request Surat Lokasi Penelitian
+    Route::get('wakildekan/request_surat_lokasi_penelitian', 'wakildekan@request_surat_lokasi_penelitian')->name('get_wakildekan_request_surat_lokasi_penelitian');
+    Route::post('wakildekan/request_surat_lokasi_penelitian', 'wakildekan@request_surat_lokasi_penelitian_update')->name('update_wakildekan_request_surat_lokasi_penelitian');
 });
 
 Route::group(['middleware' => 'akademik_fakultas'], function () {
@@ -530,6 +534,10 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get('/fakultas/detail_riwayat_sk_pengusulan_tim_ujian_ta/{nomor}', 'fakultas@detail_riwayat_sk_pengusulan_tim_ujian_ta');
     Route::get('/fakultas/cetak_riwayat_sk_pengusulan_tim_ujian_ta/{nomor}', 'fakultas@cetak_riwayat_sk_pengusulan_tim_ujian_ta');
     Route::post('/fakultas/surat_pengusulan_ujian_ta', 'fakultas@surat_pengusulan_ujian_ta');
+
+    // Request Surat Lokasi Penelitian
+    Route::get('fakultas/request_surat_lokasi_penelitian', 'fakultas@request_surat_lokasi_penelitian')->name('get_fakultas_request_surat_lokasi_penelitian');
+    Route::post('fakultas/request_surat_lokasi_penelitian', 'fakultas@request_surat_lokasi_penelitian_update')->name('update_fakultas_request_surat_lokasi_penelitian');
 });
 
 Route::group(['middleware' => 'dosen'], function () {
