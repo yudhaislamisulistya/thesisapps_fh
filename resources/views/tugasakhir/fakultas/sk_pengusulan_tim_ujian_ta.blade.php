@@ -147,7 +147,7 @@
             form.submit();
             modal.querySelector(".modal-backdrop").click();
             setTimeout(() => {
-                window.location.href = "http://127.0.0.1:8000/fakultas/sk_ujian_ta";
+                window.location.href = "https://thesis-dev.fikom.app/fh/fakultas/sk_ujian_ta";
             }, 500); //
         }
     </script>

@@ -364,10 +364,10 @@
         };
 
         const namaPeriodeChange = e => {
-            axios.get(`http://127.0.0.1:8000/api/getjumlahpeserta/${e.value}`).then(res => {
+            axios.get(`https://thesis-dev.fikom.app/fh/api/getjumlahpeserta/${e.value}`).then(res => {
                 document.querySelector("input[name=jml_peserta]").value = res.data
             })
-            axios.get(`http://127.0.0.1:8000/api/gettipeujian/${e.value}`).then(res => {
+            axios.get(`https://thesis-dev.fikom.app/fh/api/gettipeujian/${e.value}`).then(res => {
                 document.querySelector("input[name=tipe_ujian]").value = res.data
             })
         }

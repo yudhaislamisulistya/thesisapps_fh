@@ -140,7 +140,7 @@
             form = document.querySelector(`form[action="${formaction}"]`);
             form.submit();
             setTimeout(() => {
-                window.location.href = "http://127.0.0.1:8000/fakultas/surat_usulan_pembimbing";
+                window.location.href = "https://thesis-dev.fikom.app/fh/fakultas/surat_usulan_pembimbing";
             }, 500); // Delay untuk memastikan form submit sebelum redirect
         };
     </script>
