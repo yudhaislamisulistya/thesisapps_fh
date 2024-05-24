@@ -17,6 +17,12 @@
 
             <!-- BEGIN DATA TABLE -->
             <h3 class="page-heading">Daftar Calon Mahasiswa Bimbingan</h3>
+            @if (Session::get('status') == 'berhasil')
+                <div class="alert alert-success" role="alert"><strong>Berhasil! </strong><?= Session::get('message') ?>
+                </div>
+            @elseif(Session::get('status') == 'gagal')
+                <div class="alert alert-danger" role="alert"><strong>Gagal! </strong><?= Session::get('message') ?></div>
+            @endif
             <div class="the-box">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="datatable-example">
@@ -37,7 +43,8 @@
                                     <td>{{ $value->NAMA_MAHASISWA }}</td>
                                     <td>{{ $value->topik }}</td>
                                     <td>
-                                        <a href="{{ route('get_fakultas_set_pembimbing', ['id' => $value->C_NPM, 'status' => 1]) }}">
+                                        <a
+                                            href="{{ route('get_fakultas_set_pembimbing', ['id' => $value->C_NPM, 'status' => 1]) }}">
                                             <i class="fa fa-copy icon-square icon-xs icon-primary">
                                             </i>
                                         </a>

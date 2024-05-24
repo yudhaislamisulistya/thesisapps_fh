@@ -34,7 +34,7 @@
                                 <th>Penguji I</th>
                                 <th>Penguji II</th>
                                 <th>Penguji III</th>
-                                <th>Ketua Sidang</th>
+                                {{-- <th>Ketua Sidang</th> --}}
                                 <th>SK</th>
                             </tr>
                         </thead>
@@ -106,7 +106,7 @@
                                             @endif
                                         @endif
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         @if ($ketuasidang == null)
                                             {{ '-' }}
                                         @else
@@ -116,7 +116,7 @@
                                                 {{ $ketuasidang->NAMA_DOSEN }}
                                             @endif
                                         @endif
-                                    </td>
+                                    </td> --}}
                                     @if (helper::getStatusSKUjianProposalForMahasiswa($d->C_NPM) != '')
                                         <td><a target="_blank"
                                                 href="{{ url('dsn/surat_sk_proposal') }}/{{ helper::getPendaftaranIdForDosen($d->C_NPM, 0) }}/{{ $d->C_NPM }}"><i

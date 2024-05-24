@@ -52,6 +52,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ url('wakildekan/sk_ujian_ta') }}">
+                <i class="fa fa-paperclip icon-sidebar"></i>
+                SK Ujian TA
+            </a>
+        </li>
+        <li>
             <a href="#fakelink">
                 <i class="fa fa-users icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
@@ -63,12 +69,7 @@
                 <li><a href="{{ route('get_wakil_dekan_peserta_ujianmeja') }}">Ujian Meja</a></li>
             </ul>
         </li>
-        <li>
-            <a href="{{ url('wakildekan/sk_ujian_ta') }}">
-                <i class="fa fa-paperclip icon-sidebar"></i>
-                SK Ujian TA
-            </a>
-        </li>
+
 
         <li>
             <a href="{{ url('wakildekan/request_surat_lokasi_penelitian') }}">

@@ -222,10 +222,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>1</td>
                                         @if ($data[0]->tipe_ujian == 0)
-                                            <td>Pembimbing Ketua & Ketua Sidang</td>
+                                            <td>Pembimbing Ketua</td>
                                         @else
                                             <td>Ketua Sidang</td>
                                         @endif
@@ -266,9 +266,9 @@
                                             @endif
                                         @else
                                         @endif
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
-                                        <td>2</td>
+                                        <td>1</td>
                                         <td>Penguji I</td>
                                         <td>
                                             @if ($penguji1 == null)
@@ -304,7 +304,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td>3</td>
+                                        <td>2</td>
                                         <td>Penguji II</td>
                                         <td>
                                             @if ($penguji2 == null)
@@ -340,7 +340,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td>4</td>
+                                        <td>3</td>
                                         <td>Penguji III</td>
                                         <td>
                                             @if ($penguji3 == null)
@@ -375,46 +375,43 @@
                                         @endif
 
                                     </tr>
-                                    @if ($data[0]->tipe_ujian == 0)
-                                    @else
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Pembimbing Ketua</td>
-                                            <td>
-                                                @if ($pembimbing1 == null)
-                                                    {{ '-' }}
-                                                @else
-                                                    {{ $pembimbing1->NAMA_DOSEN }}
-                                                @endif
-                                            </td>
-                                            <td>{{ helper::getSaranByNidnAndRegId($data[0]->pembimbing_I_id, $data[0]->reg_id) }}
-                                            </td>
-                                            @if (Auth::user()->level == 7 || Auth::user()->level == 6 || Auth::user()->level == 4)
-                                                <td>{{ helper::getTotalNilaByNidnAndRegId($data[0]->pembimbing_I_id, $data[0]->reg_id) }}
-                                                </td>
-
-                                                @if (helper::getTotalNilaByNidnAndRegId($data[0]->pembimbing_I_id, $data[0]->reg_id) == 0)
-                                                    <td><a href="#" class="btn btn-info disabled"><i
-                                                                class="fa fa-file-text"></i>Belum
-                                                            Ada Penilaian</a></td>
-                                                @else
-                                                    @if ($data[0]->tipe_ujian == 0)
-                                                        <td><a target="_blank"
-                                                                href="{{ url('dsn/detailhasil_proposal/') }}/{{ $data[0]->pembimbing_I_id }}/{{ $data[0]->reg_id }}/{{ $data[0]->pendaftaran_id }}/{{ $data[0]->C_NPM }}/5"
-                                                                class="btn btn-info"><i
-                                                                    class="fa fa-file-text"></i>Penilaian</a></td>
-                                                    @elseif($data[0]->tipe_ujian == 2)
-                                                        <td><a target="_blank"
-                                                                href="{{ url('dsn/detailhasil_ujianmeja/') }}/{{ $data[0]->pembimbing_I_id }}/{{ $data[0]->reg_id }}/{{ $data[0]->pendaftaran_id }}/{{ $data[0]->C_NPM }}/5"
-                                                                class="btn btn-info"><i
-                                                                    class="fa fa-file-text"></i>Penilaian</a></td>
-                                                    @endif
-                                                @endif
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Pembimbing Ketua</td>
+                                        <td>
+                                            @if ($pembimbing1 == null)
+                                                {{ '-' }}
                                             @else
+                                                {{ $pembimbing1->NAMA_DOSEN }}
                                             @endif
+                                        </td>
+                                        <td>{{ helper::getSaranByNidnAndRegId($data[0]->pembimbing_I_id, $data[0]->reg_id) }}
+                                        </td>
+                                        @if (Auth::user()->level == 7 || Auth::user()->level == 6 || Auth::user()->level == 4)
+                                            <td>{{ helper::getTotalNilaByNidnAndRegId($data[0]->pembimbing_I_id, $data[0]->reg_id) }}
+                                            </td>
 
-                                        </tr>
-                                    @endif
+                                            @if (helper::getTotalNilaByNidnAndRegId($data[0]->pembimbing_I_id, $data[0]->reg_id) == 0)
+                                                <td><a href="#" class="btn btn-info disabled"><i
+                                                            class="fa fa-file-text"></i>Belum
+                                                        Ada Penilaian</a></td>
+                                            @else
+                                                @if ($data[0]->tipe_ujian == 0)
+                                                    <td><a target="_blank"
+                                                            href="{{ url('dsn/detailhasil_proposal/') }}/{{ $data[0]->pembimbing_I_id }}/{{ $data[0]->reg_id }}/{{ $data[0]->pendaftaran_id }}/{{ $data[0]->C_NPM }}/5"
+                                                            class="btn btn-info"><i
+                                                                class="fa fa-file-text"></i>Penilaian</a></td>
+                                                @elseif($data[0]->tipe_ujian == 2)
+                                                    <td><a target="_blank"
+                                                            href="{{ url('dsn/detailhasil_ujianmeja/') }}/{{ $data[0]->pembimbing_I_id }}/{{ $data[0]->reg_id }}/{{ $data[0]->pendaftaran_id }}/{{ $data[0]->C_NPM }}/5"
+                                                            class="btn btn-info"><i
+                                                                class="fa fa-file-text"></i>Penilaian</a></td>
+                                                @endif
+                                            @endif
+                                        @else
+                                        @endif
+
+                                    </tr>
                                     <tr>
                                         @if (Auth::user()->level == 8)
                                             <td>5</td>

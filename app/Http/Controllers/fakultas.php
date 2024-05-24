@@ -541,9 +541,9 @@ class fakultas extends Controller
             ], $datapost);
             mst_tmp_usulan::where("C_NPM", $request->C_NPM)->delete();
 
-            return redirect()->to('fakultas/usulan_pembimbing')->with((['status' => "berhasil", 'message' => "berhasil menambahkan data bimbingan"]));
+            return redirect()->to('fakultas/surat_usulan_pembimbing')->with((['status' => "berhasil", 'message' => "berhasil menambahkan data bimbingan atau set data bimbingan"]));
         } catch (\Throwable $th) {
-            return redirect()->to('fakultas/usulan_pembimbing')->with((['status' => "gagal", 'message' => "gagal menambahkan data bimbingan"]));
+            return redirect()->to('fakultas/surat_usulan_pembimbing')->with((['status' => "gagal", 'message' => "gagal menambahkan data bimbingan atau set data bimbingan"]));
         }
     }
 

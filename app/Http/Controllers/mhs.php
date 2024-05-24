@@ -952,6 +952,7 @@ class mhs extends Controller
             ->select('*')
             ->get();
 
+
         $status = 'tidak';
         $id_bimbingan = "";
 
@@ -1203,6 +1204,8 @@ class mhs extends Controller
                 'tgl_sekarang'
             ));
         } catch (Exception $error) {
+            var_dump($error->getMessage());
+            die();
             return redirect('mhs/download');
         }
     }

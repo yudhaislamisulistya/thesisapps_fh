@@ -43,12 +43,12 @@
                 SK Pembimbing
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a href="{{ url('dsn/request_pembimbing') }}">
                 <i class="fa fa-stack-overflow icon-sidebar"></i>
                 Request Pembimbingan
             </a>
-        </li>
+        </li> --}}
         <li>
             <a href="{{ url('dsn/usul_judul') }}">
                 <i class="fa fa-stack-overflow icon-sidebar"></i>
@@ -87,6 +87,7 @@
             </a>
             <ul class="submenu">
                 <li><a href="{{ url('dsn/rekap_nilai_proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('dsn/rekap_nilai_seminar') }}">Seminar</a></li>
                 <li><a href="{{ url('dsn/rekap_nilai_ujian_ta') }}">Ujian Meja</a></li>
             </ul>
         </li>

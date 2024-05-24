@@ -139,6 +139,43 @@ Route::group(['middleware' => 'ketua_bidang'], function () {
         Route::get('daftar_peserta/{id}', 'KetuaBidang@daftar_peserta')->name('get_ketua_bidang_daftar_peserta');
         Route::get('set_penguji/{pendaftaran_id}/{nim}/{tipe_ujian}', 'KetuaBidang@set_penguji')->name('set_penguji');
         Route::post('set_penguji/{pendaftaran_id}', 'KetuaBidang@set_pengujipost')->name('set_penguji_post');
+
+        // Aprove Hasil Ujian
+        Route::get("approve_hasilujian_proposal/", "KetuaBidang@approve_hasilujian_proposal");
+        Route::get("detail_hasilujian_proposal/{id}", "KetuaBidang@detail_hasilujian_proposal");
+        Route::get("approve_hasilujian_proposal_post/{id}/{nim}/{pendaftaran_id}", "KetuaBidang@approve_hasilujian_proposal_post");
+        Route::get("tolak_hasilujian_proposal_post/{id}/{nim}/{pendaftaran_id}", "KetuaBidang@tolak_hasilujian_proposal_post");
+        Route::get("lembaran_hasilujian_proposal/{id}/{nim}/{regid}", "KetuaBidang@lembaran_hasilujian_proposal");
+        Route::get("approve_hasilujian_proposal_all_post", "KetuaBidang@approve_hasilujian_proposal_all_post");
+
+        Route::get("approve_hasilujian_ta_all_post", "KetuaBidang@approve_hasilujian_ta_all_post");
+        Route::get("approve_hasilujian_ta/", "KetuaBidang@approve_hasilujian_ta");
+        Route::get("detail_hasilujian_ta/{id}", "KetuaBidang@detail_hasilujian_ta");
+        Route::get("approve_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "KetuaBidang@approve_hasilujian_ta_post");
+        Route::get("tolak_hasilujian_ta_post/{id}/{nim}/{pendaftaran_id}", "KetuaBidang@tolak_hasilujian_ta_post");
+        Route::get("lembaran_hasilujian_ta/{id}/{nim}/{regid}", "KetuaBidang@lembaran_hasilujian_ta");
+
+        Route::get("approve_hasilujian_seminar_all_post", "KetuaBidang@approve_hasilujian_seminar_all_post");
+        Route::get("approve_hasilujian_seminar/", "KetuaBidang@approve_hasilujian_seminar");
+        Route::get("detail_hasilujian_seminar/{id}", "KetuaBidang@detail_hasilujian_seminar");
+        Route::get("approve_hasilujian_seminar_post/{id}/{nim}/{pendaftaran_id}", "KetuaBidang@approve_hasilujian_seminar_post");
+        Route::get("tolak_hasilujian_seminar_post/{id}/{nim}/{pendaftaran_id}", "KetuaBidang@tolak_hasilujian_seminar_post");
+        Route::get("lembaran_hasilujian_seminar/{id}/{nim}/{regid}", "KetuaBidang@lembaran_hasilujian_seminar");
+
+        // Rekap Nilai Hasil Proposal
+        Route::get("rekap_nilai_proposal/", "KetuaBidang@rekap_nilai_proposal");
+        Route::get("detail_rekap_nilai_proposal/{id}", "KetuaBidang@detail_rekap_nilai_proposal");
+        Route::get("lembaran_hasilujian_proposal/{id}/{nim}/{regid}", "KetuaBidang@lembaran_hasilujian_proposal");
+
+        // Rekap Nilai Hasil Seminar
+        Route::get("rekap_nilai_seminar/", "KetuaBidang@rekap_nilai_seminar");
+        Route::get("detail_rekap_nilai_seminar/{id}", "KetuaBidang@detail_rekap_nilai_seminar");
+        Route::get("lembaran_hasilujian_seminar/{id}/{nim}/{regid}", "KetuaBidang@lembaran_hasilujian_seminar");
+
+        // Rekap Nilai Ujian TA
+        Route::get("rekap_nilai_ujian_ta/", "KetuaBidang@rekap_nilai_ujian_ta");
+        Route::get("detail_rekap_nilai_ujian_ta/{id}", "KetuaBidang@detail_rekap_nilai_ujian_ta");
+        Route::get("lembaran_hasilujian_ujian_ta/{id}/{nim}/{regid}", "KetuaBidang@lembaran_hasilujian_ujian_ta");
     });
 });
 
@@ -587,6 +624,11 @@ Route::group(['middleware' => 'dosen'], function () {
     Route::get("/dsn/rekap_nilai_proposal/", "dosen@rekap_nilai_proposal");
     Route::get("/dsn/detail_rekap_nilai_proposal/{id}", "dosen@detail_rekap_nilai_proposal");
     Route::get("/dsn/lembaran_hasilujian_proposal/{id}/{nim}/{regid}", "dosen@lembaran_hasilujian_proposal");
+
+    // Rekap Nilai Hasil Seminar
+    Route::get("/dsn/rekap_nilai_seminar/", "dosen@rekap_nilai_seminar");
+    Route::get("/dsn/detail_rekap_nilai_seminar/{id}", "dosen@detail_rekap_nilai_seminar");
+    Route::get("/dsn/lembaran_hasilujian_seminar/{id}/{nim}/{regid}", "dosen@lembaran_hasilujian_seminar");
 
     // Rekap Nilai Ujian TA
     Route::get("/dsn/rekap_nilai_ujian_ta/", "dosen@rekap_nilai_ujian_ta");

@@ -59,6 +59,30 @@
             <a href="#fakelink">
                 <i class="fa fa-calendar icon-sidebar"></i>
                 <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Approve Hasil Ujian
+            </a>
+            <ul class="submenu">
+                <li><a href="{{ url('ketuabidang/approve_hasilujian_proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('ketuabidang/approve_hasilujian_seminar') }}">Seminar</a></li>
+                <li><a href="{{ url('ketuabidang/approve_hasilujian_ta') }}">Ujian Meja</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#fakelink">
+                <i class="fa fa-table icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                Rekap Nilai Ujian
+            </a>
+            <ul class="submenu">
+                <li><a href="{{ url('ketuabidang/rekap_nilai_proposal') }}">Proposal</a></li>
+                <li><a href="{{ url('ketuabidang/rekap_nilai_seminar') }}">Seminar</a></li>
+                <li><a href="{{ url('ketuabidang/rekap_nilai_ujian_ta') }}">Ujian Meja</a></li>
+            </ul>
+        </li>
+        {{-- <li>
+            <a href="#fakelink">
+                <i class="fa fa-calendar icon-sidebar"></i>
+                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                 Jadwal Ujian Per Mahasiswa
             </a>
             <ul class="submenu">
@@ -66,7 +90,7 @@
                 <li><a href="{{ url('ketuabidang/jadwalpermhs/seminarhasil') }}">Seminar</a></li>
                 <li><a href="{{ url('ketuabidang/jadwalpermhs/ujianmeja') }}">Ujian Meja</a></li>
             </ul>
-        </li>
+        </li> --}}
     </ul>
 </div><!-- /.sidebar-left -->
 <!-- END SIDEBAR LEFT -->

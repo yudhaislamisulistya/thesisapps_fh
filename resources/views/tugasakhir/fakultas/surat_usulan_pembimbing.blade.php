@@ -17,6 +17,12 @@
 
             <!-- BEGIN DATA TABLE -->
             <h3 class="page-heading">Penetapan Pengusulan Pembimbing</h3>
+            @if (Session::get('status') == 'berhasil')
+                <div class="alert alert-success" role="alert"><strong>Berhasil! </strong><?= Session::get('message') ?>
+                </div>
+            @elseif(Session::get('status') == 'gagal')
+                <div class="alert alert-danger" role="alert"><strong>Gagal! </strong><?= Session::get('message') ?></div>
+            @endif
             <div class="the-box">
                 <div class="table-responsive">
                     <div class="row" style="margin-bottom: 10px">

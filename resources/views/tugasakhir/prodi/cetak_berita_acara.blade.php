@@ -141,50 +141,42 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
         </tr>
         <tr>
             <td>1</td>
-            <td width="100px">Ketua Sidang</td>
-            <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->ketua_sidang_id)->first()->NAMA_DOSEN}}</td>
-            <td width="30px">1</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>2</td>
             <td>Pembimbing Ketua</td>
             <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_bimbingan->pembimbing_I_id)->first()->NAMA_DOSEN}}</td>
             <td></td>
-            <td>2</td>
+            <td>1</td>
             <td></td>
         </tr>
         <tr>
-            <td>3</td>
+            <td>2</td>
             <td>Pembimbing Anggota</td>
             <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_bimbingan->pembimbing_II_id)->first()->NAMA_DOSEN}}</td>
-            <td>3</td>
+            <td>2</td>
             <td></td>
             <td></td>
         </tr>
         <tr>
-            <td>4</td>
+            <td>3</td>
             <td>Penguji 1</td>
             <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->penguji_I_id)->first()->NAMA_DOSEN}}</td>
             <td></td>
-            <td>4</td>
+            <td>3</td>
             <td></td>
         </tr>
         <tr>
-            <td>5</td>
+            <td>4</td>
             <td>Penguji 2</td>
             <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->penguji_II_id)->first()->NAMA_DOSEN}}</td>
-            <td>5</td>
+            <td>4</td>
             <td></td>
             <td></td>
         </tr>
         <tr>
-            <td>6</td>
+            <td>5</td>
             <td>Penguji 3</td>
             <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->penguji_III_id)->first()->NAMA_DOSEN}}</td>
             <td></td>
-            <td>6</td>
+            <td>5</td>
             <td></td>
         </tr>
     </table>
@@ -259,11 +251,6 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
             <td>Judul Skripsi</td>
             <td>:</td>
             <td>{{$trt_bimbingan->judul}}</td>
-        </tr>
-        <tr>
-            <td>Ketua Sidang</td>
-            <td>:</td>
-            <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->ketua_sidang_id)->first()->NAMA_DOSEN}}</td>
         </tr>
         <tr>
             <td style="padding-right: 20px">Pembimbing Ketua</td>
@@ -399,12 +386,6 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
             <td>Pembimbing Anggota</td>
             <td>:</td>
             <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_bimbingan->pembimbing_II_id)->first()->NAMA_DOSEN}}</td>
-            <td>.........................</td>
-        </tr>
-        <tr>
-            <td>Ketua Sidang</td>
-            <td>:</td>
-            <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->ketua_sidang_id)->first()->NAMA_DOSEN}}</td>
             <td>.........................</td>
         </tr>
         <tr>
@@ -1209,41 +1190,34 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
             </tr>
             <tr>
                 <td>1</td>
-                <td width="100px">Ketua Sidang</td>
-                <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->ketua_sidang_id)->first()->NAMA_DOSEN}}</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
                 <td>Pembimbing Ketua</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_bimbingan->pembimbing_I_id)->first()->NAMA_DOSEN}}</td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td>3</td>
+                <td>2</td>
                 <td>Pembimbing Anggota</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_bimbingan->pembimbing_II_id)->first()->NAMA_DOSEN}}</td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td>4</td>
+                <td>3</td>
                 <td>Penguji 1</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->penguji_I_id)->first()->NAMA_DOSEN}}</td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td>5</td>
+                <td>4</td>
                 <td>Penguji 2</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->penguji_II_id)->first()->NAMA_DOSEN}}</td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td>6</td>
+                <td>5</td>
                 <td>Penguji 3</td>
                 <td>{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->penguji_III_id)->first()->NAMA_DOSEN}}</td>
                 <td></td>
@@ -1271,19 +1245,6 @@ website: fh.umi.ac.id, email:S1.ilmu.hukum@umi.ac.id
             Makassar, .......... - ......... - 20...
         </div>
         <br>
-        <table>
-            <tr>
-                <td style="text-align: center; white-space: nowrap">KETUA SIDANG</td>
-                <td width="280px"></td>
-            </tr>
-            <tr style="height: 40px"></tr>
-            <tr>
-                <td style="text-align: center; white-space: nowrap; border-bottom: solid 1px">{{\App\Dosen::where("C_KODE_DOSEN",$trt_penguji->ketua_sidang_id)->first()->NAMA_DOSEN}}</td>
-            </tr>
-            <tr>
-                <td style="text-align: left; white-space: nowrap"><b>NIP/NIDN: {{$trt_penguji->ketua_sidang_id}}</b></td>
-            </tr>
-        </table>
     </div>
     <br><br>
     <div>
