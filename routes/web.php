@@ -495,6 +495,7 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     // Penentuan Bidang
     Route::get('fakultas/penentuan_bidang', 'fakultas@penentuan_bidang')->name('get_fakultas_penentuan_bidang');
     Route::post('fakultas/penentuan_bidang', 'fakultas@post_penentuan_bidang')->name('post_fakultas_penentuan_bidang');
+    Route::post('fakultas/tolak_penentuan_bidang', 'fakultas@tolak_penentuan_bidang')->name('post_fakultas_tolak_penentuan_bidang');
 
     // Usulan Pembimbing
     Route::get('/fakultas/usulan_pembimbing', 'fakultas@usulan_pembimbing')->name('get_fakultas_usulan_pembimbing');

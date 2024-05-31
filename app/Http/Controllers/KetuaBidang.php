@@ -51,6 +51,7 @@ class KetuaBidang extends Controller
             )
             ->orderBy('trt_topik.topik_id', 'desc')
             ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+            ->where('trt_topik.status_penetapan', '!=', 99)
             ->whereRaw("LOWER(REPLACE(trt_topik.bidang_ilmu_peminatan, ' ', '')) = ?", [$sessionBidang])
             ->get();
 

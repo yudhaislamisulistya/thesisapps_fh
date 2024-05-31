@@ -442,7 +442,7 @@ class fakultas extends Controller
     {
         $data_riwayat_usulan = DB::table('trt_topik')
             ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
-            ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA', 'trt_topik.topik', 'trt_topik.kerangka', 'trt_topik.status', 'trt_topik.status_penetapan', 'trt_topik.bidang_ilmu_peminatan')
+            ->select('t_mst_mahasiswa.C_NPM', 't_mst_mahasiswa.NAMA_MAHASISWA', 'trt_topik.topik_id', 'trt_topik.topik', 'trt_topik.kerangka', 'trt_topik.status', 'trt_topik.status_penetapan', 'trt_topik.bidang_ilmu_peminatan')
             ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
             ->get();
 
@@ -460,8 +460,10 @@ class fakultas extends Controller
         try {
             $data = $request->all();
             $status = DB::table('trt_topik')
-                ->where('C_NPM', $data['C_NPM'])
-                ->update([
+                ->where([
+                    ['C_NPM', '=', $data['C_NPM']],
+                    ['topik_id', '=', $data['topik_id']]
+                ])->update([
                     'bidang_ilmu_peminatan' => $data['bidang_ilmu_peminatan'],
                     'status_penetapan' => 1
                 ]);
@@ -488,6 +490,32 @@ class fakultas extends Controller
             return redirect::back()->with((['status' => "gagal", 'message' => "gagal menentukan bidang ilmu"]));
         }
     }
+
+    public function tolak_penentuan_bidang(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $status = DB::table('trt_topik')
+                ->where([
+                    ['C_NPM', '=', $data['C_NPM']],
+                    ['topik_id', '=', $data['topik_id']]
+                ])
+                ->update([
+                    'status_penetapan' => 99
+                ]);
+
+            if ($status) {
+                return redirect::back()->with(['status' => "berhasil", 'message' => "berhasil menolak penentuan bidang ilmu"]);
+            } else {
+                return redirect::back()->with(['status' => "gagal", 'message' => "gagal menolak penentuan bidang ilmu"]);
+            }
+        } catch (\Throwable $th) {
+            var_dump($th->getMessage());
+            die();
+            return redirect::back()->with(['status' => "gagal", 'message' => "gagal menolak penentuan bidang ilmu"]);
+        }
+    }
+
 
     public function usulan_pembimbing()
     {

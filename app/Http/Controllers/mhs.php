@@ -535,7 +535,24 @@ class mhs extends Controller
                 )->select("pendaftaran_id"))->count();
         }
 
-        return view('tugasakhir.mhs.signup_proposal', compact('data', 'syarat', 'mstsyaratujian', 'trtsyaratujian', 'trtreg'));
+        // cek apakah sudah pernah mendaftar
+        $data_pendaftaran = DB::table('trt_bimbingan')
+            ->select('*')
+            ->where('C_NPM', auth()->user()->name)
+            ->get();
+        $data_pendaftaran_by_status_bimbingan = DB::table('trt_bimbingan')
+            ->select('*')
+            ->where('C_NPM', auth()->user()->name)
+            ->where('status_bimbingan', 0)
+            ->get();
+
+        // if data pendaftaran is not empty and data pendaftaran by status bimbingan is empty
+        $status_pengajuan = null;
+        if (!$data_pendaftaran->isEmpty() || !$data_pendaftaran_by_status_bimbingan->isEmpty()) {
+            $status_pengajuan = 1;
+        }
+
+        return view('tugasakhir.mhs.signup_proposal', compact('data', 'syarat', 'mstsyaratujian', 'trtsyaratujian', 'trtreg', 'status_pengajuan'));
     }
 
     public function signup_seminarhasil()
@@ -549,7 +566,25 @@ class mhs extends Controller
             ->select('*')
             ->where('tipe_ujian', 1)
             ->get();
-        return view('tugasakhir.mhs.signup_seminarhasil', compact('data', 'syarat'));
+
+        // cek apakah sudah pernah mendaftar
+        $data_pendaftaran = DB::table('trt_bimbingan')
+            ->select('*')
+            ->where('C_NPM', auth()->user()->name)
+            ->get();
+        $data_pendaftaran_by_status_bimbingan = DB::table('trt_bimbingan')
+            ->select('*')
+            ->where('C_NPM', auth()->user()->name)
+            ->where('status_bimbingan', 2)
+            ->get();
+
+        // if data pendaftaran is not empty and data pendaftaran by status bimbingan is empty
+        $status_pengajuan = null;
+        if (!$data_pendaftaran->isEmpty() || !$data_pendaftaran_by_status_bimbingan->isEmpty()) {
+            $status_pengajuan = 1;
+        }
+
+        return view('tugasakhir.mhs.signup_seminarhasil', compact('data', 'syarat', 'status_pengajuan'));
     }
 
     public function signup_ujianmeja()
@@ -565,8 +600,24 @@ class mhs extends Controller
             ->where('tipe_ujian', 2)
             ->get();
 
+        // cek apakah sudah pernah mendaftar
+        $data_pendaftaran = DB::table('trt_bimbingan')
+            ->select('*')
+            ->where('C_NPM', auth()->user()->name)
+            ->get();
+        $data_pendaftaran_by_status_bimbingan = DB::table('trt_bimbingan')
+            ->select('*')
+            ->where('C_NPM', auth()->user()->name)
+            ->where('status_bimbingan', 2)
+            ->get();
 
-        return view('tugasakhir.mhs.signup_ujianmeja', compact('data', 'syarat'));
+        // if data pendaftaran is not empty and data pendaftaran by status bimbingan is empty
+        $status_pengajuan = null;
+        if (!$data_pendaftaran->isEmpty() || !$data_pendaftaran_by_status_bimbingan->isEmpty()) {
+            $status_pengajuan = 1;
+        }
+
+        return view('tugasakhir.mhs.signup_ujianmeja', compact('data', 'syarat', 'status_pengajuan'));
     }
 
     public function registrasi(Request $request)

@@ -14,7 +14,7 @@
                 <li class="active">Penentuan Bidang</li>
             </ol>
 
-            <h3 class="page-heading">Daftar Riwayat Usulan</h3>
+            <h3 class="page-heading">Daftar Riwayat Usulan <?= helper::getBidangIlmubyBidangIlmu(Auth::user()->name)->bidang_ilmu ?></h3>
             @if (Session::get('status') == 'berhasil')
                 <div class="alert alert-success" role="alert"><strong>Berhasil! </strong><?= Session::get('message') ?>
                 </div>
@@ -31,7 +31,6 @@
                                 <th>Nama</th>
                                 <th>Topik</th>
                                 <th>Kerangka Pikir</th>
-                                <th>Nama Bidang</th>
                                 <th>Status Penentuan Bidang</th>
                                 <th>Pembimbing Ketua</th>
                                 <th>Pembimbing Anggota</th>
@@ -45,16 +44,12 @@
                                     <td>{{ $value->C_NPM }}</td>
                                     <td>{{ $value->NAMA_MAHASISWA }}</td>
                                     <th>{{ $value->topik }}</th>
-                                    <td><button class="btn btn-primary" onclick="showModal(this)"
-                                            data-href="{{ asset('dokumen/' . $value->kerangka) }}"
-                                            data-target="#modalPrimary" data-toggle="modal"><i
-                                                class="fa fa-paperclip"></i></button></td>
                                     <td>
-                                        @if ($value->bidang_ilmu_peminatan == null)
-                                            <span class="label label-danger">Belum Menentukan Bidang</span>
-                                        @else
-                                            <span class="label label-info">{{ $value->bidang_ilmu_peminatan }}</span>
-                                        @endif
+                                        <a href="{{ asset('dokumen/' . $value->kerangka) }}" target="_blank">
+                                            <button class="btn btn-primary">
+                                                <i class="fa fa-eye"></i> Lihat
+                                            </button>
+                                        </a>
                                     </td>
                                     <td>
                                         @if ($value->status_penetapan == 0)

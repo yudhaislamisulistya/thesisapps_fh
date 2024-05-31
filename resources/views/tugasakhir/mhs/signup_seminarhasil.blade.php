@@ -17,6 +17,13 @@
 
             <!-- BEGIN DATA TABLE -->
             <h3 class="page-heading">Daftar Periode Pendaftaran</h3>
+            @if ($status_pengajuan != null)
+                <div class="alert alert-danger alert-block square fade in alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <p><strong>Status!</strong></p>
+                    <p>Anda sudah mendaftar pada periode ini<i class="fa fa-smile-o"></i></p>
+                </div>
+            @endif
             <form method="post" action="{{ url('mhs/registrasi') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="tipe_ujian" value="1">

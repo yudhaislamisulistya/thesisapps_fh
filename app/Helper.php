@@ -999,6 +999,15 @@ class Helper
         $kode_dosen = substr($v->email, 0, strpos($v->email, '@'));
         return isset($v) ? $kode_dosen : '-';
     }
+
+    public static function getBidangIlmubyBidangIlmu($bidangilmu)
+    {
+        $v = DB::table('mst_bidangilmu')
+            ->select("*")
+            ->whereRaw("LOWER(REPLACE(mst_bidangilmu.bidang_ilmu, ' ', '')) = ?", [$bidangilmu])
+            ->first();
+        return isset($v) ? $v : '-';
+    }
 }
 
 // Menghilngkan Tag HTML

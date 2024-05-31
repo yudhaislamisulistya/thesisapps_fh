@@ -45,7 +45,7 @@
                                     <input type="text" class="form-control bold-border" name="topik" required />
                                 </div>
                             </div>
-                            {{-- <br><br>
+                            <br><br>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Bidang Ilmu Peminatan</label>
                                 <div class="col-lg-5">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <br><br>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label class="col-lg-2 control-label">Bidang Ilmu Topik</label>
                                 <div class="col-lg-5">
                                     <select name='bidang_ilmu[]' data-placeholder="Pilih Scope..."
@@ -68,8 +68,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div> --}}
-                            <br><br>
+                            </div>
+                            <br><br> --}}
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Kerangka Pikir</label>
                                 <div class="col-lg-5">
