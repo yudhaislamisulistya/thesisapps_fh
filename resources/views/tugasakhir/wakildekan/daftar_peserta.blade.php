@@ -146,16 +146,16 @@
                                     </style>
 
                                     <td>
-                                        @if ($d->status_penetapan_penguji == 1)
+                                        {{-- @if ($d->status_penetapan_penguji == 1)
                                             <a href="#" class="custom-link" disabled>
                                                 <span class="bg-secondary custom-span">Sudah ditetapkan</span>
                                             </a>
-                                        @else
+                                        @else --}}
                                             <a href="{{ url("wakildekan/set_penguji/$info->pendaftaran_id/$d->C_NPM/$info->tipe_ujian") }}"
                                                 class="custom-link">
                                                 <span class="custom-span">Penetapan Penguji</span>
                                             </a>
-                                        @endif
+                                        {{-- @endif --}}
                                     </td>
                                 </tr>
                             @endforeach

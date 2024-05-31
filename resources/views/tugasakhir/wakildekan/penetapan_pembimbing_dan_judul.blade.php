@@ -45,10 +45,13 @@
                                     <td>{{ $value->C_NPM }}</td>
                                     <td>{{ $value->NAMA_MAHASISWA }}</td>
                                     <th>{{ $value->topik }}</th>
-                                    <td><button class="btn btn-primary" onclick="showModal(this)"
-                                            data-href="{{ asset('dokumen/' . $value->kerangka) }}"
-                                            data-target="#modalPrimary" data-toggle="modal"><i
-                                                class="fa fa-paperclip"></i></button></td>
+                                    <td>
+                                        <a href="{{ asset('dokumen/' . $value->kerangka) }}" target="_blank">
+                                            <button class="btn btn-primary">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </a>
+                                    </td>
                                     <td>
                                         @if ($value->bidang_ilmu_peminatan == null)
                                             <span class="label label-danger">Belum Menentukan Bidang</span>
@@ -92,7 +95,9 @@
                                             </button>
                                         @else
                                             <button class="btn btn-primary" onclick="showModalBidang(this)"
-                                                data-c_npm="{{ $value->C_NPM }}" data-topik="{{ $value->topik }}"
+                                                data-c_npm="{{ $value->C_NPM }}"
+                                                data-topik-id="{{ $value->topik_id }}"
+                                                data-topik="{{ $value->topik }}"
                                                 data-pembimbing-ketua="{{ $value->pembimbing_I_id }}"
                                                 data-pembimbing-anggota="{{ $value->pembimbing_II_id }}"
                                                 data-target="#modalBidang" data-toggle="modal">
@@ -122,6 +127,7 @@
                     <form action="{{ route('post_wakil_dekan_penetapan_pembimbing_dan_judul') }}" method="POST">
                         @csrf
                         <input type="hidden" name="C_NPM" id="C_NPM">
+                        <input type="hidden" name="topik_id" id="topik_id">
                         <div class="form-group">
                             <label for="topik">Topik</label>
                             <input type="text" class="form-control" name="topik" id="topik">
@@ -171,10 +177,12 @@
 
         function showModalBidang(button) {
             var c_npm = button.getAttribute('data-c_npm');
+            var topik_id = button.getAttribute('data-topik-id');
             var topik = button.getAttribute('data-topik');
             var pembimbing_ketua = button.getAttribute('data-pembimbing-ketua');
             var pembimbing_anggota = button.getAttribute('data-pembimbing-anggota');
             document.getElementById('C_NPM').value = c_npm;
+            document.getElementById('topik_id').value = topik_id;
             var selectKetua = document.querySelector('select[name="pembimbing_ketua"]');
             var selectAnggota = document.querySelector('select[name="pembimbing_anggota"]');
             document.getElementById('topik').value = topik;

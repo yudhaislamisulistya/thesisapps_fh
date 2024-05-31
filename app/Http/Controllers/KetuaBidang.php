@@ -39,6 +39,7 @@ class KetuaBidang extends Controller
             ->select(
                 't_mst_mahasiswa.C_NPM',
                 't_mst_mahasiswa.NAMA_MAHASISWA',
+                'trt_topik.topik_id',
                 'trt_topik.topik',
                 'trt_topik.kerangka',
                 'trt_topik.status',
@@ -52,6 +53,8 @@ class KetuaBidang extends Controller
             ->orderBy('trt_topik.topik_id', 'desc')
             ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
             ->where('trt_topik.status_penetapan', '!=', 99)
+            ->orWhere('trt_topik.status_penetapan', 98)
+            ->orWhere('trt_topik.status_penetapan', 97)
             ->whereRaw("LOWER(REPLACE(trt_topik.bidang_ilmu_peminatan, ' ', '')) = ?", [$sessionBidang])
             ->get();
 
@@ -64,6 +67,24 @@ class KetuaBidang extends Controller
         return view('tugasakhir.ketuabidang.penentuan_pembimbing', compact('data_riwayat_usulan', 'listdosen'));
     }
 
+    public function tolak_bidang_penentuan_pembimbing(Request $request)
+    {
+        $data = $request->all();
+        $query = DB::table('trt_topik')
+            ->where([
+                ['C_NPM', '=', $data['C_NPM']],
+                ['topik_id', '=', $data['topik_id']]
+            ])->update([
+                'status_penetapan' => 98
+            ]);
+
+        if ($query) {
+            return redirect()->back()->with((['status' => "berhasil", 'message' => "Data berhasil disimpan"]));
+        } else {
+            return redirect()->back()->with((['status' => "gagal", 'message' => "Data gagal disimpan"]));
+        }
+    }
+
     public function penentuan_pembimbing_update()
     {
         try {
@@ -72,8 +93,10 @@ class KetuaBidang extends Controller
             $data['pembimbing_II_id'] = $data['pembimbing_anggota'] == '0' ? null : $data['pembimbing_anggota'];
 
             $queryMstTmpUsulan = DB::table('mst_tmp_usulan')
-                ->where('C_NPM', $data['C_NPM'])
-                ->update([
+                ->where(
+                    'C_NPM',
+                    $data['C_NPM']
+                )->update([
                     'pembimbing_I_id' => $data['pembimbing_I_id'],
                     'pembimbing_II_id' => $data['pembimbing_II_id'],
                     'pembimbing_I_status' => 2,
@@ -81,8 +104,10 @@ class KetuaBidang extends Controller
                 ]);
 
             $queryTrtTopik = DB::table('trt_topik')
-                ->where('C_NPM', $data['C_NPM'])
-                ->update([
+                ->where([
+                    ['C_NPM', '=', $data['C_NPM']],
+                    ['topik_id', '=', $data['topik_id']]
+                ])->update([
                     'status_penetapan' => 2
                 ]);
 
@@ -92,6 +117,8 @@ class KetuaBidang extends Controller
                 return redirect()->back()->with((['status' => "gagal", 'message' => "Data gagal disimpan"]));
             }
         } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            die();
             return redirect()->back()->with((['status' => "gagal", 'message' => "Data gagal disimpan"]));
         }
     }

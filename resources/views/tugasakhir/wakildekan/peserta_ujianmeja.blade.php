@@ -27,6 +27,7 @@
                             <th>Tanggal pendaftaran</th>
                             <th>Kuota</th>
                             <th>Jumlah Peserta</th>
+                            <th>Nama Periode</th>
                             {{-- <th>Status Ujian</th> --}}
                             <th>Detail Peserta</th>
                         </tr>
@@ -38,6 +39,7 @@
                                 <td>{{$value->tgl_start}}-{{$value->tgl_end}}</td>
                                 <td>{{$value->kuota}}</td>
                                 <td>{{$value->jml_peserta}}</td>
+                                <td>{{$value->nama_periode}}</td>
                                 {{-- <td>{{$value->status == 0 ? "<td>{{$d->status == 0 ? "Belum terlaksana" : "Terlaksana"}}</td>" : "Terlaksana"}}</td> --}}
                                 <td><a href="{{ url('wakildekan/daftar_peserta/'.$value->pendaftaran_id)}}"><i class="fa fa-copy icon-square icon-xs icon-primary"></i></a></td>
                             </tr>

@@ -479,11 +479,7 @@ class fakultas extends Controller
                     ]
                 );
 
-            if ($status && $queryMstTmpUsulan) {
-                return redirect::back()->with((['status' => "berhasil", 'message' => "berhasil menentukan bidang ilmu"]));
-            } else {
-                return redirect::back()->with((['status' => "gagal", 'message' => "gagal menentukan bidang ilmu"]));
-            }
+            return redirect::back()->with((['status' => "berhasil", 'message' => "berhasil menentukan bidang ilmu"]));
         } catch (\Throwable $th) {
             var_dump($th);
             die();
@@ -1469,6 +1465,25 @@ class fakultas extends Controller
             return redirect::to('fakultas/syarat_ujian')->with((['status' => "gagal", 'message' => "gagal menghapus data syarat"]));
         }
     }
+
+    public function syaratedit(Request $request)
+    {
+        try {
+            // Ambil semua data request kecuali _token
+            $datapost = $request->except('_token');
+
+            // Update data syarat ujian berdasarkan syarat_ujian_id
+            mst_syarat_ujian::where('syarat_ujian_id', $request->syarat_ujian_id)->update($datapost);
+
+            // Redirect kembali dengan pesan sukses
+            return redirect::to('fakultas/syarat_ujian')->with((['status' => "berhasil", 'message' => "berhasil mengubah data syarat"]));
+        } catch (\Throwable $th) {
+            // Tampilkan pesan error dan berhenti
+            // Redirect kembali dengan pesan gagal
+            return redirect::to('fakultas/syarat_ujian')->with((['status' => "gagal", 'message' => "gagal mengubah data syarat"]));
+        }
+    }
+
 
     public function persyaratan_seminarhasil()
     {

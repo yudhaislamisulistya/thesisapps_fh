@@ -63,13 +63,15 @@
                                             <span class="label label-warning">Belum Menentukan Pembimbing oleh Ketua
                                                 Bidang</span>
                                         @elseif($value->status_penetapan == 2)
-                                            <span class="label label-danger">Belum Ditetapkan Pembimbing dan Judul oleh
+                                            <span class="label label-info">Belum Ditetapkan Pembimbing dan Judul oleh
                                                 Wakil Dekan</span>
                                         @elseif($value->status_penetapan == 3)
-                                            <span class="label label-info">Sudah Ditetapkan Pembimbing dan Judul oleh Wakil
+                                            <span class="label label-primary">Sudah Ditetapkan Pembimbing dan Judul oleh Wakil
                                                 Dekan</span>
                                         @elseif($value->status_penetapan == 99)
-                                            <span class="label label-danger">Ditolak</span>
+                                            <span class="label label-danger">Ditolak oleh Akademik Fakultas</span>
+                                        @elseif($value->status_penetapan == 98)
+                                            <span class="label label-danger">Ditolak oleh Ketua Bidang</span>
                                         @endif
                                     </td>
                                     <td>
@@ -79,7 +81,7 @@
                                                 <i class="fa fa-pencil"> Pilih Bidang</i>
                                             </button>
                                         @else
-                                            @if ($value->status_penetapan == 99)
+                                            @if ($value->status_penetapan == 99 || $value->status_penetapan == 98)
                                                 <button class="btn btn-primary" disabled>
                                                     <i class="fa fa-pencil"> Pilih Bidang</i>
                                                 </button>

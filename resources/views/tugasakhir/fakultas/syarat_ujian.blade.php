@@ -73,6 +73,11 @@
                                     <td width="1%" align="center">{{ ++$key }}</td>
                                     <td>{{ $value->nama_syarat }}</td>
                                     <td>
+                                        <button class="btn btn-warning" onclick="showEditModal(this)"
+                                            data-target="#modalEdit" data-toggle="modal"
+                                            data-id="{{ $value->syarat_ujian_id }}" data-nama="{{ $value->nama_syarat }}">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
                                         <button class="btn btn-danger" onclick="showModal(this)" data-target="#modalDanger"
                                             data-toggle="modal"
                                             data-href="{{ url('fakultas/syaratdel/' . $value->syarat_ujian_id) }}"><i
@@ -103,6 +108,11 @@
                                     <td width="1%" align="center">{{ ++$key }}</td>
                                     <td>{{ $value->nama_syarat }}</td>
                                     <td>
+                                        <button class="btn btn-warning" onclick="showEditModal(this)"
+                                            data-target="#modalEdit" data-toggle="modal"
+                                            data-id="{{ $value->syarat_ujian_id }}" data-nama="{{ $value->nama_syarat }}">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
                                         <button class="btn btn-danger" onclick="showModal(this)" data-target="#modalDanger"
                                             data-toggle="modal"
                                             data-href="{{ url('fakultas/syaratdel/' . $value->syarat_ujian_id) }}"><i
@@ -134,8 +144,13 @@
                                     <td width="1%" align="center">{{ ++$key }}</td>
                                     <td>{{ $value->nama_syarat }}</td>
                                     <td>
-                                        <button class="btn btn-danger" onclick="showModal(this)" data-target="#modalDanger"
-                                            data-toggle="modal"
+                                        <button class="btn btn-warning" onclick="showEditModal(this)"
+                                            data-target="#modalEdit" data-toggle="modal"
+                                            data-id="{{ $value->syarat_ujian_id }}" data-nama="{{ $value->nama_syarat }}">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-danger" onclick="showModal(this)"
+                                            data-target="#modalDanger" data-toggle="modal"
                                             data-href="{{ url('fakultas/syaratdel/' . $value->syarat_ujian_id) }}"><i
                                                 class="fa fa-trash-o"></i></button>
                                     </td>
@@ -148,6 +163,31 @@
             <!-- END DATA TABLE -->
 
         </div><!-- /.container-fluid -->
+    </div>
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modalEditLabel">Edit Syarat Ujian</h4>
+                </div>
+                <form method="post" action="{{ url('fakultas/syaratedit') }}">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <input type="hidden" name="syarat_ujian_id" id="editSyaratId">
+                        <div class="form-group">
+                            <label for="editNamaSyarat" class="control-label">Nama Syarat:</label>
+                            <input type="text" class="form-control" name="nama_syarat" id="editNamaSyarat">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -176,6 +216,7 @@
 @section('script')
     <script>
         let modal, modalId, modalFooter, link, form, formaction;
+
         const showPostModal = e => {
             formaction = e.getAttribute("data-formaction");
             modalId = e.getAttribute("data-target");
@@ -188,6 +229,15 @@
             modalId = e.getAttribute("data-target");
             modal = document.querySelector(modalId);
             modalFooter = modal.querySelector(".modal-footer");
+        };
+
+        const showEditModal = e => {
+            const id = e.getAttribute("data-id");
+            const nama = e.getAttribute("data-nama");
+            modalId = e.getAttribute("data-target");
+            modal = document.querySelector(modalId);
+            modal.querySelector("#editSyaratId").value = id;
+            modal.querySelector("#editNamaSyarat").value = nama;
         };
 
         const goOn = () => {

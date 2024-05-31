@@ -169,6 +169,7 @@ class WakilDekan extends Controller
                 ->select(
                     't_mst_mahasiswa.C_NPM',
                     't_mst_mahasiswa.NAMA_MAHASISWA',
+                    'trt_topik.topik_id',
                     'trt_topik.topik',
                     'trt_topik.kerangka',
                     'trt_topik.status',
@@ -181,6 +182,8 @@ class WakilDekan extends Controller
                 )
                 ->orderBy('trt_topik.topik_id', 'desc')
                 ->where('t_mst_mahasiswa.C_NPM', 'LIKE', '040%')
+                ->where('trt_topik.status_penetapan', '=', 2)
+                ->orWhere('trt_topik.status_penetapan', '=', 3)
                 ->get();
 
             $listdosen = DB::table('t_mst_dosen')
@@ -212,8 +215,10 @@ class WakilDekan extends Controller
                 ]);
 
             DB::table('trt_topik')
-                ->where('C_NPM', $data['C_NPM'])
-                ->update([
+                ->where([
+                    ['C_NPM', '=', $data['C_NPM']],
+                    ['topik_id', '=', $data['topik_id']]
+                ])->update([
                     'topik' => $data['topik'],
                     'status_penetapan' => 3,
                     'status' => 1,

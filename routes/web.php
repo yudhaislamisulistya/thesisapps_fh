@@ -131,6 +131,7 @@ Route::group(['middleware' => 'ketua_bidang'], function () {
         Route::group(['prefix' => 'penentuan_pembimbing'], function () {
             Route::get('/', 'KetuaBidang@penentuan_pembimbing')->name('get_ketua_bidang_penentuan_pembimbing');
             Route::post('/update', 'KetuaBidang@penentuan_pembimbing_update')->name('update_ketua_bidang_penentuan_pembimbing');
+            Route::post('/tolak', 'KetuaBidang@tolak_bidang_penentuan_pembimbing')->name('tolak_bidang_penentuan_pembimbing');
         });
         // Set Penguji
         Route::get('peserta_proposal', 'KetuaBidang@peserta_proposal')->name('get_ketua_bidang_peserta_proposal');
@@ -566,6 +567,7 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get('/fakultas/syarat_ujian', 'fakultas@syarat_ujian')->name('get_fakultas_syarat_ujian');
     Route::post('/fakultas/syaratadd', 'fakultas@syaratadd')->name('post_fakultas_syaratadd');
     Route::get('/fakultas/syaratdel/{id}', 'fakultas@syaratdel')->name('get_fakultas_syaratdel');
+    Route::post('/fakultas/syaratedit', 'fakultas@syaratedit')->name('post_fakultas_syaratedit');
 
     // Surat Usulan Ujian Tugas Akhir
     Route::get('/fakultas/sk_ujian_ta', 'fakultas@sk_ujian_ta');
