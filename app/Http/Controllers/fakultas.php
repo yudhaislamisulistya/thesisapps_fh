@@ -930,7 +930,7 @@ class fakultas extends Controller
                             ]);
                         }
 
-                        mst_pendaftaran::create($request->all());
+                        $status = mst_pendaftaran::create($request->all());
                     }
                 } else {
                     if (Auth::user()->name == "akademikfakultasfh") {
@@ -946,10 +946,15 @@ class fakultas extends Controller
                             'status_prodi' => 2
                         ]);
                     }
-                    mst_pendaftaran::create($request->all());
+                    $status = mst_pendaftaran::create($request->all());
                 }
             }
-            return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil menambahkan data jadwal"]));
+
+            if($status){
+                return redirect()->back()->with((['status' => "berhasil", 'message' => "berhasil menambahkan data jadwal"]));
+            }else{
+                return redirect()->back()->with((['status' => "gagal", 'message' => "gagal menambahkan data jadwal, nama periode sama"]));
+            }
         } catch (\Throwable $th) {
             return redirect()->back()->with((['status' => "gagal", 'message' => "gagal menambahkan data jadwal"]));
         }
