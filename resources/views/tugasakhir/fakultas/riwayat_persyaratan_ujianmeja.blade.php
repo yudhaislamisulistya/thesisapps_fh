@@ -11,20 +11,14 @@
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
                 <li><a href="#fakelink">Home</a></li>
-                <li class="active">Peserta Proposal</li>
+                <li class="active">Peserta Ujian Meja</li>
             </ol>
             <!-- End breadcrumb -->
 
             <!-- BEGIN DATA TABLE -->
-            <h3 class="page-heading">Daftar Pengajuan Persyaratan Ujian Meja</h3>
+            <h3 class="page-heading">Riwayat Pengajuan Persyaratan Ujian Meja</h3>
             <div class="the-box">
                 <div class="table-responsive">
-                    @if (auth()->user()->name == 'akademikfakultasfh')
-                        <div class="box-tools pull-right" style="margin-bottom: 10px;">
-                            <a href="{{ url('fakultas/riwayat_persyaratan_ujianmeja') }}" class="btn btn-primary btn-sm"
-                                style="color: white;">Riwayat Persyaratan Ujian Meja</a>
-                        </div>
-                    @endif
                     <table class="table table-striped table-hover" id="datatable-example">
                         <thead class="the-box dark full">
                             <tr>
@@ -41,8 +35,8 @@
                                     <td>{{ $value->C_NPM }}</td>
                                     <td>{{ $value->NAMA_MAHASISWA }}</td>
                                     <td>
-                                        <a href="{{ url('fakultas/detail_persyaratan_ujianmeja/' . $value->C_NPM) }}">
-                                            <i class="fa fa-copy icon-square icon-xs icon-primary"></i>
+                                        <a href="{{ url('fakultas/riwayat_detail_persyaratan_ujianmeja/' . $value->C_NPM) }}" class="btn btn-primary">
+                                            <i class="fa fa-copy"></i>
                                         </a>
                                     </td>
                                 </tr>

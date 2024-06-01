@@ -2073,4 +2073,88 @@ class fakultas extends Controller
             return redirect()->back()->with((['status' => "gagal", 'message' => "Gagal set sk"]));
         }
     }
+
+    public function riwayat_persyaratan_proposal()
+    {
+
+        $subquery = DB::table('trt_syarat_ujian')
+            ->select('C_NPM', DB::raw('MAX(id) as max_id'))
+            ->where('tipe_syarat_ujian', 0)
+            ->groupBy('C_NPM');
+
+        $data = DB::table('trt_syarat_ujian')
+            ->joinSub($subquery, 'sub', function ($join) {
+                $join->on('trt_syarat_ujian.C_NPM', '=', 'sub.C_NPM')
+                    ->on('trt_syarat_ujian.id', '=', 'sub.max_id');
+            })
+            ->join('t_mst_mahasiswa', 't_mst_mahasiswa.C_NPM', '=', 'trt_syarat_ujian.C_NPM')
+            ->select('trt_syarat_ujian.*', 't_mst_mahasiswa.*')
+            ->get();
+
+        return view('tugasakhir.fakultas.riwayat_persyaratan_proposal', compact('data'));
+    }
+
+    public function riwayat_detail_persyaratan_proposal($id)
+    {
+        $mhs = t_mst_mahasiswa::where("C_NPM", $id)->first();
+        $data = TrtSyaratUjian::join("mst_syarat_ujian", "trt_syarat_ujian.syarat_ujian_id", "=", "mst_syarat_ujian.syarat_ujian_id")->where(["tipe_ujian" => 0, "C_NPM" => $id])->get();
+
+        return view('tugasakhir.fakultas.riwayat_detail_persyaratan_proposal', compact('data', 'mhs'));
+    }
+
+    public function riwayat_persyaratan_seminarhasil()
+    {
+
+        $subquery = DB::table('trt_syarat_ujian')
+            ->select('C_NPM', DB::raw('MAX(id) as max_id'))
+            ->where('tipe_syarat_ujian', 1)
+            ->groupBy('C_NPM');
+
+        $data = DB::table('trt_syarat_ujian')
+            ->joinSub($subquery, 'sub', function ($join) {
+                $join->on('trt_syarat_ujian.C_NPM', '=', 'sub.C_NPM')
+                    ->on('trt_syarat_ujian.id', '=', 'sub.max_id');
+            })
+            ->join('t_mst_mahasiswa', 't_mst_mahasiswa.C_NPM', '=', 'trt_syarat_ujian.C_NPM')
+            ->select('trt_syarat_ujian.*', 't_mst_mahasiswa.*')
+            ->get();
+
+        return view('tugasakhir.fakultas.riwayat_persyaratan_seminarhasil', compact('data'));
+    }
+
+    public function riwayat_detail_persyaratan_seminarhasil($id)
+    {
+        $mhs = t_mst_mahasiswa::where("C_NPM", $id)->first();
+        $data = TrtSyaratUjian::join("mst_syarat_ujian", "trt_syarat_ujian.syarat_ujian_id", "=", "mst_syarat_ujian.syarat_ujian_id")->where(["tipe_ujian" => 1, "C_NPM" => $id])->get();
+
+        return view('tugasakhir.fakultas.riwayat_detail_persyaratan_seminarhasil', compact('data', 'mhs'));
+    }
+
+    public function riwayat_persyaratan_ujianmeja()
+    {
+
+        $subquery = DB::table('trt_syarat_ujian')
+            ->select('C_NPM', DB::raw('MAX(id) as max_id'))
+            ->where('tipe_syarat_ujian', 2)
+            ->groupBy('C_NPM');
+
+        $data = DB::table('trt_syarat_ujian')
+            ->joinSub($subquery, 'sub', function ($join) {
+                $join->on('trt_syarat_ujian.C_NPM', '=', 'sub.C_NPM')
+                    ->on('trt_syarat_ujian.id', '=', 'sub.max_id');
+            })
+            ->join('t_mst_mahasiswa', 't_mst_mahasiswa.C_NPM', '=', 'trt_syarat_ujian.C_NPM')
+            ->select('trt_syarat_ujian.*', 't_mst_mahasiswa.*')
+            ->get();
+
+        return view('tugasakhir.fakultas.riwayat_persyaratan_ujianmeja', compact('data'));
+    }
+
+    public function riwayat_detail_persyaratan_ujianmeja($id)
+    {
+        $mhs = t_mst_mahasiswa::where("C_NPM", $id)->first();
+        $data = TrtSyaratUjian::join("mst_syarat_ujian", "trt_syarat_ujian.syarat_ujian_id", "=", "mst_syarat_ujian.syarat_ujian_id")->where(["tipe_ujian" => 2, "C_NPM" => $id])->get();
+
+        return view('tugasakhir.fakultas.riwayat_detail_persyaratan_ujianmeja', compact('data', 'mhs'));
+    }
 }

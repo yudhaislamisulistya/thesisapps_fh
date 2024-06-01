@@ -527,6 +527,12 @@ Route::group(['middleware' => 'akademik_fakultas'], function () {
     Route::get("fakultas/detail_persyaratan_seminarhasil/{id}", "fakultas@detail_persyaratan_seminarhasil")->name('get_fakultas_detail_persyaratan_seminarhasil');
     Route::get('/fakultas/detail_persyaratan_seminarhasil/catatan/{id}/{nim}', 'fakultas@detail_persyaratan_seminarhasil_catatan')->name('get_fakultas_detail_persyaratan_seminarhasil_catatan');
     Route::post('/fakultas/detail_persyaratan_seminarhasil_catatan_post/', 'fakultas@detail_persyaratan_seminarhasil_catatan_post')->name('post_fakultas_detail_persyaratan_seminarhasil_catatan_post');
+    Route::get('/fakultas/riwayat_persyaratan_proposal', 'fakultas@riwayat_persyaratan_proposal')->name('get_fakultas_riwayat_persyaratan_proposal');
+    Route::get('/fakultas/riwayat_detail_persyaratan_proposal/{id}', 'fakultas@riwayat_detail_persyaratan_proposal')->name('get_fakultas_riwayat_detail_persyaratan_proposal');
+    Route::get('/fakultas/riwayat_persyaratan_seminarhasil', 'fakultas@riwayat_persyaratan_seminarhasil')->name('get_fakultas_riwayat_persyaratan_seminarhasil');
+    Route::get('/fakultas/riwayat_detail_persyaratan_seminarhasil/{id}', 'fakultas@riwayat_detail_persyaratan_seminarhasil')->name('get_fakultas_riwayat_detail_persyaratan_seminarhasil');
+    Route::get('/fakultas/riwayat_persyaratan_ujianmeja', 'fakultas@riwayat_persyaratan_ujianmeja')->name('get_fakultas_riwayat_persyaratan_ujianmeja');
+    Route::get('/fakultas/riwayat_detail_persyaratan_ujianmeja/{id}', 'fakultas@riwayat_detail_persyaratan_ujianmeja')->name('get_fakultas_riwayat_detail_persyaratan_ujianmeja');
 
     // Jadwal Ujian
     Route::get('/fakultas/jadwal', 'fakultas@jadwal')->name('get_fakultas_jadwal');

@@ -11,7 +11,7 @@
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
                 <li><a href="#fakelink">Home</a></li>
-                <li class="active">Peserta Proposal</li>
+                <li class="active">Peserta Seminar Hasil</li>
             </ol>
             <!-- End breadcrumb -->
 
@@ -19,24 +19,31 @@
             <h3 class="page-heading">Daftar Pengajuan Persyaratan Seminar Hasil</h3>
             <div class="the-box">
                 <div class="table-responsive">
+                    @if (auth()->user()->name == 'akademikfakultasfh')
+                        <div class="box-tools pull-right" style="margin-bottom: 10px;">
+                            <a href="{{ url('fakultas/riwayat_persyaratan_seminarhasil') }}" class="btn btn-primary btn-sm"
+                                style="color: white;">Riwayat Persyaratan Seminar Hasil</a>
+                        </div>
+                    @endif
                     <table class="table table-striped table-hover" id="datatable-example">
                         <thead class="the-box dark full">
-                        <tr>
-                            <th>No</th>
-                            <th>NIM</th>
-                            <th>Nama</th>
-                            <th>Detail</th>
-                        </tr>
+                            <tr>
+                                <th>No</th>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>Detail</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @foreach($data as $key => $value)
-                            <tr class="odd gradeX">
-                                <td width="1%" align="center">{{++$key}}</td>
-                                <td>{{$value->C_NPM}}</td>
-                                <td>{{$value->NAMA_MAHASISWA}}</td>
-                                <td><a href="{{ url('fakultas/detail_persyaratan_seminarhasil/'.$value->C_NPM)}}"><i class="fa fa-copy icon-square icon-xs icon-primary"></i></a></td>
-                            </tr>
-                        @endforeach
+                            @foreach ($data as $key => $value)
+                                <tr class="odd gradeX">
+                                    <td width="1%" align="center">{{ ++$key }}</td>
+                                    <td>{{ $value->C_NPM }}</td>
+                                    <td>{{ $value->NAMA_MAHASISWA }}</td>
+                                    <td><a href="{{ url('fakultas/detail_persyaratan_seminarhasil/' . $value->C_NPM) }}"><i
+                                                class="fa fa-copy icon-square icon-xs icon-primary"></i></a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div><!-- /.table-responsive -->
@@ -45,5 +52,3 @@
         </div><!-- /.container-fluid -->
     </div>
 @endsection
-
-

@@ -127,6 +127,8 @@
                 <div class="table-responsive">
                     <form action="{{ url('mhs/syarat_ujianpost') }}" onsubmit="return showPostModal(this)" method="post">
                         {{ csrf_field() }}
+                        <input type="hidden" name="tipe_ujian" value="1">
+
                         <table class="table table-striped table-hover" id="">
                             <thead class="the-box dark full">
                                 <tr>

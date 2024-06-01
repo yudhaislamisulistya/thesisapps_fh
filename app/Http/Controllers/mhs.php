@@ -789,12 +789,14 @@ class mhs extends Controller
                 "C_NPM" => auth()->user()->name,
                 "syarat_ujian_id" => $request->syarat_ujian_id[$request->sui],
                 "link" => $request->link[$request->sui],
-                "status" => 2
+                "status" => 2,
+                'tipe_syarat_ujian' => $request->tipe_ujian
             ]);
         } else {
             TrtSyaratUjian::where(["syarat_ujian_id" => $request->syarat_ujian_id[$request->sui], "C_NPM" => auth()->user()->name])->update([
                 "link" => $request->link[$request->sui],
-                "status" => 2
+                "status" => 2,
+                'tipe_syarat_ujian' => $request->tipe_ujian
             ]);
         }
         return redirect()->back();

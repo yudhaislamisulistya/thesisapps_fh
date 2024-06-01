@@ -130,6 +130,8 @@
                     <form action="{{ url('mhs/syarat_ujianpost') }}" onsubmit="return showPostModal(this)" method="post">
                         {{ csrf_field() }}
                         <table class="table table-striped table-hover" id="">
+                            {{-- Input hidden for signup proposal --}}
+                            <input type="hidden" name="tipe_ujian" value="0">
                             <thead class="the-box dark full">
                                 <tr>
                                     <th>No</th>

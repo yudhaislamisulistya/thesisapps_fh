@@ -19,6 +19,12 @@
             <h3 class="page-heading">Daftar Pengajuan Persyaratan Proposal</h3>
             <div class="the-box">
                 <div class="table-responsive">
+                    @if (auth()->user()->name == 'akademikfakultasfh')
+                        <div class="box-tools pull-right" style="margin-bottom: 10px;">
+                            <a href="{{ url('fakultas/riwayat_persyaratan_proposal') }}" class="btn btn-primary btn-sm"
+                                style="color: white;">Riwayat Persyaratan Proposal</a>
+                        </div>
+                    @endif
                     <table class="table table-striped table-hover" id="datatable-example">
                         <thead class="the-box dark full">
                             <tr>
@@ -43,8 +49,7 @@
                                         </td>
                                     @elseif (auth()->user()->name == 'akademikfakultasfh')
                                         <td>
-                                            <a
-                                                href="{{ url('fakultas/detail_persyaratan_proposal/' . $value->C_NPM) }}">
+                                            <a href="{{ url('fakultas/detail_persyaratan_proposal/' . $value->C_NPM) }}">
                                                 <i class="fa fa-copy icon-square icon-xs icon-primary"></i>
                                             </a>
                                         </td>
