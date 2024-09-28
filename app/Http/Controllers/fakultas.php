@@ -726,11 +726,21 @@ class fakultas extends Controller
             ->where('trt_sk.nomor', '=', str_replace("$", "/", $nomor))
             ->get();
 
+        $dataPengajuanTopik = DB::table("trt_topik")
+            ->select("*")
+            ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->join('trt_prodi', 'trt_prodi.kode_prodi', '=', 't_mst_mahasiswa.C_KODE_PRODI')
+            ->where('t_mst_mahasiswa.C_NPM', $datax[0]->C_NPM)
+            ->get();
+
+        // var_dump($dataPengajuanTopik);
+        // die();
+
         $perihal = $datax[0]->perihal;
         $tgl = $datax[0]->tgl_surat;
         $nomor = $datax[0]->nomor;
 
-        return view('tugasakhir.prodi.suratpengusulan', compact('nomor', 'perihal', 'tgl', 'datax'));
+        return view('tugasakhir.prodi.suratpengusulan', compact('nomor', 'perihal', 'tgl', 'datax', 'dataPengajuanTopik'));
     }
 
     public function persyaratan_proposal()

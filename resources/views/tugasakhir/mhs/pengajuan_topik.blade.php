@@ -1,34 +1,28 @@
 @extends('tugasakhir.index')
 @section('isi')
-    <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
         <div class="container-fluid">
-            <!-- Begin page heading -->
             <h1 class="page-heading">Sistem Informasi Program Studi <small> TUGAS AKHIR</small></h1>
-            <!-- End page heading -->
 
-            <!-- Begin breadcrumb -->
             <ol class="breadcrumb default square rsaquo sm">
                 <li><a href="index.html"><i class="fa fa-home"></i></a></li>
                 <li><a href="#fakelink">Home</a></li>
                 <li class="active">Pengajuan Topik</li>
             </ol>
-            <!-- End breadcrumb -->
 
-            <!-- BEGIN DATA TABLE -->
             <h3 class="page-heading">Form Pengajuan Topik</h3>
             @if (Session::get('status') == 'berhasil')
                 <div class="alert alert-success" role="alert"><?php echo Session::get('message'); ?></div>
             @elseif(Session::get('status') == 'gagal')
                 <div class="alert alert-danger" role="alert"><?php echo Session::get('message'); ?></div>
             @endif
-            <!-- BEGIN DATA TABLE -->
             <div class="the-box">
                 @php
                     $trtbimbingan = \App\Model\trt_bimbingan::where('C_NPM', auth()->user()->name)->get();
                 @endphp
                 @if ($trtbimbingan->isEmpty())
-                    <form method="post" action="{{ url('mhs/pengajuan_topik') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('mhs/pengajuan_topik') }}" enctype="multipart/form-data"
+                        id="pengajuanTopikForm">
                         {{ csrf_field() }}
                         <fieldset>
                             <div class="form-group">
@@ -49,7 +43,8 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Bidang Ilmu Peminatan</label>
                                 <div class="col-lg-5">
-                                    <select class="form-control" name="bidang_ilmu_peminatan" id="bidang_ilmu_peminatan">
+                                    <select class="form-control" name="bidang_ilmu_peminatan" id="bidang_ilmu_peminatan"
+                                        required>
                                         @foreach ($data as $key => $value)
                                             <option value="{{ $value->bidang_ilmu }}">{{ $value->bidang_ilmu }}</option>
                                         @endforeach
@@ -57,19 +52,23 @@
                                 </div>
                             </div>
                             <br><br>
-                            {{-- <div class="form-group">
-                                <label class="col-lg-2 control-label">Bidang Ilmu Topik</label>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">MK Minat yang Telah dilulusi</label>
                                 <div class="col-lg-5">
-                                    <select name='bidang_ilmu[]' data-placeholder="Pilih Scope..."
-                                        class="form-control chosen-select" multiple tabindex="4" required>
+                                    <select name='mata_kuliah[]' data-placeholder="Pilih Scope..."
+                                        class="form-control chosen-select" multiple tabindex="5" required
+                                        id="mataKuliahSelect">
                                         <option value="" disabled>&nbsp;</option>
-                                        @foreach ($data as $key => $value)
-                                            <option value="{{ $value->bidang_ilmu }}">{{ $value->bidang_ilmu }}</option>
+                                        @foreach (helper::getMataKuliah() as $key => $value)
+                                            <option value="{{ $value->matakuliah }}">{{ $value->matakuliah }}</option>
                                         @endforeach
                                     </select>
+                                    <div id="error-message" style="color: red; display: none;">Pilih tepat 5 mata kuliah.
+                                    </div>
                                 </div>
                             </div>
-                            <br><br> --}}
+                            <br><br>
+                            <br><br>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Kerangka Pikir</label>
                                 <div class="col-lg-5">
@@ -85,6 +84,20 @@
                             </div>
                             <br><br>
                             <div class="form-group">
+                                <label class="col-lg-2 control-label">Alamat Rumah</label>
+                                <div class="col-lg-5">
+                                    <input type="text" class="form-control bold-border" name="alamat_rumah" required />
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">NoHP/Whatsapp</label>
+                                <div class="col-lg-5">
+                                    <input type="text" class="form-control bold-border" name="whatsapp" required />
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="form-group">
                                 <label class="col-lg-2 control-label">Note</label>
                                 <div class="col-lg-10 mb-5">
                                     <textarea class="summernote-sm" name="note">Assalamualaikum, </textarea>
@@ -93,7 +106,8 @@
                             <br><br>
                             <div class="form-group">
                                 <div class="col-lg-12" align="right" style="margin-top: 20px">
-                                    <button class="btn btn-primary btn-perspective" type="submit">Simpan</button>
+                                    <button class="btn btn-primary btn-perspective" type="submit"
+                                        id="submitBtn">Simpan</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -130,11 +144,10 @@
                         </div>
                     </fieldset>
                 @endif
-            </div><!-- /.the-box -->
+            </div>
 
 
             <h3 class="page-heading">Pembimbing</h3>
-            <!-- BEGIN DATA TABLE -->
             <div class="the-box">
                 @if ($trtbimbingan->isEmpty())
                     @php
@@ -174,7 +187,7 @@
                                             @endif
                                         @endforeach
                                     </select>
-                                </div><!-- /.col-xs-5 -->
+                                </div>
                                 <span class='col-sm-2 text-primary' id="status0"
                                     style="display: none;padding: 5px"></span>
                             </div>
@@ -197,7 +210,7 @@
                                             @endif
                                         @endforeach
                                     </select>
-                                </div><!-- /.col-xs-5 -->
+                                </div>
                                 <span class='col-sm-2 text-primary' id="status1"
                                     style="display: none;padding: 5px"></span>
                             </div>
@@ -231,9 +244,8 @@
                         </div>
                     </fieldset>
                 @endif
-            </div><!-- /.the-box -->
+            </div>
 
-            {{-- Modal Note --}}
             <div class="modal fade" id="modalNote" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content modal-no-shadow modal-no-border bg-info">
@@ -245,12 +257,11 @@
                         <div class="modal-body">
                             <textarea class="summernote-sm" name="note"></textarea>
                         </div>
-                    </div><!-- /.modal-content .modal-no-shadow .modal-no-border .the-box .info .full -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /#InfoModalColor -->
+                    </div>
+                </div>
+            </div>
 
 
-            <!-- BEGIN DATA TABLE -->
             <h3 class="page-heading">Daftar Riwayat Usulan</h3>
             <div class="the-box">
                 <div class="table-responsive">
@@ -305,7 +316,6 @@
                                                 Judul Sudah Diterima/Ditetapkan
                                             </td>
                                         @else
-                                            {{-- disable --}}
                                             <td>
                                                 <button class="btn btn-danger" onclick="showModal(this)"
                                                     data-target="#modalDanger" data-toggle="modal"
@@ -318,7 +328,6 @@
                                         @endif
                                     @else
                                         <td>
-                                            {{-- <a class="btn btn-info" href="{{url('mhs/ubah_judul')}}/{{$value->topik_id}}"><i class="fa fa-edit"></i></a>     --}}
                                             @if ($value->status == 1)
                                                 Judul Sudah Diterima
                                             @else
@@ -332,14 +341,12 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div><!-- /.table-responsive -->
-            </div><!-- /.the-box .default -->
-            <!-- END DATA TABLE -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
-{{-- ModalTambah --}}
 @section('modalPrimaryTitle')
     Tambah
 @endsection
@@ -350,7 +357,6 @@
     <button onclick="submit(this)" class="btn btn-default">Tambah</button>
 @endsection
 
-{{-- ModalRequest --}}
 @section('modalInfoTitle')
     Request Pembimbing
 @endsection
@@ -363,7 +369,6 @@
     <button onclick="submit(this)" id="tombol_request_dua" class="btn btn-default">Request</button>
 @endsection
 
-{{-- ModalDownload --}}
 @section('modalDefaultTitle')
     Download Kerangka Pikir
 @endsection
@@ -374,7 +379,6 @@
     <button onclick="goOnNewTab(this)" class="btn btn-primary">Download</button>
 @endsection
 
-{{-- ModalHapus --}}
 @section('modalDangerTitle')
     Hapus
 @endsection
@@ -387,6 +391,30 @@
 
 @section('script')
     <script>
+        $(document).ready(function() {
+            var maxSelection = 5;
+
+            $('#mataKuliahSelect').on('change', function() {
+                var selectedOptions = $(this).find('option:selected').length;
+                if (selectedOptions < maxSelection || selectedOptions > maxSelection) {
+                    $('#error-message').show();
+                } else {
+                    $('#error-message').hide();
+                }
+            });
+
+            $('#pengajuanTopikForm').on('submit', function(event) {
+                var selectedOptions = $('#mataKuliahSelect').find('option:selected').length;
+                if (selectedOptions < maxSelection || selectedOptions > maxSelection) {
+                    $('#error-message').show();
+                    event.preventDefault();
+                    alert('Anda harus memilih tepat 5 mata kuliah.');
+                } else {
+                    $('#error-message').hide();
+                }
+            });
+        });
+
         $('#tombol_request_satu').on('click', function() {
             console.log("Selamat Datang di Bagian Satu");
 
@@ -455,7 +483,6 @@
             })
         };
 
-        //Modal
         let modal, modalId, modalFooter, link, form, formaction;
 
         const showPostModal = e => {

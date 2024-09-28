@@ -336,28 +336,36 @@ class mhs extends Controller
 
     public function pengajuan_topikpost(Request $request)
     {
+        $mkLulus = implode(';', $request->mata_kuliah);
         try {
             $datapost = $request->except(["bidang_ilmu"]);
+
             $datapost['status'] = 0;
             $datapost['user_id'] = $datapost['C_NPM'];
             $datapost['C_NPM'] = $datapost['C_NPM'];
             $datapost["note"] = $datapost["note"];
+            $datapost["alamat"] = $datapost["alamat_rumah"];
+            $datapost["whatsapp"] = $datapost["whatsapp"];
+
+            $datapost["mk_lulus"] = $mkLulus;
+
             $file = $request->file('kerangka');
             $fileName = time() . '.' . $file->getClientOriginalExtension();
 
-            if ($file->move(public_path('dokumen/'), $fileName)) {
+            if ($file->move(public_path('public/dokumen/'), $fileName)) {
                 $datapost['kerangka'] = $fileName;
             }
-
-
 
             trt_topik::create($datapost);
 
             return redirect()->back()->with(["status" => "berhasil", "message" => "Topik Berhasil Diajukan"]);
         } catch (\Throwable $th) {
+            var_dump($th);
+            die();
             return redirect()->back()->with(["status" => "gagal", "message" => "Topik Gagal Diajukan"]);
         }
     }
+
 
     public function riwayat_ujian($nim)
     {
@@ -1365,5 +1373,31 @@ class mhs extends Controller
         } catch (Exception $error) {
             return redirect()->back()->with((['status' => "gagal", 'message' => "gagal menghapus surat lokasi penelitian"]));
         }
+    }
+
+    public function get_surat_pengusulan($nomor)
+    {
+
+        $datax = DB::table("trt_sk")
+            ->select("*")
+            ->join('trt_bimbingan', 'trt_bimbingan.bimbingan_id', '=', 'trt_sk.bimbingan_id')
+            ->join('t_mst_mahasiswa', 'trt_bimbingan.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->where('trt_sk.nomor', '=', str_replace("$", "/", $nomor))
+            ->get();
+
+        $dataPengajuanTopik = DB::table("trt_topik")
+            ->select("*")
+            ->join('t_mst_mahasiswa', 'trt_topik.C_NPM', '=', 't_mst_mahasiswa.C_NPM')
+            ->join('trt_prodi', 'trt_prodi.kode_prodi', '=', 't_mst_mahasiswa.C_KODE_PRODI')
+            ->where('t_mst_mahasiswa.C_NPM', $datax[0]->C_NPM)
+            ->get();
+
+
+
+        $perihal = $datax[0]->perihal;
+        $tgl = $datax[0]->tgl_surat;
+        $nomor = $datax[0]->nomor;
+
+        return view('tugasakhir.prodi.suratpengusulan', compact('nomor', 'perihal', 'tgl', 'datax', 'dataPengajuanTopik'));
     }
 }

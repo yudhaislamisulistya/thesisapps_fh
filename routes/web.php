@@ -746,4 +746,7 @@ Route::group(['middleware' => 'mhs'], function () {
     Route::get('/mhs/request_surat_lokasi_penelitian', 'mhs@request_surat_lokasi_penelitian');
     Route::post('/mhs/request_surat_lokasi_penelitian', 'mhs@post_request_surat_lokasi_penelitian');
     Route::get('/mhs/request_surat_lokasi_penelitian/delete/{id}', 'mhs@delete_request_surat_lokasi_penelitian');
+
+    // Surat Pengusulan
+    Route::get('/mhs/surat_pengusulan/{nomor}', 'mhs@get_surat_pengusulan')->name('get_mhs_surat_pengusulan');
 });

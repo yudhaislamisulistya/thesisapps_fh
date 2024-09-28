@@ -1090,6 +1090,7 @@ class Prodi extends Controller
             ->where('trt_sk.nomor', '=', str_replace("$", "/", $nomor))
             ->get();
 
+
         $perihal = $datax[0]->perihal;
         $tgl = $datax[0]->tgl_surat;
         $nomor = $datax[0]->nomor;
@@ -1860,7 +1861,9 @@ class Prodi extends Controller
         } else {
             TrtJadwalUjianPerMhs::where(["C_NPM" => $request->C_NPM, "jadwal_ujian" => $trtjadwalujian->id])
                 ->update($request->except([
-                    "C_NPM", "jadwal_ujian", "_token"
+                    "C_NPM",
+                    "jadwal_ujian",
+                    "_token"
                 ]));
         }
 

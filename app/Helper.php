@@ -752,6 +752,16 @@ class Helper
         return isset($v) ? $v : '';
     }
 
+    public static function getStatusSKPembimbingForMahasiswaByTrtSk($nim)
+    {
+        $v = DB::table('trt_sk')
+            ->select(["trt_sk.nomor"])
+            ->join("trt_bimbingan", 'trt_bimbingan.bimbingan_id', '=', 'trt_sk.bimbingan_id')
+            ->where('trt_bimbingan.C_NPM', $nim)
+            ->first();
+        return isset($v) ? $v : '';
+    }
+
     public static function getStatusSKUjianProposalForMahasiswa($nim)
     {
         $v = DB::table('trt_penguji')
@@ -1006,6 +1016,13 @@ class Helper
             ->select("*")
             ->whereRaw("LOWER(REPLACE(mst_bidangilmu.bidang_ilmu, ' ', '')) = ?", [$bidangilmu])
             ->first();
+        return isset($v) ? $v : '-';
+    }
+
+    public static function getMataKuliah(){
+        $v = DB::table('mst_mata_kuliah')
+            ->select("*")
+            ->get();
         return isset($v) ? $v : '-';
     }
 }
